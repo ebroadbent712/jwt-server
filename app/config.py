@@ -12,6 +12,8 @@ PAGES = os.path.join(DATA, "pages")
 LOGOS = os.path.join(DATA, "logos")
 KEYS_FILE = os.path.join(DATA, "keys.json")
 HEALTH_FILE = os.path.join(DATA, "link_health.json")
+ORDERS = os.path.join(DATA, "orders")
+CODES_FILE = os.path.join(DATA, "codes.json")
 
 PUBLIC_BASE = os.environ.get("PUBLIC_BASE", "https://justwearthis.co").rstrip("/")
 # Set in the Render dashboard (never in the code): protects /admin.
@@ -20,5 +22,16 @@ ADMIN_TOKEN = os.environ.get("ADMIN_TOKEN", "")
 CHECK_HOUR = int(os.environ.get("LINK_CHECK_HOUR", "3"))
 CHECK_ENABLED = os.environ.get("LINK_CHECK", "on") != "off"
 
-for d in (DATA, PAGES, LOGOS):
+# ---- family version (all set in the Render dashboard, never in the code) ----
+ANTHROPIC_API_KEY = os.environ.get("ANTHROPIC_API_KEY", "")      # "fake" = test mode, no API calls
+ANTHROPIC_MODEL = os.environ.get("ANTHROPIC_MODEL", "claude-sonnet-5-5")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY", "")
+STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET", "")
+PRICE_CENTS = int(os.environ.get("PRICE_CENTS", "1900"))
+RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
+MAIL_FROM = os.environ.get("MAIL_FROM", "Just Wear This <hello@justwearthis.co>")
+MAIL_REPLY_TO = os.environ.get("MAIL_REPLY_TO", "")
+ALERT_EMAIL = os.environ.get("ALERT_EMAIL", "")                 # where failed builds are reported
+
+for d in (DATA, PAGES, LOGOS, ORDERS):
     os.makedirs(d, exist_ok=True)

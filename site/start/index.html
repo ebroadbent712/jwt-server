@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan your family's photo outfits · Just Wear This</title>
+<meta name="description" content="Answer a few quick questions and get one page with every outfit picked for your family photos, ready to shop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Brand D, quiet (client-facing): white page, black for words only, Bodoni Moda headings, Jost labels and body. One question per screen, phone first. */
+:root{--paper:#ffffff;--ink:#121212;--soft:#6b6b6b;--line:#e2e2e2;
+  --sans:"Jost",system-ui,-apple-system,"Segoe UI",sans-serif;--serif:"Bodoni Moda",Didot,Georgia,serif;--mark:"Anton",Impact,sans-serif}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html,body{margin:0}
+body{color-scheme:light;background:var(--paper);color:var(--ink);font:16px/1.55 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:560px;margin:0 auto;padding:18px 22px 130px;min-height:100vh;display:flex;flex-direction:column;gap:28px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.mark{font-family:var(--mark);font-size:17px;text-transform:uppercase;letter-spacing:.01em;color:var(--ink);text-decoration:none}
+.by{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:300}
+.bar{height:2px;background:var(--line);overflow:hidden;margin-top:-14px}
+.bar i{display:block;height:100%;width:0;background:var(--ink);transition:width .3s ease}
+.step{display:flex;flex-direction:column;gap:18px;animation:in .25s ease}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.step{animation:none}.bar i{transition:none}}
+.eyebrow{font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:300}
+h1{font-family:var(--serif);font-size:clamp(36px,10vw,50px);line-height:1;font-weight:500;letter-spacing:-.02em;margin:0;text-wrap:balance}
+h2{font-family:var(--serif);font-size:clamp(27px,7vw,34px);line-height:1.1;font-weight:500;letter-spacing:-.015em;margin:0;text-wrap:balance}
+.hand{font-family:var(--serif);font-style:italic;font-size:21px;line-height:1.3;margin:0}
+.sub{color:var(--soft);margin:0}
+label.f{display:flex;flex-direction:column;gap:6px;font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+label.f small{letter-spacing:0;text-transform:none;font-size:13px;color:var(--soft)}
+input[type=text],input[type=email],input[type=number],input[type=date],textarea{font:16px var(--sans);letter-spacing:0;text-transform:none;color:var(--ink);background:var(--paper);border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:10px 0;width:100%}
+input[type=date]{min-height:44px}
+textarea{min-height:110px;resize:vertical;border:1px solid var(--ink);padding:12px 14px}
+input:focus,textarea:focus{outline:none;box-shadow:0 1px 0 var(--ink)}
+textarea:focus{box-shadow:inset 0 0 0 1px var(--ink)}
+.q{font-size:11px;letter-spacing:.2em;text-transform:uppercase;margin:0 0 10px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{font:400 15px var(--sans);color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:0;padding:10px 16px;cursor:pointer;min-height:44px}
+.chip:hover{border-color:var(--ink)}
+.chip[aria-pressed=true]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.chip:focus-visible,.btn:focus-visible,.link:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.chips.big{flex-direction:column}
+.chips.big .chip{text-align:left;padding:14px 16px;font-weight:500}
+.chip span{display:block;font-weight:400;font-size:13px;color:var(--soft)}
+.chip[aria-pressed=true] span{color:#cfcfcf}
+.person{border-top:1px solid var(--ink);padding:16px 0 4px;display:flex;flex-direction:column;gap:18px}
+.phead{display:flex;justify-content:space-between;align-items:baseline}
+.phead b{font-family:var(--serif);font-size:22px;font-weight:500}
+.link{all:unset;cursor:pointer;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);padding:6px 2px;text-decoration:underline;text-underline-offset:4px}
+.add{all:unset;cursor:pointer;text-align:center;border:1px dashed var(--ink);padding:16px;font-size:11px;letter-spacing:.24em;text-transform:uppercase}
+.add:focus-visible{outline:2px solid var(--ink)}
+.nav{position:fixed;left:0;right:0;bottom:0;background:linear-gradient(transparent,var(--paper) 30%);padding:28px 22px 18px}
+.nav div{max-width:516px;margin:0 auto;display:flex;gap:10px}
+.btn{font:400 12px var(--sans);letter-spacing:.24em;text-transform:uppercase;border-radius:0;padding:17px 18px;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer;flex:1;text-align:center;text-decoration:none;display:block}
+.btn.ghost{background:var(--paper);color:var(--ink);flex:0 0 auto}
+.btn[disabled]{opacity:.5;cursor:wait}
+.err{color:#9b2c2c;font-size:14px;margin:0}
+.sum{border-top:1px solid var(--ink);padding-top:14px;display:flex;flex-direction:column;gap:10px;font-size:15px}
+.sum div b{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:400}
+.price{display:flex;justify-content:space-between;align-items:baseline;border-top:1px solid var(--ink);border-bottom:1px solid var(--line);padding:14px 0}
+.price b{font-family:var(--serif);font-size:28px;font-weight:500}
+.fine{font-size:13px;color:var(--soft);margin:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a class="mark" href="/">Just Wear This.</a><span class="by">Family outfit plan</span></div>
+  <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+  <main id="main" aria-live="polite"></main>
+</div>
+<div class="nav" id="nav"><div>
+  <button class="btn ghost" id="back" type="button">Back</button>
+  <button class="btn" id="next" type="button">Next</button>
+</div></div>
+
+<script>
+const KEY = "jwt-family-answers";
+const AGES = ["Adult", "Teen", "Kid", "Toddler", "Baby"];
+const SHOP = ["Women's", "Men's", "Girls'", "Boys'", "Either"];
+const DRESS = [["Relaxed", "Comfy and casual"], ["Dressy casual", "Nice, not fussy"], ["Polished", "Our Sunday best"], ["Formal", "Suits and gowns energy"], ["Not sure, you decide", "Trust the stylist"]];
+const PRINTS = [["Love them", "Bring on the florals and plaids"], ["A little is nice", "One or two people in a print"], ["Solids please", "We'll use texture instead"]];
+const OCCASIONS = ["Fall family photos", "Christmas card photos", "Everyday family photos", "Something else"];
+const SETTINGS = ["Park or field", "Garden", "Beach or lake", "Downtown or city", "Orchard or farm", "Tree farm", "At home", "Studio", "Somewhere else"];
+const TIMES = ["Golden hour", "Daytime", "Indoors", "Not sure"];
+
+const blank = () => ({name: "", age: "", kidAge: "", shop: "", dress: "", nope: ""});
+let A = {who: "", family: "", email: "", people: [blank()], date: "", occasion: "", setting: "", setting_note: "", time: "", level: "", love: "", never: "", prints: "", own: "", extra: "", code: ""};
+try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s && s.people) A = Object.assign(A, s); } catch (e) {}
+const params = new URLSearchParams(location.search);
+if (params.get("code")) A.code = params.get("code");
+const save = () => { try { localStorage.setItem(KEY, JSON.stringify(A)); } catch (e) {} };
+
+const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
+const chips = (key, opts, val, idx) => `<div class="chips" role="group">${opts.map(o =>
+  `<button type="button" class="chip" data-k="${key}" ${idx != null ? `data-i="${idx}"` : ""} data-v="${esc(o)}" aria-pressed="${val === o}">${esc(o)}</button>`).join("")}</div>`;
+const bigChips = (key, opts, val) => `<div class="chips big" role="group">${opts.map(([o, d]) =>
+  `<button type="button" class="chip" data-k="${key}" data-v="${esc(o)}" aria-pressed="${val === o}">${esc(o)}<span>${esc(d)}</span></button>`).join("")}</div>`;
+const today = () => new Date().toISOString().slice(0, 10);
+
+const STEPS = [
+  {id: "hello", render: () => `
+    <div class="step">
+      <span class="eyebrow">Family photo outfits</span>
+      <h1>Let's get everyone dressed.</h1>
+      <p class="hand">A few quick questions, about three minutes.</p>
+      <p class="sub">Then you'll get one page with every outfit picked for your family: tap any piece to shop it, and check things off as they arrive.</p>
+      <label class="f">Your first name<input type="text" data-f="who" value="${esc(A.who)}" autocomplete="given-name"></label>
+      <label class="f">Family last name <small>Optional. It goes at the top of your page.</small><input type="text" data-f="family" value="${esc(A.family)}" autocomplete="family-name"></label>
+      <label class="f">Email <small>Your plan link goes here.</small><input type="email" data-f="email" value="${esc(A.email)}" autocomplete="email" inputmode="email"></label>
+    </div>`, ok: () => !A.who.trim() ? "Add your first name." : !/^[^@\s]+@[^@\s]+\.[a-z]{2,}$/i.test(A.email.trim()) ? "Add the email your plan should go to." : ""},
+
+  {id: "people", render: () => `
+    <div class="step">
+      <span class="eyebrow">1 of 7</span>
+      <h2>Who's in the photos?</h2>
+      <p class="sub">First names are perfect (or Mom, Dad, Grandma). Up to 8 people.</p>
+      ${A.people.map((p, i) => `
+        <div class="person">
+          <div class="phead"><b>${p.name ? esc(p.name) : "Person " + (i + 1)}</b>${A.people.length > 1 ? `<button type="button" class="link" data-rm="${i}">Remove</button>` : ""}</div>
+          <label class="f">Name<input type="text" data-p="name" data-i="${i}" value="${esc(p.name)}"></label>
+          <div><p class="q">Age</p>${chips("age", AGES, p.age, i)}
+            ${p.age === "Kid" ? `<label class="f" style="margin-top:10px">How old?<input type="number" inputmode="numeric" min="2" max="17" data-p="kidAge" data-i="${i}" value="${esc(p.kidAge)}"></label>` : ""}</div>
+          <div><p class="q">Shop from</p>${chips("shop", SHOP, p.shop, i)}</div>
+          ${["Baby", "Toddler"].includes(p.age) ? "" : `<div><p class="q">Dressing up?</p>${chips("dress", ["Happy to", "Basics only"], p.dress, i)}</div>`}
+          <label class="f">Anything they won't wear? <small>Optional. Heels, patterns, ties, collars, bows, scratchy fabrics…</small><input type="text" data-p="nope" data-i="${i}" value="${esc(p.nope)}"></label>
+        </div>`).join("")}
+      ${A.people.length < 8 ? `<button type="button" class="add" id="addp">+ Add someone</button>` : ""}
+    </div>`,
+    ok: () => {
+      const bad = A.people.findIndex(p => !p.name.trim() || !p.age);
+      return bad < 0 ? "" : `Add a name and age for ${A.people[bad].name.trim() || "person " + (bad + 1)}.`;
+    }},
+
+  {id: "session", render: () => `
+    <div class="step">
+      <span class="eyebrow">2 of 7</span>
+      <h2>Tell us about your photos.</h2>
+      <label class="f">Photo date <small>A guess is fine. Swaps stay open until this day.</small><input type="date" data-f="date" value="${esc(A.date)}" min="${today()}"></label>
+      <div><p class="q">What are they for?</p>${chips("occasion", OCCASIONS, A.occasion)}</div>
+      <div><p class="q">Where?</p>${chips("setting", SETTINGS, A.setting)}</div>
+      <label class="f">Anything about the spot? <small>Optional. "Big oak trees and a stone bridge."</small><input type="text" data-f="setting_note" value="${esc(A.setting_note)}"></label>
+      <div><p class="q">What light?</p>${chips("time", TIMES, A.time)}</div>
+    </div>`, ok: () => !A.date ? "Add your photo date (a guess is fine)." : !A.occasion ? "Pick what the photos are for." : !A.setting ? "Pick where you're taking them." : ""},
+
+  {id: "level", render: () => `
+    <div class="step">
+      <span class="eyebrow">3 of 7</span>
+      <h2>How dressy would you like to be?</h2>
+      ${bigChips("level", DRESS, A.level)}
+    </div>`, ok: () => A.level ? "" : "Pick one (\"Not sure\" is a great answer)."},
+
+  {id: "colors", render: () => `
+    <div class="step">
+      <span class="eyebrow">4 of 7</span>
+      <h2>Any colors you love, or never want to see?</h2>
+      <p class="sub">Optional. We'll keep the never colors out of prints too.</p>
+      <label class="f">Colors you love<input type="text" data-f="love" value="${esc(A.love)}" placeholder="Sage, rust, cream…"></label>
+      <label class="f">Never, please<input type="text" data-f="never" value="${esc(A.never)}" placeholder="Orange, bright red…"></label>
+    </div>`, ok: () => ""},
+
+  {id: "prints", render: () => `
+    <div class="step">
+      <span class="eyebrow">5 of 7</span>
+      <h2>How do you feel about prints?</h2>
+      ${bigChips("prints", PRINTS, A.prints)}
+    </div>`, ok: () => A.prints ? "" : "Pick one."},
+
+  {id: "own", render: () => `
+    <div class="step">
+      <span class="eyebrow">6 of 7</span>
+      <h2>Anything you already own and want to wear?</h2>
+      <p class="sub">Optional. Shoes count! Tell us what it is and who it's for, and we'll build around it.</p>
+      <textarea data-f="own" placeholder="Mom: my cream cable sweater. Ava: her brown boots.">${esc(A.own)}</textarea>
+    </div>`, ok: () => ""},
+
+  {id: "extra", render: () => `
+    <div class="step">
+      <span class="eyebrow">7 of 7</span>
+      <h2>Anything else we should know?</h2>
+      <p class="sub">Optional. Comfort needs, pregnancy, sensory needs, modesty, or anything you're nervous about.</p>
+      <textarea data-f="extra">${esc(A.extra)}</textarea>
+    </div>`, ok: () => ""},
+
+  {id: "pay", render: () => `
+    <div class="step">
+      <span class="eyebrow">Last step</span>
+      <h2>Ready for your plan, ${esc(A.who.trim())}?</h2>
+      <div class="sum">
+        <div><b>Everyone</b>${A.people.map(p => esc(p.name)).join(", ")}</div>
+        <div><b>Photos</b>${esc(A.occasion)}, ${esc(A.setting.toLowerCase())}, ${esc(A.date ? new Date(A.date + 'T12:00').toLocaleDateString('en-US', {month: 'long', day: 'numeric'}) : '')}</div>
+        <div><b>Plan goes to</b>${esc(A.email)}</div>
+      </div>
+      <div class="price"><span>Your family's outfit plan, with swaps until photo day</span><b>$19</b></div>
+      <label class="f">Have a code? <small>Leave this blank to pay.</small><input type="text" data-f="code" value="${esc(A.code)}" autocapitalize="characters" autocomplete="off"></label>
+      <p class="fine">You'll see your plan in about a minute, and the link comes by email too. By continuing you agree to our <a href="/terms/" style="color:inherit">terms</a> and <a href="/privacy/" style="color:inherit">privacy policy</a>.</p>
+    </div>`, ok: () => ""},
+];
+
+let cur = 0, err = "", busy = false;
+try { const c = Number(sessionStorage.getItem(KEY + "-step")); if (c > 0 && c < STEPS.length) cur = c; } catch (e) {}
+const main = document.getElementById("main"), bar = document.getElementById("bar");
+const back = document.getElementById("back"), next = document.getElementById("next");
+
+function render(focusTop) {
+  const s = STEPS[cur];
+  main.innerHTML = s.render() + (err ? `<p class="err" role="alert">${esc(err)}</p>` : "");
+  bar.style.width = (cur / (STEPS.length - 1) * 100) + "%";
+  back.hidden = cur === 0;
+  next.textContent = cur === 0 ? "Start" : s.id === "pay" ? (A.code.trim() ? "Get my plan" : "Pay $19 and get my plan") : "Next";
+  next.disabled = busy;
+  try { sessionStorage.setItem(KEY + "-step", cur); } catch (e) {}
+  if (focusTop) { window.scrollTo(0, 0); const h = main.querySelector("h1,h2"); if (h) { h.tabIndex = -1; h.focus({preventScroll: true}); } }
+}
+
+main.addEventListener("input", ev => {
+  const t = ev.target;
+  if (t.dataset.f) A[t.dataset.f] = t.value;
+  if (t.dataset.p) A.people[+t.dataset.i][t.dataset.p] = t.value;
+  save();
+  if (t.dataset.f === "code") next.textContent = A.code.trim() ? "Get my plan" : "Pay $19 and get my plan";
+});
+main.addEventListener("click", ev => {
+  const c = ev.target.closest(".chip");
+  if (c) {
+    const k = c.dataset.k, v = c.dataset.v;
+    if (c.dataset.i != null) { const p = A.people[+c.dataset.i]; p[k] = p[k] === v ? "" : v; }
+    else A[k] = A[k] === v ? "" : v;
+    save(); err = ""; render(false);
+    if (k === "age" && v === "Kid" && c.dataset.i != null) { const n = main.querySelector(`input[data-p=kidAge][data-i="${c.dataset.i}"]`); if (n) n.focus(); }
+    return;
+  }
+  if (ev.target.id === "addp") { A.people.push(blank()); save(); render(false); const ins = main.querySelectorAll("input[data-p=name]"); ins[ins.length - 1].focus(); return; }
+  if (ev.target.dataset.rm != null) { A.people.splice(+ev.target.dataset.rm, 1); save(); render(false); }
+});
+
+async function submit() {
+  busy = true; err = ""; render(false); next.textContent = "One moment…";
+  try {
+    const r = await fetch("/api/family/order", {method: "POST", headers: {"content-type": "application/json"},
+      body: JSON.stringify({answers: A, code: A.code.trim()})});
+    const d = await r.json().catch(() => ({}));
+    if (r.ok && d.next) { try { sessionStorage.removeItem(KEY + "-step"); } catch (e) {} location.href = d.next; return; }
+    err = d.error || "Something went wrong. Please try again.";
+  } catch (e) { err = "We couldn't reach the server. Check your connection and try again."; }
+  busy = false; render(false);
+}
+
+next.addEventListener("click", () => {
+  if (busy) return;
+  err = STEPS[cur].ok();
+  if (err) { render(false); return; }
+  if (STEPS[cur].id === "pay") { submit(); return; }
+  cur = Math.min(cur + 1, STEPS.length - 1); render(true);
+});
+back.addEventListener("click", () => { err = ""; cur = Math.max(cur - 1, 0); render(true); });
+render(false);
+</script>
+</body>
+</html>

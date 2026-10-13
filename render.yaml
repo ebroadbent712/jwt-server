@@ -17,6 +17,17 @@ services:
         value: https://justwearthis.co
       - key: ADMIN_TOKEN
         sync: false           # Emily pastes her own value in the Render dashboard
+      # Family version (Emily pastes each one in the Render dashboard; never in the code)
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: STRIPE_SECRET_KEY
+        sync: false
+      - key: STRIPE_WEBHOOK_SECRET
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: ALERT_EMAIL
+        sync: false
     disk:
       name: jwt-data
       mountPath: /var/data

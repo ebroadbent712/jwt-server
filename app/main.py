@@ -7,7 +7,8 @@ from starlette.responses import FileResponse, HTMLResponse, JSONResponse, PlainT
 from starlette.routing import Route
 from starlette.staticfiles import StaticFiles
 
-from . import config, links, store
+from . import config, family, links, payments, store
+from .family_routes import ROUTES as FAMILY_ROUTES
 from .connector import mcp
 
 mcp_app = mcp.streamable_http_app()
@@ -50,12 +51,28 @@ async def admin_keys(request: Request):
             form.update(await request.form())
         if form.get("disable"):
             store.set_key_active(form["disable"], False)
+        elif form.get("make_codes"):
+            made_codes = payments.make_codes(form.get("make_codes") or 1, (form.get("note") or "").strip())
+            made = "<p style='background:#eef7ee;padding:12px'>New beta codes (one use each):<br><code>" + "<br>".join(made_codes) + "</code></p>"
+        elif form.get("rebuild"):
+            o = family.get_order(str(form["rebuild"]))
+            if o:
+                if o["status"] == "awaiting_payment":
+                    o["status"] = "paid"
+                family.log(o, "rebuild from admin")
+                family.save_order(o)
+                family.build_async(o["id"])
+                made = f"<p style='background:#eef7ee;padding:12px'>Rebuilding {html.escape(o['email'])}'s plan. Reload in a minute.</p>"
         elif form.get("name"):
             key = store.create_key(form["name"].strip(), form.get("email", "").strip())
             return JSONResponse({"key": key, "connector_url": f"{config.PUBLIC_BASE}/mcp/{key}"})
     ks = store.keys()
     return JSONResponse([{"name": v["name"], "email": v.get("email"), "created": v["created"], "active": v.get("active", True),
                           "connector_url": f"{config.PUBLIC_BASE}/mcp/{k}", "pages": len(store.pages_for(k))} for k, v in ks.items()])
+
+
+def _open_link(url):
+    return f"<a href='{html.escape(url)}' target=_blank>open</a>" if url else ""
 
 
 async def admin_home(request: Request):
@@ -73,6 +90,18 @@ async def admin_home(request: Request):
             meta = store.page_meta(pid) or {}
             if store.delete_page(pid):
                 made = f"<p style='background:#fbeaea;padding:12px'>Deleted <b>{html.escape(meta.get('title') or pid)}</b>. That link now shows the not-found page.</p>"
+        elif form.get("make_codes"):
+            made_codes = payments.make_codes(form.get("make_codes") or 1, (form.get("note") or "").strip())
+            made = "<p style='background:#eef7ee;padding:12px'>New beta codes (one use each):<br><code>" + "<br>".join(made_codes) + "</code></p>"
+        elif form.get("rebuild"):
+            o = family.get_order(str(form["rebuild"]))
+            if o:
+                if o["status"] == "awaiting_payment":
+                    o["status"] = "paid"
+                family.log(o, "rebuild from admin")
+                family.save_order(o)
+                family.build_async(o["id"])
+                made = f"<p style='background:#eef7ee;padding:12px'>Rebuilding {html.escape(o['email'])}'s plan. Reload in a minute.</p>"
         elif form.get("name"):
             key = store.create_key(form["name"].strip(), (form.get("email") or "").strip())
             made = f"<p style='background:#eef7ee;padding:12px'>Connector link for <b>{html.escape(form['name'])}</b>:<br><code>{config.PUBLIC_BASE}/mcp/{key}</code></p>"
@@ -86,6 +115,15 @@ async def admin_home(request: Request):
         f"<td><form method=post action='/admin?token={tok}' onsubmit=\"return confirm('Delete this page for good? Anyone with the link will see a not-found page.')\">"
         f"<input type=hidden name=delete_page value='{m['id']}'><button>Delete</button></form></td></tr>"
         for m in store.all_pages()) or "<tr><td colspan=4>No pages yet.</td></tr>"
+    order_rows = "".join(
+        f"<tr><td>{html.escape(o.get('created','')[:16].replace('T',' '))}</td><td>{html.escape(o.get('email',''))}</td>"
+        f"<td>{len(o['answers']['people'])}</td><td>{html.escape((o.get('payment') or {}).get('code') or (o.get('payment') or {}).get('method',''))}</td>"
+        f"<td title='{html.escape(chr(10).join(o.get('log', [])[-6:]))}'>{html.escape(o['status'])}{' ⚠ ' + html.escape(o.get('error','')[:80]) if o.get('error') else ''}</td>"
+        f"<td>{o.get('swaps',0)}</td><td>{_open_link(o.get('url'))}</td>"
+        f"<td><form method=post action='/admin?token={tok}'><input type=hidden name=rebuild value='{o['id']}'><button>Rebuild</button></form></td></tr>"
+        for o in family.all_orders()[:200]) or "<tr><td colspan=8>No orders yet.</td></tr>"
+    code_rows = "".join(f"<tr><td><code>{c}</code></td><td>{html.escape(v.get('note') or '')}</td><td>{html.escape(v.get('used_by') or '')}</td></tr>"
+                        for c, v in sorted(payments.codes().items(), key=lambda x: x[1].get('made',''), reverse=True)) or "<tr><td colspan=3>None yet.</td></tr>"
     return HTMLResponse(f"""<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
 <title>Just Wear This admin</title><style>body{{font:15px system-ui;margin:24px;max-width:1000px}}td{{padding:4px 8px;border-bottom:1px solid #ddd}}input{{font:inherit;padding:6px}}</style>
 <h1>Just Wear This admin</h1>{made}
@@ -93,6 +131,10 @@ async def admin_home(request: Request):
 <input name=email placeholder="Email (optional)" size=28> <button>Make link</button></form>
 <h2>Connector links</h2><table><tr><th>Name</th><th>Email</th><th>Made</th><th>Pages</th><th>Link</th></tr>{rows}</table>
 <h2>Published pages</h2><table><tr><th>Page</th><th>By</th><th>Updated</th><th></th></tr>{page_rows}</table>
+<h2>Family orders</h2><table><tr><th>When</th><th>Email</th><th>People</th><th>Paid by</th><th>Status</th><th>Swaps</th><th>Plan</th><th></th></tr>{order_rows}</table>
+<h2>Beta codes</h2><form method=post action="/admin?token={tok}">Make <input name=make_codes type=number value=10 min=1 max=50 style="width:70px"> codes
+<input name=note placeholder="Note (e.g. Oct beta moms)" size=28> <button>Make codes</button></form>
+<table><tr><th>Code</th><th>Note</th><th>Used by</th></tr>{code_rows}</table>
 <p><a href="/admin/links?token={tok}">Shop link health report</a></p>""")
 
 
@@ -144,6 +186,7 @@ class App:
             Route("/admin", admin_home, methods=["GET", "POST"]),
             Route("/admin/keys", admin_keys, methods=["GET", "POST"]),
             Route("/admin/links", admin_links, methods=["GET", "POST"]),
+            *FAMILY_ROUTES,
         ])
         self.routes.mount("/", StaticFiles(directory=config.SITE, html=True))
 
