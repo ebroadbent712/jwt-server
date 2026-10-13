@@ -196,7 +196,7 @@ a.rreach{text-decoration:underline;text-decoration-color:var(--line);text-underl
     <h2 id="cta-h">Want this for your family?</h2>
     <p id="cta-p">Early access opens Nov 3. If you got this link from us, you're already on the list, so you'll hear first.</p>
     <a id="cta-a" href="https://justwearthis.myflodesk.com/dfk1n9lz1l">Get early access</a>
-    <small id="cta-s">Everyone's outfit on one page, every piece at three prices, swaps until photo day. $19.</small>
+    <small id="cta-s">Everyone's outfit on one page, every piece at up to three prices, swaps until photo day. $19.</small>
   </section>
 </div>
 
@@ -313,7 +313,7 @@ render();
     var note = document.querySelector("#sheet .nolink");
     var msg = document.createElement("p");
     msg.className = "locknote";
-    msg.innerHTML = (pro ? "In your client's plan" : "In your plan") + ", these open the store, ready to buy, at three prices. <a href=\"" + JOIN + "\">" + (pro ? "Join the founding list" : "Get early access") + "</a>";
+    msg.innerHTML = (pro ? "In your client's plan" : "In your plan") + ", these open the store, ready to buy, at up to three prices. <a href=\"" + JOIN + "\">" + (pro ? "Join the founding list" : "Get early access") + "</a>";
     if (note) note.replaceWith(msg); else row.after(msg);
   };
 })();
