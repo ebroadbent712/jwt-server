@@ -2,6 +2,7 @@
 the Just Wear This skill then calls these tools to put each family's page at justwearthis.co/p/<id>."""
 import json
 from mcp.server.fastmcp import FastMCP, Context
+from mcp.server.transport_security import TransportSecuritySettings
 
 from . import config, render, store
 
@@ -13,6 +14,8 @@ mcp = FastMCP(
         "plan she already sent, call publish_plan again with the same page_id so her client's link keeps working."),
     stateless_http=True,
     json_response=True,
+    # Public server on justwearthis.co (access is by each buyer's key), so the localhost-only host check is off.
+    transport_security=TransportSecuritySettings(enable_dns_rebinding_protection=False),
 )
 mcp.settings.streamable_http_path = "/"
 
