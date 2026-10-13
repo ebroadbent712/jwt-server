@@ -9,7 +9,8 @@ One Render web service for justwearthis.co:
 | `/p/<id>` | A family's published outfit page (not indexed by search engines) |
 | `/q/<id>` | A photographer's published questionnaire |
 | `/mcp/<key>` | The publish connector a photographer adds to Claude (tools: `publish_plan`, `publish_questionnaire`, `list_my_pages`) |
-| `/admin/keys?token=…` | List connector keys; `POST name=…&email=…` makes a new one |
+| `/admin` | Admin page (asks for the admin password): make a connector link for a buyer, see all links, open the link report |
+| `/admin/keys?token=…` | Same list as JSON; `POST name=…&email=…` makes a new one |
 | `/admin/links?token=…` | Shop link health report; `POST` runs a check now |
 | `/healthz` | Health check for Render |
 

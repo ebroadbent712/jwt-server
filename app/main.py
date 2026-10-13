@@ -58,6 +58,31 @@ async def admin_keys(request: Request):
                           "connector_url": f"{config.PUBLIC_BASE}/mcp/{k}", "pages": len(store.pages_for(k))} for k, v in ks.items()])
 
 
+async def admin_home(request: Request):
+    """A plain page for Emily: make a connector link for a buyer, see who has one, open the link report."""
+    if not _admin_ok(request):
+        return HTMLResponse("""<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Admin</title><form style="font:16px system-ui;margin:40px"><p>Admin password</p><input name=token type=password autofocus>
+<button>Open</button></form>""", status_code=200 if not request.query_params.get("token") else 403)
+    tok = html.escape(request.query_params.get("token", ""))
+    made = ""
+    if request.method == "POST":
+        form = await request.form()
+        if form.get("name"):
+            key = store.create_key(form["name"].strip(), (form.get("email") or "").strip())
+            made = f"<p style='background:#eef7ee;padding:12px'>Connector link for <b>{html.escape(form['name'])}</b>:<br><code>{config.PUBLIC_BASE}/mcp/{key}</code></p>"
+    rows = "".join(f"<tr><td>{html.escape(v['name'])}</td><td>{html.escape(v.get('email') or '')}</td><td>{v['created']}</td>"
+                   f"<td>{len(store.pages_for(k))}</td><td><code>{config.PUBLIC_BASE}/mcp/{k}</code></td></tr>"
+                   for k, v in store.keys().items() if v.get("active", True))
+    return HTMLResponse(f"""<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
+<title>Just Wear This admin</title><style>body{{font:15px system-ui;margin:24px;max-width:1000px}}td{{padding:4px 8px;border-bottom:1px solid #ddd}}input{{font:inherit;padding:6px}}</style>
+<h1>Just Wear This admin</h1>{made}
+<h2>New connector link</h2><form method=post action="/admin?token={tok}"><input name=name placeholder="Photographer or business name" required size=32>
+<input name=email placeholder="Email (optional)" size=28> <button>Make link</button></form>
+<h2>Connector links</h2><table><tr><th>Name</th><th>Email</th><th>Made</th><th>Pages</th><th>Link</th></tr>{rows}</table>
+<p><a href="/admin/links?token={tok}">Shop link health report</a></p>""")
+
+
 async def admin_links(request: Request):
     if not _admin_ok(request):
         return PlainTextResponse("Not allowed", status_code=403)
@@ -103,6 +128,7 @@ class App:
             Route("/s/{code:path}", smart_link),
             Route("/p/{pid}", _page("plan")),
             Route("/q/{pid}", _page("questionnaire")),
+            Route("/admin", admin_home, methods=["GET", "POST"]),
             Route("/admin/keys", admin_keys, methods=["GET", "POST"]),
             Route("/admin/links", admin_links, methods=["GET", "POST"]),
         ])
