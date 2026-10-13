@@ -268,14 +268,37 @@ def wrap(text, font, size, max_w):
 
 # ---------------------------------------------------------------- the board
 
+class _Item(dict):
+    """A library piece whose picture is only opened when the board actually uses it (keeps memory low)."""
+
+    def _load(self):
+        im = Image.open(os.path.join(LIB, "images", dict.__getitem__(self, "file"))).convert("RGB")
+        dict.__setitem__(self, "_img", im)
+        dict.__setitem__(self, "_w", im.width)
+        dict.__setitem__(self, "_h", im.height)
+
+    def __getitem__(self, k):
+        if k in ("_img", "_w", "_h") and not dict.__contains__(self, k):
+            self._load()
+        return dict.__getitem__(self, k)
+
+    def get(self, k, default=None):
+        if k in ("_img", "_w", "_h") and not dict.__contains__(self, k):
+            self._load()
+        return dict.get(self, k, default)
+
+    def __contains__(self, k):
+        return k in ("_img", "_w", "_h") or dict.__contains__(self, k)
+
+
 def load_items(catalog):
-    by_id = {}
-    for it in catalog["items"]:
-        it = dict(it)
-        im = Image.open(os.path.join(LIB, "images", it["file"])).convert("RGB")
-        it["_img"], it["_w"], it["_h"] = im, im.width, im.height
-        by_id[it["id"]] = it
-    return by_id
+    return {it["id"]: _Item(it) for it in catalog["items"]}
+
+
+def _full(it):
+    """A plain copy of a piece with its picture loaded."""
+    it.get("_img")
+    return dict(it)
 
 
 _PHOTO_CACHE = {}
@@ -565,7 +588,7 @@ def draw_person_panel(c, person, items_by_id, numbering, x, y, w, h, per_row):
     c.drawText(t)
     lw = pdfmetrics.stringWidth(person["label"].upper(), "Jost", lab_pt) + len(person["label"]) * lab_pt * 0.22
 
-    items = [dict(items_by_id[i]) for i in person["items"]]
+    items = [_full(items_by_id[i]) for i in person["items"]]
     # A piece the client owns and loves is the point of their look: keep it big.
     owned_main = [it for it in items if it["id"] in OWNED and it["category"] in ("dress", "top")]
     if owned_main:
@@ -1007,11 +1030,11 @@ def build(plan_path, out_dir):
         if isinstance(o, dict):
             OWNED.add(o["id"])
             if o.get("label") and o["id"] in items_by_id:
-                items_by_id[o["id"]] = dict(items_by_id[o["id"]], name=o["label"])
+                items_by_id[o["id"]] = dict(_full(items_by_id[o["id"]]), name=o["label"])
             if o.get("photo") and o["id"] in items_by_id:
                 try:
                     im = client_photo(o["photo"], o.get("crop"), o.get("clean", True))
-                    items_by_id[o["id"]] = dict(items_by_id[o["id"]], _img=im, _w=im.width, _h=im.height)
+                    items_by_id[o["id"]] = dict(_full(items_by_id[o["id"]]), _img=im, _w=im.width, _h=im.height)
                 except Exception as e:
                     print(f"CHECK (fix before delivering): couldn't use the photo {o['photo']} ({e}); the library picture is shown instead.")
         else:
