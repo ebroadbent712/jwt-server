@@ -122,3 +122,25 @@ def save_logo(key, data, ext):
     with open(p, "wb") as f:
         f.write(data)
     return p
+
+
+def delete_page(pid):
+    """Remove a published page for good (its link then shows the not-found page)."""
+    with _lock:
+        if not PAGE_ID.match(pid or ""):
+            return False
+        gone = False
+        for path in (_html_path(pid), _meta_path(pid)):
+            if os.path.exists(path):
+                os.remove(path)
+                gone = True
+        return gone
+
+
+def all_pages():
+    out = []
+    for fn in os.listdir(config.PAGES):
+        if fn.endswith(".json"):
+            m = _read(os.path.join(config.PAGES, fn), {})
+            out.append(dict(m, id=fn[:-5]))
+    return sorted(out, key=lambda m: m.get("updated", ""), reverse=True)

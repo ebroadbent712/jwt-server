@@ -68,18 +68,31 @@ async def admin_home(request: Request):
     made = ""
     if request.method == "POST":
         form = await request.form()
-        if form.get("name"):
+        if form.get("delete_page"):
+            pid = str(form["delete_page"])
+            meta = store.page_meta(pid) or {}
+            if store.delete_page(pid):
+                made = f"<p style='background:#fbeaea;padding:12px'>Deleted <b>{html.escape(meta.get('title') or pid)}</b>. That link now shows the not-found page.</p>"
+        elif form.get("name"):
             key = store.create_key(form["name"].strip(), (form.get("email") or "").strip())
             made = f"<p style='background:#eef7ee;padding:12px'>Connector link for <b>{html.escape(form['name'])}</b>:<br><code>{config.PUBLIC_BASE}/mcp/{key}</code></p>"
     rows = "".join(f"<tr><td>{html.escape(v['name'])}</td><td>{html.escape(v.get('email') or '')}</td><td>{v['created']}</td>"
                    f"<td>{len(store.pages_for(k))}</td><td><code>{config.PUBLIC_BASE}/mcp/{k}</code></td></tr>"
                    for k, v in store.keys().items() if v.get("active", True))
+    names = {k: v["name"] for k, v in store.keys().items()}
+    page_rows = "".join(
+        f"<tr><td><a href='/{'p' if m.get('kind') == 'plan' else 'q'}/{m['id']}' target=_blank>{html.escape(m.get('title') or m['id'])}</a></td>"
+        f"<td>{html.escape(names.get(m.get('key'), '?'))}</td><td>{html.escape((m.get('updated') or '')[:16].replace('T', ' '))}</td>"
+        f"<td><form method=post action='/admin?token={tok}' onsubmit=\"return confirm('Delete this page for good? Anyone with the link will see a not-found page.')\">"
+        f"<input type=hidden name=delete_page value='{m['id']}'><button>Delete</button></form></td></tr>"
+        for m in store.all_pages()) or "<tr><td colspan=4>No pages yet.</td></tr>"
     return HTMLResponse(f"""<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
 <title>Just Wear This admin</title><style>body{{font:15px system-ui;margin:24px;max-width:1000px}}td{{padding:4px 8px;border-bottom:1px solid #ddd}}input{{font:inherit;padding:6px}}</style>
 <h1>Just Wear This admin</h1>{made}
 <h2>New connector link</h2><form method=post action="/admin?token={tok}"><input name=name placeholder="Photographer or business name" required size=32>
 <input name=email placeholder="Email (optional)" size=28> <button>Make link</button></form>
 <h2>Connector links</h2><table><tr><th>Name</th><th>Email</th><th>Made</th><th>Pages</th><th>Link</th></tr>{rows}</table>
+<h2>Published pages</h2><table><tr><th>Page</th><th>By</th><th>Updated</th><th></th></tr>{page_rows}</table>
 <p><a href="/admin/links?token={tok}">Shop link health report</a></p>""")
 
 
