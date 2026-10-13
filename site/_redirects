@@ -1,6 +1,6 @@
-# Old cheat codes address now goes to the sign-up (codes are emailed after sign-up)
-/cheat-codes    /#signup  302
-/cheat-codes/*  /#signup  302
+# Old cheat codes address now goes to the sample plan (the new freebie)
+/cheat-codes    /sample/  302
+/cheat-codes/*  /sample/  302
 
 # Just Wear This smart links. Generated 2026-10-13
 # Format: /s/<piece id>-<tier>  <store page>  302   (302 = temporary, so changes take effect right away)
