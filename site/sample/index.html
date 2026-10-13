@@ -130,6 +130,7 @@ a.rreach{text-decoration:underline;text-decoration-color:var(--line);text-underl
 .locknote a{color:var(--ink)}
 .reveal{display:flex;flex-direction:column;gap:14px;border-top:1px solid var(--rule);padding-top:28px}
 .reveal img{width:100%;height:auto;display:block}
+.reveal h2,.cta h2{text-transform:none;letter-spacing:0}
 .reveal h2{font:400 30px/1.15 var(--serif);margin:0}
 .reveal p{margin:0;color:var(--soft)}
 .cta{display:flex;flex-direction:column;gap:12px;align-items:flex-start;background:var(--wash);padding:24px 22px}
@@ -142,7 +143,7 @@ a.rreach{text-decoration:underline;text-decoration-color:var(--line);text-underl
 
 <div class="wrap">
   <div class="sample-bar" id="sbar"><b>Sample plan</b> · This is the page your family gets</div>
-  <header class="top"><span class="mark">Just Wear This.</span><span class="by">Just Wear This</span></header>
+  <header class="top"><span class="mark">Just Wear This.</span><span class="by">Your photographer</span></header>
 
   <section class="hero">
     
@@ -189,7 +190,7 @@ a.rreach{text-decoration:underline;text-decoration-color:var(--line);text-underl
     <span class="caps">The real family</span>
     <h2>The plan. Then the photo.</h2>
     <img src="/img/session-4.jpg" alt="The family by an old iron gate in greens, navy and cream" width="1400" height="1050" loading="lazy">
-    <p>This is the family we planned it for, at the iron gate, in the outfits on this page.</p>
+    <p>This is the real family we planned it for, at their session by the iron gate.</p>
   </section>
   <section class="cta" id="cta">
     <h2 id="cta-h">Want this for your family?</h2>
@@ -292,6 +293,7 @@ render();
   var JOIN = pro ? "https://justwearthis.myflodesk.com/xz7nvreyhh" : "https://justwearthis.myflodesk.com/dfk1n9lz1l";
   if (pro) {
     document.getElementById("sbar").innerHTML = "<b>Sample plan</b> · This is the page your client gets";
+    document.querySelectorAll(".top .by, .foot .who").forEach(function(el){ el.textContent = "Your business name"; });
     document.getElementById("cta-h").textContent = "Want to send this to every client?";
     document.getElementById("cta-p").textContent = "Founding spots open Nov 10. If you got this link from us, you're already on the list, so you'll hear first.";
     document.getElementById("cta-a").textContent = "Join the founding list";
