@@ -8256,6 +8256,202 @@
    },
    "pattern_scale": "small tartan",
    "pattern_family": "red-holiday-tartan"
+  },
+  {
+   "id": "G-DRS-019",
+   "file": "g_drs_019.jpg",
+   "name": "Ivory tiered prairie dress",
+   "person": "girls",
+   "category": "dress",
+   "layout_role": "hero",
+   "hex": "#F2EDE2",
+   "pattern": false,
+   "colors": [
+    "ivory"
+   ],
+   "color_stories": [
+    "winter-white",
+    "rose-olive"
+   ],
+   "link_tier": "2 links",
+   "description": "Ivory tiered prairie dress.",
+   "shop_links": {
+    "everyday": "https://hopeandhenry.com/products/25fg6171a-ivory-eyelet-organic-tiered-eyelet-dress",
+    "mid": "https://www.gap.com/browse/product.do?pid=1181428002"
+   }
+  },
+  {
+   "id": "W-TOP-016",
+   "file": "w_top_016.jpg",
+   "name": "Heather greige relaxed crewneck sweater",
+   "person": "women",
+   "category": "top",
+   "layout_role": "hero",
+   "hex": "#B8B0A7",
+   "pattern": false,
+   "colors": [
+    "greige",
+    "heather gray"
+   ],
+   "color_stories": [
+    "winter-white",
+    "rose-olive"
+   ],
+   "link_tier": "2 links",
+   "description": "Heather greige relaxed crewneck sweater.",
+   "shop_links": {
+    "everyday": "https://oldnavy.gap.com/browse/product.do?pid=1182260032",
+    "mid": "https://www.quince.com/women/cashmere/cashmere-crewneck-sweater?color=heather-grey"
+   }
+  },
+  {
+   "id": "W-BTM-013",
+   "file": "w_btm_013.jpg",
+   "name": "Blush champagne satin midi skirt",
+   "person": "women",
+   "category": "bottom",
+   "layout_role": "bottom",
+   "hex": "#E9DDD6",
+   "pattern": false,
+   "colors": [
+    "champagne",
+    "blush"
+   ],
+   "color_stories": [
+    "winter-white",
+    "rose-olive"
+   ],
+   "link_tier": "2 links",
+   "description": "Blush champagne satin midi skirt.",
+   "shop_links": {
+    "everyday": "https://oldnavy.gap.com/browse/product.do?pid=911169002",
+    "mid": "https://www.quince.com/women/silk/silk-skirt?color=champagne"
+   }
+  },
+  {
+   "id": "W-SHO-012",
+   "file": "w_sho_012.jpg",
+   "name": "Ivory pointed-toe heeled ankle booties",
+   "person": "women",
+   "category": "shoes",
+   "layout_role": "shoes",
+   "hex": "#EEE8DC",
+   "pattern": false,
+   "colors": [
+    "ivory"
+   ],
+   "color_stories": [
+    "winter-white",
+    "rose-olive",
+    "harvest"
+   ],
+   "link_tier": "2 links",
+   "description": "Ivory pointed-toe heeled ankle booties.",
+   "shop_links": {
+    "mid": "https://www.quince.com/unisex/italian-leather-stretch-sock-bootie?color=bone",
+    "splurge": "https://www.nordstrom.com/s/marc-fisher-ltd-yanara-pointed-toe-bootie-women/7556095"
+   }
+  },
+  {
+   "id": "M-OUT-015",
+   "file": "m_out_015.jpg",
+   "name": "Light heather gray tweed sport coat",
+   "person": "men",
+   "category": "outerwear",
+   "layout_role": "layer",
+   "hex": "#9C9E9D",
+   "pattern": false,
+   "colors": [
+    "heather gray"
+   ],
+   "color_stories": [
+    "winter-white",
+    "cabernet-navy",
+    "holiday-plaid"
+   ],
+   "link_tier": "2 links",
+   "description": "Light heather gray tweed sport coat.",
+   "shop_links": {
+    "mid": "https://www.quince.com/men/stretch-wool-blazer?color=grey-melange",
+    "splurge": "https://www.nordstrom.com/s/hyperlight-soft-grey-houndstooth-check-wool-linen-blend-sport-coat-regular-big/8806040"
+   },
+   "also_for": [
+    "teen boys"
+   ]
+  },
+  {
+   "id": "TG-BTM-010",
+   "file": "tg_btm_010.jpg",
+   "name": "Tan tweed mini skirt",
+   "person": "teen girls",
+   "category": "bottom",
+   "layout_role": "bottom",
+   "hex": "#C6A688",
+   "pattern": false,
+   "colors": [
+    "tan",
+    "camel"
+   ],
+   "color_stories": [
+    "winter-white",
+    "harvest"
+   ],
+   "link_tier": "2 links",
+   "description": "Tan tweed mini skirt.",
+   "shop_links": {
+    "everyday": "https://oldnavy.gap.com/browse/product.do?pid=911184002",
+    "splurge": "https://tnuck.com/products/herringbone-meg-a-line-mini-skirt"
+   }
+  },
+  {
+   "id": "B-OUT-009",
+   "file": "b_out_009.jpg",
+   "name": "Cream corduroy shirt jacket",
+   "person": "boys",
+   "category": "outerwear",
+   "layout_role": "layer",
+   "hex": "#E4DAC6",
+   "pattern": false,
+   "colors": [
+    "cream"
+   ],
+   "color_stories": [
+    "winter-white",
+    "harvest",
+    "rose-olive"
+   ],
+   "link_tier": "1 link",
+   "description": "Cream corduroy shirt jacket.",
+   "shop_links": {
+    "everyday": "https://www2.hm.com/en_us/productpage.1244463005.html"
+   }
+  },
+  {
+   "id": "B-TOP-015",
+   "file": "b_top_015.jpg",
+   "name": "White crewneck tee",
+   "person": "boys",
+   "category": "top",
+   "layout_role": "hero",
+   "hex": "#FAFAF7",
+   "pattern": false,
+   "colors": [
+    "white"
+   ],
+   "color_stories": [
+    "winter-white",
+    "harvest",
+    "evergreen",
+    "cabernet-navy",
+    "rose-olive"
+   ],
+   "link_tier": "3 links",
+   "description": "White crewneck tee.",
+   "shop_links": {
+    "everyday": "https://oldnavy.gap.com/browse/product.do?pid=898709002",
+    "mid": "https://www.quince.com/unisex/kid-100-organic-cotton-jersey-short-sleeve-tee?color=white",
+    "splurge": "https://us.boden.com/products/boys-everyday-short-sleeve-t-shirt-white-b2967wht"
+   }
   }
  ]
 }
