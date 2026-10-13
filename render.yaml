@@ -1,0 +1,23 @@
+# Render blueprint for justwearthis.co (one web service: site, smart links, client pages, publish connector)
+services:
+  - type: web
+    name: jwt-server
+    runtime: python
+    plan: starter            # $7/mo: stays awake (free instances sleep after 15 min)
+    region: ohio
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --proxy-headers --forwarded-allow-ips="*"
+    healthCheckPath: /healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: DATA_DIR
+        value: /var/data
+      - key: PUBLIC_BASE
+        value: https://justwearthis.co
+      - key: ADMIN_TOKEN
+        sync: false           # Emily pastes her own value in the Render dashboard
+    disk:
+      name: jwt-data
+      mountPath: /var/data
+      sizeGB: 1

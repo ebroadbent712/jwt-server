@@ -1,0 +1,427 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Just Wear This · Outfit plans for family photos</title>
+<meta name="description" content="Family photos coming up? Answer six quick questions and get one outfit plan for the whole family, every piece ready to shop from your phone.">
+<meta property="og:title" content="Just Wear This">
+<meta property="og:description" content="Family photos coming up? Everyone's outfit, planned.">
+<meta property="og:image" content="https://justwearthis.co/img/share-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://justwearthis.co/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://justwearthis.co/img/share-card.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@700&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* Brand D, loud (marketing). Black and white only; the clothes and photos bring the color.
+   Black sits behind words, never behind clothes. Images always sit on white.
+   Layout: phone first, one column; desktop sets headline beside an overlapping board + phone collage. */
+:root{--ink:#121212;--paper:#fff;--soft:#6b6b6b;--soft-on-ink:#d6d6d6;--line:#e2e2e2;
+  --head:"Anton",Impact,"Arial Narrow",sans-serif;--voice:"Archivo",system-ui,sans-serif;--sans:"Jost",system-ui,-apple-system,"Segoe UI",sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0}
+html{overflow-x:clip}
+body{background:var(--paper);color:var(--ink);font:17px/1.6 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1160px;margin:0 auto;padding-inline:22px}
+.label{font-size:11px;font-weight:300;letter-spacing:.26em;text-transform:uppercase;margin:0}
+.voice{font-family:var(--voice);font-weight:700;text-transform:uppercase;line-height:1.12;margin:0}
+h1,h2,h3{font-family:var(--head);font-weight:400;text-transform:uppercase;letter-spacing:-.005em;margin:0;text-wrap:balance}
+h1{font-size:clamp(56px,9.4vw,124px);line-height:1.02}
+h2{font-size:clamp(38px,6vw,70px);line-height:1.04}
+h3{font-size:26px;line-height:1.08}
+p{margin:0}
+.soft{color:var(--soft)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:15px 22px;font:400 12px var(--sans);letter-spacing:.24em;text-transform:uppercase;text-decoration:none;border:1px solid var(--ink);background:var(--ink);color:var(--paper);cursor:pointer}
+.btn.line{background:var(--paper);color:var(--ink)}
+.btn:focus-visible,a:focus-visible{outline:2px solid var(--ink);outline-offset:3px}
+.on-ink .btn{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.ctas{display:flex;flex-wrap:wrap;gap:10px}
+section{border-top:1px solid var(--ink)}
+.pad{padding-block:80px}
+
+/* top bar: bigger logo */
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:18px}
+.mark{font-family:var(--head);font-size:clamp(28px,3.4vw,40px);line-height:1;text-transform:uppercase;text-decoration:none;letter-spacing:.005em}
+.top nav{display:flex;gap:22px;align-items:center}
+.top nav a{font-size:11px;letter-spacing:.22em;text-transform:uppercase;text-underline-offset:5px}
+.top nav a.hide-sm{text-decoration:none}
+
+/* hero */
+.hero{border-top:1px solid var(--ink);overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:48px;align-items:center;padding-block:56px 72px}
+.hero .copy{display:flex;flex-direction:column;gap:22px}
+.hero .voice{font-size:clamp(20px,2.3vw,28px)}
+.hero .lede{font-size:18px;max-width:33em}
+.collage{position:relative;min-height:560px}
+.collage .board{position:absolute;right:0;top:0;width:72%;background:var(--paper)}
+.collage .board img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover;object-position:top}
+.collage .board.photo img{aspect-ratio:3/4;object-position:center}
+.phone{width:min(250px,60vw);aspect-ratio:9/19;border:1px solid var(--ink);border-radius:36px;padding:10px;background:var(--paper)}
+.collage .phone{position:absolute;left:0;bottom:0;transform:rotate(-4deg)}
+.screen{width:100%;height:100%;border-radius:27px;overflow:hidden;border:1px solid var(--line)}
+.screen img{width:100%;height:auto;animation:scroll 18s ease-in-out infinite alternate}
+@keyframes scroll{0%,12%{transform:translateY(0)}88%,100%{transform:translateY(calc(-100% + 460px))}}
+
+/* marquee */
+.marquee{border-top:1px solid var(--ink);overflow:hidden;white-space:nowrap;padding-block:14px}
+.marquee div{display:inline-block;animation:marq 40s linear infinite;font-family:var(--head);font-size:22px;text-transform:uppercase;letter-spacing:.02em}
+.marquee span{padding-inline:18px}
+@keyframes marq{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.screen img,.marquee div{animation:none}}
+
+/* the gallery problem */
+.problem .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:end;margin-bottom:44px}
+.problem .head p:not(.label){font-size:19px}
+.pair{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px}
+.pair figure{margin:0;display:flex;flex-direction:column;gap:12px}
+.pair .frame{padding:0}
+.pair img,.screen img{height:auto}
+.pair .frame.skip{opacity:.92}
+.pair figcaption{display:flex;gap:10px;align-items:baseline;font-size:15px}
+.tag{white-space:nowrap;font-family:var(--voice);font-weight:700;font-size:12px;text-transform:uppercase;padding:3px 9px 2px;border:1px solid var(--ink)}
+.tag.do{background:var(--ink);color:var(--paper)}
+
+
+/* both sides */
+.both .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:end;margin-bottom:44px}
+.both .head p:not(.label){font-size:19px}
+.both .cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:56px}
+.both h3{font-size:clamp(30px,3.6vw,44px);margin-bottom:6px}
+.both ul{list-style:none;margin:0;padding:0}
+.both li{border-top:1px solid var(--ink);padding:18px 0;display:flex;flex-direction:column;gap:6px}
+.both li b{font-weight:500;font-size:19px}
+
+/* real galleries: plan beside photo */
+.real .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:44px}
+.real .head p{max-width:28em}
+.match{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:28px 40px;align-items:start;padding-block:28px;border-top:1px solid var(--line)}
+.match:first-of-type{border-top:0}
+.match figure{margin:0;display:flex;flex-direction:column;gap:18px}
+.match img{width:100%;height:auto}
+.match .plan img{max-height:560px;object-fit:contain;object-position:left top}
+.match figcaption{font-family:var(--head);font-size:clamp(34px,4.4vw,52px);line-height:1;text-transform:uppercase}
+.real .credit{margin-top:16px;font-size:13px;color:var(--soft)}
+
+/* desktop tidy, Oct 12 */
+.wrap{max-width:1100px}
+.steps h2,.real h2{max-width:11em}
+.price{max-width:820px;gap:16px 36px}
+.real .credit{max-width:62em}
+.flow img{max-height:640px;object-fit:contain;object-position:left top}
+.signup p.sub,.pros-band p.sub{max-width:34em}
+
+@media (max-width:860px){.match{grid-template-columns:minmax(0,1fr);gap:40px}.match{padding-block:40px}}
+
+/* steps */
+.steps .wrap{display:flex;flex-direction:column;gap:40px}
+.steps ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px;counter-reset:s}
+.steps li{border-top:1px solid var(--ink);padding-top:18px;display:flex;flex-direction:column;gap:10px;counter-increment:s}
+.steps li::before{content:"0" counter(s);font-family:var(--head);font-size:52px;line-height:1}
+.steps li b{font-weight:500;font-size:19px}
+
+/* yours to keep */
+.yours .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:end;margin-bottom:44px}
+.yours .head p:not(.label){font-size:19px}
+.yours ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+.yours li{border-top:1px solid var(--ink);padding-top:18px;display:flex;flex-direction:column;gap:10px}
+.yours li b{font-weight:500;font-size:19px}
+
+/* built around what they own */
+.owned .head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:end;margin-bottom:44px}
+.owned .head p:not(.label){font-size:19px}
+.flow{display:grid;grid-template-columns:minmax(0,.62fr) auto minmax(0,1fr);gap:28px;align-items:start}
+.flow figure{margin:0;display:flex;flex-direction:column;gap:18px}
+.flow img{width:100%;height:auto}
+.flow figcaption{font-family:var(--head);font-size:clamp(34px,4.4vw,52px);line-height:1;text-transform:uppercase}
+.flow .arrow{font-family:var(--sans);font-size:56px;line-height:1;align-self:center}
+
+/* on the page */
+.inside .wrap{display:grid;grid-template-columns:minmax(0,.75fr) minmax(0,1.25fr);gap:56px;align-items:center}
+.inside .phone{justify-self:center;width:min(290px,72vw)}
+.inside .copy{display:flex;flex-direction:column;gap:18px}
+.feat{list-style:none;margin:8px 0 0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 28px}
+.feat li{border-top:1px solid var(--line);padding:14px 0;display:flex;flex-direction:column;gap:3px}
+.feat b{font-weight:500}
+.feat span{color:var(--soft);font-size:15px}
+
+/* story */
+.story .wrap{display:grid;grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:56px;align-items:center}
+.portrait{}
+.portrait .ph{aspect-ratio:4/5;background:#f2f2f2;display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--soft);padding:20px}
+.portrait img{width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.story .copy{display:flex;flex-direction:column;gap:18px}
+.story p:not(.label){font-size:19px}
+.story .voice{font-size:clamp(20px,2.6vw,28px)}
+
+/* faq */
+.faq .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:56px}
+.need{border:1px solid var(--ink);padding:22px;display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.need b{font-weight:500}
+details{border-top:1px solid var(--line);padding:18px 0}
+details:last-child{border-bottom:1px solid var(--line)}
+summary{cursor:pointer;font-weight:500;font-size:18px;list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-weight:300;font-size:22px;line-height:1}
+details[open] summary::after{content:"\2212"}
+details p{margin-top:10px;color:var(--soft);max-width:38em}
+
+/* sign up */
+.signup{background:var(--ink);color:var(--paper);border-top:0}
+.signup .wrap{display:flex;flex-direction:column;gap:22px;align-items:flex-start}
+.signup .voice{font-size:clamp(19px,2.4vw,26px)}
+.signup p.sub{color:var(--soft-on-ink);max-width:36em}
+.foot .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;padding-block:24px 40px;font-size:13px;color:var(--soft)}
+.foot{border-top:0}
+
+@media (max-width:860px){
+  .pad{padding-block:56px}
+  .hero .wrap,.problem .head,.inside .wrap,.story .wrap,.faq .wrap{grid-template-columns:minmax(0,1fr);gap:36px}
+  .hero .wrap{padding-block:36px 56px}
+  .collage{min-height:0;height:min(124vw,560px)}
+  .collage .board{width:88%;right:-2%}
+  .collage .phone{width:min(150px,36vw);bottom:-2%}
+  .label{letter-spacing:.2em;white-space:nowrap}
+  .pair,.problem .after,.steps ol,.feat,.yours ul,.yours .head{grid-template-columns:minmax(0,1fr)}
+  .yours .head{gap:20px}
+  .both .head,.both .cols{grid-template-columns:minmax(0,1fr)}
+  .both .head{gap:20px}
+  .both .cols{gap:36px}
+  .owned .head{grid-template-columns:minmax(0,1fr);gap:20px}
+  .flow{grid-template-columns:minmax(0,1fr);gap:24px}
+  .flow figure:first-child img{max-width:300px;margin-inline:auto}
+  .flow img{max-height:none}
+  .match .plan img{object-position:center top;margin-inline:auto}
+  .flow .arrow{transform:rotate(90deg);justify-self:center}
+  .top nav a.hide-sm{display:none}
+  .story .portrait{max-width:320px;width:100%;justify-self:center;margin-inline:auto}
+}
+
+/* Oct 12: one page, two audiences */
+.price{border:1px solid var(--ink);padding:22px;display:flex;flex-wrap:wrap;gap:12px 28px;align-items:center;justify-content:space-between}
+.price .big{font-family:var(--head);font-size:clamp(44px,6vw,64px);line-height:1}
+.price ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px}
+.steps .price li{border:0;padding:0;counter-increment:none;display:block}
+.steps .price li::before{content:"\2713  ";font-family:var(--sans);font-size:15px}
+.pros-band{background:var(--ink);color:var(--paper);border-top:0}
+.pros-band .wrap{display:flex;flex-direction:column;gap:18px;padding-block:64px}
+.pros-band p.sub{color:var(--soft-on-ink);max-width:40em;font-size:19px}
+.faq h3{font-size:22px;margin:0 0 6px}
+.faq .group+.group{margin-top:36px}
+</style></head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="mark" href="/">Just Wear This.</a>
+  <nav><a class="hide-sm" href="#how">How it works</a><a class="hide-sm" href="#photographers">For photographers</a><a href="#family">Get early access →</a></nav>
+</div></header>
+
+<main>
+<section class="hero"><div class="wrap">
+  <div class="copy">
+    <p class="label">Family photos coming up?</p>
+    <h1>Everyone's outfit, planned.</h1>
+    <p class="voice">Answer six quick questions. Get one plan for the whole family.</p>
+    <p class="lede soft">No Pinterest spiral. No group-chat debates. One outfit plan made for your family, your setting and your season, with every piece ready to shop from your phone.</p>
+    <div class="ctas">
+      <a class="btn" href="#family">Get early access</a>
+      <a class="btn line" href="/demo/">Tap through a real one →</a>
+    </div>
+    <p class="soft" style="font-size:14px">Opening Nov 3 for holiday photos. $19 per family.</p>
+  </div>
+  <div class="collage" aria-hidden="true">
+    <div class="board photo"><img src="/img/session-hero.jpg" alt="" width="1050" height="1400"></div>
+    <div class="phone"><div class="screen"><img src="/img/client-page-b.jpg" alt="" width="780" height="3800"></div></div>
+  </div>
+</div></section>
+
+<div class="marquee" aria-hidden="true"><div>
+  <span>Coordinate, don't match</span><span>•</span><span>Crown one star</span><span>•</span><span>Texture does the heavy lifting</span><span>•</span><span>Spread out the darks</span><span>•</span><span>Dress for the place</span><span>•</span><span>Leave the logo tee at home</span><span>•</span>
+  <span>Coordinate, don't match</span><span>•</span><span>Crown one star</span><span>•</span><span>Texture does the heavy lifting</span><span>•</span><span>Spread out the darks</span><span>•</span><span>Dress for the place</span><span>•</span><span>Leave the logo tee at home</span><span>•</span>
+</div></div>
+
+<section class="problem pad"><div class="wrap">
+  <div class="head">
+    <div><p class="label">Why it matters</p><h2>Same family. Same light. Different photo.</h2></div>
+    <p class="soft">What everyone wears decides whether the photos end up on your wall or stay in the gallery. Matching white tees look flat. A plan that coordinates without matching looks like your family, only more pulled together.</p>
+  </div>
+  <div class="pair">
+    <figure><figcaption><span class="tag">Left to chance</span><span class="soft">Everyone in white tees and jeans.</span></figcaption><div class="frame skip"><img src="/img/code-4-skip.jpg" alt="Four people in matching white tees and jeans" width="1100" height="658" loading="lazy"></div></figure>
+    <figure><figcaption><span class="tag do">Planned</span><span>Same palette, different pieces.</span></figcaption><div class="frame"><img src="/img/code-4-do.jpg" alt="The same four people in a coordinated outfit plan" width="1100" height="658" loading="lazy"></div></figure>
+  </div>
+</div></section>
+
+<section class="steps pad" id="how"><div class="wrap">
+  <div><p class="label">How it works</p><h2>Three steps. Everyone dressed.</h2></div>
+  <ol>
+    <li><b>Answer six quick questions.</b><span class="soft">Who's coming, how dressy, colors you love, prints, where you're shooting, and anything you already own. About three minutes.</span></li>
+    <li><b>Get your family's plan.</b><span class="soft">Every outfit for every person, coordinated, never matching, using real pieces from real stores. Ready in about a minute.</span></li>
+    <li><b>Shop, check off, swap.</b><span class="soft">Shop each piece from your phone, mark things off as they arrive, and swap anything that sold out or didn't fit, right up to photo day.</span></li>
+  </ol>
+  <div class="price">
+    <div><p class="label">One family plan</p><p class="big">$19</p></div>
+    <ul><li>Every person, up to eight in one plan</li><li>Every piece at up to three price points</li><li>Unlimited swaps until photo day</li></ul>
+    <a class="btn" href="#family">Get early access</a>
+  </div>
+</div></section>
+
+<section class="real pad"><div class="wrap">
+  <div class="head">
+    <div><p class="label">Real sessions</p><h2>The plan. Then the photo.</h2></div>
+    <p class="soft">Real families I photographed, beside the kind of outfit plan that gets them there: coordinated, never matching, and still completely them. Nobody has to wear every piece. It's a starting point, and families mix in what they already own and love.</p>
+  </div>
+  <div class="match">
+    <figure class="plan"><figcaption>The plan</figcaption><img src="/img/plan-c.jpg" alt="The outfit plan: cream cable sweater and green tartan skirt, a forest quarter-zip, a green plaid shirt, a navy turtleneck and olive satin skirt, a sage floral dress" width="780" height="1400" loading="lazy"></figure>
+    <figure><figcaption>The photo</figcaption><img src="/img/session-4.jpg" alt="The family by an iron gate in green, navy and cream" width="1400" height="1050" loading="lazy"></figure>
+  </div>
+  <div class="match">
+    <figure class="plan"><figcaption>The plan</figcaption><img src="/img/plan-d.jpg" alt="The outfit plan: a fair isle sweater, a navy knit dress with tall boots, an oatmeal crewneck with jeans, a golden sweater with wide-leg jeans" width="1000" height="1197" loading="lazy"></figure>
+    <figure><figcaption>The photo</figcaption><img src="/img/session-6.jpg" alt="The family on a tall grass trail in navy, oatmeal and mustard, with their dog" width="1400" height="1050" loading="lazy"></figure>
+  </div>
+  <p class="credit">Real families, photographed by Emily Broadbent Photography and shared with their permission. The outfit plans were built afterward from the Just Wear This library to show how close one gets.</p>
+</div></section>
+
+<section class="inside pad"><div class="wrap">
+  <div class="phone" aria-label="A family outfit page on a phone"><div class="screen"><img src="/img/client-page.jpg" alt="The Callahan family's outfit page" width="780" height="1900" loading="lazy"></div></div>
+  <div class="copy">
+    <p class="label">What you get</p>
+    <h2>The page you'll screenshot.</h2>
+    <p class="soft">Everything your family needs to get dressed, in one place, on your phone.</p>
+    <ul class="feat">
+      <li><b>Everyone on one board</b><span>Each outfit laid out together, so your family reads as one photo.</span></li>
+      <li><b>Up to three price points per piece</b><span>Everyday, mid or splurge. Splurge on the favorite, save on the rest.</span></li>
+      <li><b>Check-offs that remember</b><span>Still need, ordered, have it. A progress bar fills as the week goes.</span></li>
+      <li><b>Your colors, explained</b><span>The palette and why it works, so nobody second-guesses.</span></li>
+      <li><b>Swaps until photo day</b><span>Sold out or didn't fit? Swap the piece and everything still works together.</span></li>
+      <li><b>A week-before checklist</b><span>Try-ons, steaming, shoes little ones can walk in.</span></li>
+    </ul>
+  </div>
+</div></section>
+
+<section class="signup on-ink pad" id="family"><div class="wrap">
+  <p class="label">Opening Nov 3</p>
+  <h2>Get early access.</h2>
+  <p class="voice">Holiday photos, handled.</p>
+  <p class="sub">Join the list and you'll be first in when family plans open on Nov 3, in time for holiday and Christmas-card photos.</p>
+  <a class="btn" href="https://justwearthis.myflodesk.com/dfk1n9lz1l" data-family-form>Get early access →</a>
+</div></section>
+
+<section class="story pad"><div class="wrap">
+  <div class="portrait">
+    <img src="/img/emily.jpg" alt="Emily Broadbent, smiling, in a red suit on a pink chair" width="800" height="1000">
+  </div>
+  <div class="copy">
+    <p class="label">Who made this</p>
+    <h2>Hi, I'm Emily.</h2>
+    <p>I've photographed families for over a decade, and every session starts with the same question: "So… what should we wear?"</p>
+    <p>For years, my answer was a style guide. Families skimmed page one, then texted me outfit photos at 11pm the night before. I'm a mom too, so I get it: dressing a whole family is a lot.</p>
+    <p>So I took everything I know about dressing families for photos and turned it into one plan: made for your family, built from real pieces you can buy today, and easy to change until photo day.</p>
+    <p class="voice">You just wear this.</p>
+  </div>
+</div></section>
+
+<section class="pros-band on-ink" id="photographers"><div class="wrap">
+  <p class="label">For photographers</p>
+  <h2>Give every client this.</h2>
+  <p class="sub">The same outfit plans, with your business name on top. Your client answers six questions, you paste them into Claude, and they get their family's page. Founding spots open Nov 10.</p>
+  <div class="ctas"><a class="btn" href="#signup">Join the photographer waitlist</a></div>
+</div></section>
+
+<section class="both pad"><div class="wrap">
+  <div class="head">
+    <div><p class="label">Two problems, one link</p><h2>Your time back. Their outfits handled.</h2></div>
+    <p class="soft">What to wear has always been two problems: the family who doesn't know what to buy, and the photographer who spends hours building guides to teach them. Just Wear This solves both at once.</p>
+  </div>
+  <div class="cols">
+    <div>
+      <h3>For you</h3>
+      <ul>
+        <li><b>No more style guide templates</b><span class="soft">No buying, rewriting and hunting for photos every season. An outfit plan takes minutes.</span></li>
+        <li><b>Galleries you're proud of</b><span class="soft">Coordinated families that look like they belong in the same frame.</span></li>
+        <li><b>An experience they rave about</b><span class="soft">A personal outfit plan with your name on it. They'll tell their friends.</span></li>
+      </ul>
+    </div>
+    <div>
+      <h3>For your clients</h3>
+      <ul>
+        <li><b>One plan, not 12 pages</b><span class="soft">Every outfit on one board, made for their family, their setting and their season.</span></li>
+        <li><b>Shopped from their phone</b><span class="soft">Every piece at up to three price points, checked off as it arrives.</span></li>
+        <li><b>Ready on session day</b><span class="soft">Everything bought and tried on before you ever pick up the camera.</span></li>
+      </ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="steps pad"><div class="wrap">
+  <div><p class="label">How it works for photographers</p><h2>Three steps. Every client dressed.</h2></div>
+  <ol>
+    <li><b>Your client answers six quick questions.</b><span class="soft">Who's coming, how dressy, colors they love, prints, what they already own. About three minutes for them.</span></li>
+    <li><b>You paste their answers into Claude.</b><span class="soft">Just Wear This plans every outfit for the whole family, using real pieces from real stores. Works on any Claude plan, including free.</span></li>
+    <li><b>You send them one link.</b><span class="soft">They open their family's outfit page, shop every piece, and check things off as they arrive.</span></li>
+  </ol>
+</div></section>
+
+<section class="owned pad"><div class="wrap">
+  <div class="head">
+    <div><p class="label">Built around what they own</p><h2>Start with the dress they already love.</h2></div>
+    <p class="soft">Send a photo of the piece. The whole family gets styled around it, and the outfit page marks it "you have this" so nobody buys it twice.</p>
+  </div>
+  <div class="flow">
+    <figure><figcaption>What they have</figcaption><img src="/img/own-piece.jpg" alt="A phone photo of a client's own painterly floral midi dress, hanging on a door" width="900" height="1464" loading="lazy"></figure>
+    <span class="arrow" aria-hidden="true">→</span>
+    <figure><figcaption>Their outfit plan</figcaption><img src="/img/plan-own.jpg" alt="The Hale family's outfit plan, built around Mom's floral dress: a navy sweater for Dad, a cream cable sweater and dark jeans for her son, a cabernet dress with an ivory collar for her daughter" width="1275" height="1838" loading="lazy"></figure>
+  </div>
+</div></section>
+
+<section class="yours pad"><div class="wrap">
+  <div class="head">
+    <div><p class="label">Your stylist, not a template</p><h2>Trained once. Yours to keep.</h2></div>
+    <p class="soft">A style guide is a weekend you spend every season, and it still says the same thing to every family. This is a stylist that already knows your business, and it's ready every time a client books.</p>
+  </div>
+  <ul>
+    <li><b>Your hours back</b><span class="soft">No more buying templates, rewriting the guide and hunting for photos every season. An outfit plan takes minutes.</span></li>
+    <li><b>It learns your business</b><span class="soft">Your name and logo, the colors you never want to see, your usual locations, the way you talk. Set it once and every outfit plan has it.</span></li>
+    <li><b>Never stuck with the first draft</b><span class="soft">Swap a piece, warm it up, build around something they already own. Change it as often as you like; the link they have updates.</span></li>
+    <li><b>Better every season</b><span class="soft">New pieces and new seasons arrive as updates, so your outfit plans keep up with what's in stores.</span></li>
+  </ul>
+</div></section>
+
+<section class="signup on-ink pad" id="signup"><div class="wrap">
+  <p class="label">The photographer waitlist</p>
+  <h2>Get on the list.</h2>
+  <p class="voice">First dibs on founding spots Nov 10. Free cheat codes now.</p>
+  <p class="sub">Join and you'll get my Outfit Cheat Codes right away: ten shortcuts to family photos that look effortless, with real boards showing what works and what to skip.</p>
+  <a class="btn" href="https://justwearthis.myflodesk.com/xz7nvreyhh">Get the free Cheat Codes →</a>
+</div></section>
+
+<section class="faq pad" id="faq"><div class="wrap">
+  <div>
+    <p class="label">Questions</p>
+    <h2>Good questions. Short answers.</h2>
+  </div>
+  <div>
+    <div class="group">
+      <h3>For families</h3>
+      <details><summary>How much is it?</summary><p>$19 for one family plan, with unlimited swaps until photo day.</p></details>
+      <details><summary>How fast do I get my plan?</summary><p>About a minute after you answer the six questions. You get a link you can open on any phone.</p></details>
+      <details><summary>Do I have to buy everything?</summary><p>No. Use what you already own and love, and shop only the gaps. Each piece has up to three price points.</p></details>
+      <details><summary>What if something sells out or doesn't fit?</summary><p>Swap it. The rest of the plan still works together, and your link updates.</p></details>
+      <details><summary>Who can it plan for?</summary><p>Up to eight people in one plan, from babies to grandparents.</p></details>
+      <details><summary>Where do the clothes come from?</summary><p>Real pieces from real stores. Plain store links, no affiliate tracking.</p></details>
+    </div>
+    <div class="group">
+      <h3>For photographers</h3>
+      <details><summary>Do I need Claude?</summary><p>Yes, but any plan works, including the free one. Just Wear This installs into your Claude account in a few minutes and remembers your business details.</p></details>
+      <details><summary>Will it match my editing style?</summary><p>Tell it you shoot light and airy, and it won't hand you burgundy. Moody? It leans deeper. You can also list colors you never want to see.</p></details>
+      <details><summary>Will every family look the same?</summary><p>No. Each plan starts from that family's answers, setting and season, and rotates through equally good pieces so your galleries don't repeat.</p></details>
+      <details><summary>When can I get it, and what does it cost?</summary><p>Founding spots open Nov 10 for the waitlist first, at a one-time founding price. No subscription.</p></details>
+    </div>
+  </div>
+</div></section>
+</main>
+
+<footer class="foot"><div class="wrap">
+  <span>Just Wear This by Emily Broadbent.</span>
+  <a href="mailto:emily@justwearthis.co">emily@justwearthis.co</a>
+</div></footer>
+</body></html>

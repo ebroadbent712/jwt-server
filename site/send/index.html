@@ -1,0 +1,78 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Send your answers · Just Wear This</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+/* The questionnaire's answers arrive in the #fragment, which browsers never send to the server.
+   Brand D, quiet: white page, black for words only, Bodoni Moda headings, Jost labels and body. */
+:root{--ink:#121212;--soft:#6b6b6b;--line:#e2e2e2}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.55 Jost,system-ui,-apple-system,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:560px;margin:0 auto;padding:18px 22px 48px;display:flex;flex-direction:column;gap:22px}
+.mark{font-family:Anton,Impact,sans-serif;font-size:17px;text-transform:uppercase;letter-spacing:.01em;border-bottom:1px solid var(--ink);padding-bottom:12px}
+h1{font-family:"Bodoni Moda",Didot,Georgia,serif;font-size:clamp(28px,7.5vw,36px);line-height:1.1;font-weight:500;letter-spacing:-.015em;margin:0}
+p{margin:0;color:var(--soft)}
+.btn{display:block;text-align:center;text-decoration:none;font:400 12px Jost,system-ui,sans-serif;letter-spacing:.24em;text-transform:uppercase;border-radius:0;padding:17px 18px;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor:pointer;width:100%}
+.btn.ghost{background:#fff;color:var(--ink)}
+.btns{display:flex;flex-direction:column;gap:10px}
+.tip{border-left:2px solid var(--ink);padding:4px 0 4px 14px;font-size:15px;color:var(--ink)}
+pre{white-space:pre-wrap;border-top:1px solid var(--ink);padding:16px 0 0;font:14px/1.6 Jost,system-ui,sans-serif;margin:0;color:var(--soft)}
+.hand{font-family:"Bodoni Moda",Didot,Georgia,serif;font-style:italic;font-size:22px;text-align:center;color:var(--ink)}
+.ok{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);text-align:center}
+</style></head><body><main>
+<span class="mark">Just Wear This.</span>
+<div id="good" hidden>
+  <div style="display:flex;flex-direction:column;gap:20px">
+    <h1 id="title">Send your answers</h1>
+    <p id="lead">Tap below to open your email with everything already written in. Just hit send.</p>
+    <p class="tip" id="tip" hidden>Before you send, attach your photos.</p>
+    <div class="btns">
+      <a class="btn" id="text" hidden>Open my texts</a>
+      <a class="btn" id="email" hidden>Open my email</a>
+      <button class="btn ghost" id="copy" type="button">Copy my answers</button>
+      <p class="ok" id="copied" hidden></p>
+    </div>
+    <pre id="body"></pre>
+    <p class="hand">Thank you! Your outfit page is on its way soon.</p>
+  </div>
+</div>
+<div id="bad" hidden><h1>This link is missing your answers.</h1><p>Go back to the questionnaire and tap the send button again.</p></div>
+</main>
+<script>
+(function () {
+  var d = null;
+  try {
+    var h = location.hash.slice(1).replace(/-/g, "+").replace(/_/g, "/");
+    d = JSON.parse(decodeURIComponent(escape(atob(h))));
+  } catch (e) {}
+  if (!d || !d.b) { document.getElementById("bad").hidden = false; return; }
+  document.getElementById("good").hidden = false;
+  var $ = function (id) { return document.getElementById(id); };
+  var studio = String(d.s || "your photographer");
+  $("title").textContent = "Send your answers to " + studio;
+  $("body").textContent = d.b;
+  if (d.t) { $("tip").hidden = false; $("tip").textContent = d.t; }
+  var mail = d.e ? "mailto:" + encodeURIComponent(d.e).replace(/%40/g, "@") + "?subject=" + encodeURIComponent(d.j || "Outfit questions") + "&body=" + encodeURIComponent(d.b) : "";
+  var sms = d.p ? "sms:" + String(d.p).replace(/[^\d+]/g, "") + "?&body=" + encodeURIComponent(d.b) : "";
+  if (mail) { $("email").href = mail; $("email").hidden = false; }
+  if (sms) { $("text").href = sms; $("text").hidden = false; }
+  var first = d.m === "sms" && sms ? "text" : (mail ? "email" : (sms ? "text" : ""));
+  if (first === "text") { $("lead").textContent = "Tap below to open your texts with everything already written in. Just hit send."; }
+  if (first === "email" && sms) { $("email").parentNode.insertBefore($("email"), $("text")); $("text").className = "btn ghost"; }
+  if (first === "text" && mail) { $("email").className = "btn ghost"; }
+  if (first) {
+    var url = first === "text" ? sms : mail;
+    $("title").textContent = first === "text" ? "Opening your texts\u2026" : "Opening your email\u2026";
+    $("lead").textContent = "Your answers to " + studio + " are already written in. Just hit send.";
+    $(first).textContent = first === "text" ? "Didn't open? Open my texts" : "Didn't open? Open my email";
+    setTimeout(function () { location.href = url; }, 250);
+  }
+  if (!first) { $("lead").textContent = "Copy your answers and send them to " + studio + "."; $("copy").className = "btn"; }
+  var copied = $("copied");
+  $("copy").addEventListener("click", function () {
+    var done = function () { copied.hidden = false; copied.textContent = "Copied! Paste it into a text or email to " + studio + (d.e ? " (" + d.e + ")" : "") + "."; };
+    if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(d.b).then(done, sel); else sel();
+    function sel() { var r = document.createRange(); r.selectNodeContents($("body")); var s = getSelection(); s.removeAllRanges(); s.addRange(r); try { document.execCommand("copy"); done(); } catch (e) {} }
+  });
+})();
+</script></body></html>

@@ -1,0 +1,10 @@
+All bundled fonts are licensed under the SIL Open Font License 1.1, which allows bundling and redistribution.
+https://openfontlicense.org
+
+Brand fonts (used on boards and pages):
+- Jost: Copyright 2020 The Jost Project Authors (see Jost-OFL.txt)
+- Bodoni Moda: Copyright 2020 The Bodoni Moda Project Authors (https://github.com/indestructible-type/Bodoni)
+- Anton: Copyright 2020 The Anton Project Authors (https://github.com/googlefonts/AntonFont.git)
+- Archivo: Copyright 2020 The Archivo Project Authors (https://github.com/Omnibus-Type/Archivo)
+
+Older fonts kept for compatibility: Inter (Rasmus Andersson) and Caveat (Impallari Type).
