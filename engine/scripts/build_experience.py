@@ -176,7 +176,8 @@ def build(plan_path, out_dir, pdf=False):
 
     people = [{"label": p["label"], "items": p["items"], "note": (p.get("note") or {}).get("text", "").replace("\n", " ")}
               for p in plan["people"]]
-    data = {"slug": slug, "pieces": pieces, "people": people, "checklist": plan.get("prep_checklist", [])}
+    data = {"slug": slug, "pieces": pieces, "people": people, "checklist": plan.get("prep_checklist", []),
+            "swap": plan.get("swap_url") or ""}
 
     e = html.escape
     if not (settings.get("studio_name") or "").strip():
@@ -282,14 +283,18 @@ h2{font-size:11px;font-weight:300;letter-spacing:.24em;text-transform:uppercase;
 .phead h3{font-size:13px;font-weight:400;letter-spacing:.24em;text-transform:uppercase;margin:0}
 .note{font-family:var(--serif);font-style:italic;font-size:18px;line-height:1.1;color:var(--soft)}
 .grid{display:flex;flex-direction:column}
-.piece{all:unset;cursor:pointer;display:flex;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);min-width:0}
-.ph{flex:none;width:76px;height:96px;display:grid;place-items:center;background:#fff}
+.piece{display:flex;gap:16px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line);min-width:0}
+.ph{all:unset;cursor:pointer;flex:none;width:76px;height:96px;display:grid;place-items:center;background:#fff}
 .ph img{max-width:100%;max-height:100%;object-fit:contain}
 .pbody{display:flex;flex-direction:column;gap:3px;min-width:0;flex:1}
-.pname{font-size:15px;font-weight:500;line-height:1.3}
+.pname{all:unset;cursor:pointer;font-size:15px;font-weight:500;line-height:1.3}
 .pnote{font-size:14px;line-height:1.4;color:var(--soft)}
-.prow{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-top:4px}
-.go{font-size:11px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px}
+.prow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap}
+.acts{display:flex;gap:6px;align-items:center}
+.mini{all:unset;cursor:pointer;font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--ink);padding:0 10px;min-height:32px;display:inline-flex;align-items:center;color:var(--ink);background:#fff}
+.mini.on{background:var(--ink);color:#fff}
+.mini:focus-visible,.go:focus-visible,.pname:focus-visible,.ph:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.go{all:unset;cursor:pointer;font-size:11px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px}
 .status{font-size:10px;font-weight:300;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
 .status.ordered,.status.have{color:var(--ink);font-weight:400}
 .why p{margin:0;max-width:62ch}
@@ -418,16 +423,21 @@ function render() {
     <div class="person" id="p-${k}" data-k="${k}">
       <div class="phead"><h3>${esc(p.label)}</h3>${p.note ? `<span class="note">${esc(p.note)}</span>` : ""}</div>
       <div class="grid">${p.items.map(id => { const it = byId[id], st = stat(id); return `
-        <button class="piece" type="button" data-id="${id}" aria-label="${esc(it.name)}, ${LABEL[st]}">
-          <span class="ph"><img src="${IMG[id]}" alt=""></span>
+        <div class="piece" data-id="${id}">
+          <button class="ph" type="button" data-open aria-label="Shop ${esc(it.name)}"><img src="${IMG[id]}" alt=""></button>
           <span class="pbody">
-            <span class="pname">${esc(it.name)}</span>
+            <button class="pname" type="button" data-open>${esc(it.name)}</button>
             ${it.note ? `<span class="pnote">${esc(it.note)}</span>` : ""}
-            <span class="prow"><span class="go">${it.owned ? "See it" : "Shop"} &rarr;</span><span class="status ${st}">${it.owned ? "You have this" : LABEL[st]}</span></span>
+            <span class="prow"><button class="go" type="button" data-open>${it.owned ? "See it" : "Shop"} &rarr;</button>
+              <span class="acts">${it.owned ? `<span class="status have">You have this</span>` : `${st === "ordered" ? `<span class="status ordered">Ordered</span>` : ""}<button class="mini ${st === "have" ? "on" : ""}" type="button" data-have aria-pressed="${st === "have"}">${st === "have" ? "Have it &check;" : "Have it"}</button>`}${D.swap ? `<a class="mini" href="${D.swap}?piece=${encodeURIComponent(id)}">Swap</a>` : ""}</span></span>
           </span>
-        </button>`; }).join("")}</div>
+        </div>`; }).join("")}</div>
     </div>`).join("");
-  wrap.querySelectorAll(".piece").forEach(b => b.addEventListener("click", () => openSheet(b.dataset.id)));
+  wrap.querySelectorAll(".piece [data-open]").forEach(b => b.addEventListener("click", () => openSheet(b.closest(".piece").dataset.id)));
+  wrap.querySelectorAll(".piece [data-have]").forEach(b => b.addEventListener("click", () => {
+    const id = b.closest(".piece").dataset.id;
+    S[id] = stat(id) === "have" ? "need" : "have"; save(); render(); filter(current);
+  }));
   progress();
 }
 

@@ -186,9 +186,10 @@ async def swap_page(request: Request):
             family.build_async(oid, req)
             return RedirectResponse(f"/o/{oid}", 303)
     names = {i["id"]: i["name"] for i in family.catalog()["items"]}
+    pre = (request.query_params.get("piece") or "").upper()
     people = "".join(
         f"<div class=person><b>{E(p['label'])}</b>" + "".join(
-            f"<label class=pc><input type=checkbox name=piece value='{E(i)}'><img src='/lib/{E(i)}.jpg' alt='' loading=lazy><span>{E(names.get(i, i))}</span></label>" for i in p["items"]) + "</div>"
+            f"<label class=pc><input type=checkbox name=piece value='{E(i)}'{' checked' if i == pre else ''}><img src='/lib/{E(i)}.jpg' alt='' loading=lazy><span>{E(names.get(i, i))}</span></label>" for i in p["items"]) + "</div>"
         for p in o["plan"]["people"])
     return _page("Swap a piece", f"""<h1>Swap a piece.</h1>
 <p class=soft>Tick anything you'd like changed, or tell us what you're after. Everything else stays the same, and your link doesn't change.</p>

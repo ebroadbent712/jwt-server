@@ -328,13 +328,13 @@ def fake_plan(a, items):
 FAMILY_BUSINESS = {"studio_name": "Just Wear This", "website": "justwearthis.co"}
 
 
-def stylist(a, fix_note=None, base_plan=None):
+def stylist(a, fix_note=None, base_plan=None, extra=None):
     """Returns (plan, html, title, notes). Asks Claude, checks the plan, builds the page; one or two rounds of fixes."""
     items = candidates(a)
     system = system_prompt()
     if config.ANTHROPIC_API_KEY == "fake":
         plan = fake_plan(a, items)
-        html, title, checks = render.build_plan_page(plan, FAMILY_BUSINESS)
+        html, title, checks = render.build_plan_page(dict(plan, **(extra or {})), FAMILY_BUSINESS)
         return plan, html, title, checks + ["fake plan (test mode)"]
     first = user_prompt(a, items, fix_note)
     if base_plan:
@@ -349,7 +349,7 @@ def stylist(a, fix_note=None, base_plan=None):
             probs = check_plan(plan, a, items)
             if not probs:
                 plan.pop("settings_override", None)
-                html, title, checks = render.build_plan_page(plan, FAMILY_BUSINESS)
+                html, title, checks = render.build_plan_page(dict(plan, **(extra or {})), FAMILY_BUSINESS)
                 probs = [c for c in checks if c.startswith("CHECK")]
                 if not probs or attempt == 2:
                     return plan, html, title, checks + [f"usage: {usage}"]
@@ -397,7 +397,8 @@ def build(oid, request_note=None):
     log(o, "building" + (f" (swap: {request_note})" if request_note else ""))
     save_order(o)
     try:
-        plan, html, title, notes = stylist(o["answers"], request_note, o.get("plan") if request_note else None)
+        plan, html, title, notes = stylist(o["answers"], request_note, o.get("plan") if request_note else None,
+                                           extra={"swap_url": f"{config.PUBLIC_BASE}/o/{oid}/swap"})
         pid = store.save_page("family", _with_bar(html, oid, o["answers"]), title, "plan", o.get("page_id"))
         o.update(status="ready", page_id=pid, plan=plan, url=f"{config.PUBLIC_BASE}/p/{pid}", swap_pending=False)
         log(o, "ready " + "; ".join(n for n in notes if not n.startswith("usage"))[:300])
