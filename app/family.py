@@ -229,8 +229,24 @@ Rules for this flow:
 - Reply with only the plan JSON, no other text."""
 
 
-def user_prompt(a, items, fix=None):
+def recently_used(limit=40, min_uses=2):
+    """Pieces that show up a lot in recent plans, so families don't all get the same favorites."""
+    from collections import Counter
+    c = Counter()
+    for o in all_orders()[:limit]:
+        for p in (o.get("plan") or {}).get("people", []):
+            c.update(p.get("items", []))
+    return [iid for iid, n in c.most_common() if n >= min_uses]
+
+
+def user_prompt(a, items, fix=None, avoid=None):
+    import random
+    items = list(items)
+    random.shuffle(items)  # list order shouldn't decide the plan
     msg = f"Her answers:\n{answers_text(a)}\n\nLibrary pieces you may use ({len(items)}):\n" + "\n".join(_line(i) for i in items)
+    if avoid:
+        msg += ("\n\nVariety: these pieces were used in several recent family plans. When another piece works just as well "
+                "for this family, choose it instead (use one of these only when it is clearly the best fit): " + ", ".join(avoid[:40]))
     if fix:
         msg += "\n\n" + fix
     return msg
@@ -336,7 +352,7 @@ def stylist(a, fix_note=None, base_plan=None, extra=None):
         plan = fake_plan(a, items)
         html, title, checks = render.build_plan_page(dict(plan, **(extra or {})), FAMILY_BUSINESS)
         return plan, html, title, checks + ["fake plan (test mode)"]
-    first = user_prompt(a, items, fix_note)
+    first = user_prompt(a, items, fix_note, avoid=None if base_plan else recently_used())
     if base_plan:
         first += "\n\nHer current plan (change only what she asked for, keep everything else the same):\n" + json.dumps(base_plan)
     messages = [{"role": "user", "content": first}]
