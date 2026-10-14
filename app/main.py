@@ -33,7 +33,7 @@ async def smart_link(request: Request):
 
 
 async def healthz(request):
-    return PlainTextResponse("ok")
+    return PlainTextResponse("ok " + os.environ.get("RENDER_GIT_COMMIT", "")[:7])
 
 
 # ---------- admin (Emily only; token lives in the Render dashboard) ----------
