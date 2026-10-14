@@ -226,7 +226,7 @@ Rules for this flow:
 - title_right: a short line about the setting (for example "A park at golden hour"). subtitle_right: "<Season> | Family photos" or "Holiday | Christmas card photos".
 - Leave out palette and settings_override.
 - Client-facing copy speaks to her family warmly. Never mention AI, Claude, the library or the catalog.
-- Reply with only the plan JSON, no other text."""
+- Reply with only the plan JSON: start your reply with { and end it with }. No other text, no code fences, no questions."""
 
 
 def recently_used(limit=40, min_uses=2):
@@ -256,7 +256,7 @@ class StylistError(Exception):
     pass
 
 
-_prefill = {"ok": True}  # some models refuse a prefilled reply; fall back once and remember
+_prefill = {"ok": False}  # this model doesn't accept a prefilled reply
 _claude_slots = threading.Semaphore(int(os.environ.get("CLAUDE_CONCURRENCY", "2")))  # stay under the API's rate limits
 
 
@@ -281,7 +281,7 @@ def call_claude(system, messages):
             return text, usage
         if r is not None:
             last = f"Claude API {r.status_code}: {r.text[:300]}"
-            if r.status_code == 400 and _prefill["ok"] and "prefill" in r.text.lower():
+            if r.status_code == 400 and "prefill" in r.text.lower():
                 _prefill["ok"] = False
                 continue
             if r.status_code not in (429, 500, 502, 503, 504, 529):
