@@ -256,6 +256,7 @@ class StylistError(Exception):
     pass
 
 
+_prefill = {"ok": True}  # some models refuse a prefilled reply; fall back once and remember
 _claude_slots = threading.Semaphore(int(os.environ.get("CLAUDE_CONCURRENCY", "2")))  # stay under the API's rate limits
 
 
@@ -269,14 +270,20 @@ def call_claude(system, messages):
             try:
                 r = httpx.post("https://api.anthropic.com/v1/messages", timeout=240, headers={
                     "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
-                    json={"model": config.ANTHROPIC_MODEL, "max_tokens": 6000, "system": system, "messages": messages})
+                    json={"model": config.ANTHROPIC_MODEL, "max_tokens": 8000, "system": system,
+                          "messages": messages + ([{"role": "assistant", "content": "{"}] if _prefill["ok"] else [])})
             except httpx.HTTPError as e:
                 r, last = None, f"network: {e}"
         if r is not None and r.status_code == 200:
             data = r.json()
-            return "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text"), data.get("usage", {})
+            text = ("{" if _prefill["ok"] else "") + "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text")
+            usage = dict(data.get("usage", {}), stop=data.get("stop_reason"))
+            return text, usage
         if r is not None:
             last = f"Claude API {r.status_code}: {r.text[:300]}"
+            if r.status_code == 400 and _prefill["ok"] and "prefill" in r.text.lower():
+                _prefill["ok"] = False
+                continue
             if r.status_code not in (429, 500, 502, 503, 504, 529):
                 break
             wait = float(r.headers.get("retry-after") or 0) or min(60, 5 * 2 ** attempt)
@@ -296,7 +303,7 @@ def parse_plan(text):
     try:
         return json.loads(t)
     except json.JSONDecodeError as e:
-        raise StylistError(f"The plan wasn't valid JSON ({e}).")
+        raise StylistError(f"The plan wasn't valid JSON ({e}); it began: {text.strip()[:120]!r}")
 
 
 def check_plan(plan, a, items):
