@@ -50,7 +50,7 @@ DATA_DIR=./data ADMIN_TOKEN=dev LINK_CHECK=off uvicorn app.main:app --port 8000
 | `STRIPE_SECRET_KEY` | Stripe → Developers → API keys → Secret key |
 | `STRIPE_WEBHOOK_SECRET` | Stripe → Developers → Webhooks → endpoint `https://justwearthis.co/api/stripe/webhook`, event `checkout.session.completed` → Signing secret |
 | `RESEND_API_KEY` | From resend.com, after the justwearthis.co domain is verified |
-| `MAIL_FROM` | Optional; defaults to `Just Wear This <hello@justwearthis.co>` |
+| `MAIL_FROM` | Optional; defaults to `Just Wear This <emily@justwearthis.co>` |
 | `MAIL_REPLY_TO` | Optional; where replies to plan emails go |
 | `ALERT_EMAIL` | Where a failed build is reported |
 
