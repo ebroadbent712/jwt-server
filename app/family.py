@@ -226,7 +226,7 @@ Rules for this flow:
 - title_right: a short line about the setting (for example "A park at golden hour"). subtitle_right: "<Season> | Family photos" or "Holiday | Christmas card photos".
 - Leave out palette and settings_override.
 - Client-facing copy speaks to her family warmly. Never mention AI, Claude, the library or the catalog.
-- Reply with only the plan JSON: start your reply with { and end it with }. No other text, no code fences, no questions."""
+- Reply with only the plan JSON: start your reply with {{ and end it with }}. No other text, no code fences, no questions."""
 
 
 def recently_used(limit=40, min_uses=2):
@@ -265,12 +265,13 @@ def call_claude(system, messages):
     if not key:
         raise StylistError("ANTHROPIC_API_KEY isn't set on the server.")
     last = ""
+    budget = 16000
     for attempt in range(6):
         with _claude_slots:
             try:
                 r = httpx.post("https://api.anthropic.com/v1/messages", timeout=240, headers={
                     "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
-                    json={"model": config.ANTHROPIC_MODEL, "max_tokens": 8000, "system": system,
+                    json={"model": config.ANTHROPIC_MODEL, "max_tokens": budget, "system": system,
                           "messages": messages + ([{"role": "assistant", "content": "{"}] if _prefill["ok"] else [])})
             except httpx.HTTPError as e:
                 r, last = None, f"network: {e}"
@@ -278,6 +279,12 @@ def call_claude(system, messages):
             data = r.json()
             text = ("{" if _prefill["ok"] else "") + "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text")
             usage = dict(data.get("usage", {}), stop=data.get("stop_reason"))
+            if not text.strip():
+                # big families can use the whole budget before writing any plan; give it more room and ask again
+                last = f"Claude sent back no plan (stop: {data.get('stop_reason')})"
+                print(f"[claude empty] stop={data.get('stop_reason')} usage={data.get('usage')}")
+                budget = min(32000, budget * 2)
+                continue
             return text, usage
         if r is not None:
             last = f"Claude API {r.status_code}: {r.text[:300]}"
