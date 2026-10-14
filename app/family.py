@@ -368,7 +368,20 @@ def _swap_bar(oid, a):
             f"style=\"color:#121212\">Swap a piece</a>, as many times as you like until photo day.</div>")
 
 
+def _family_voice(html, oid):
+    """The page template speaks as a photographer; the family version speaks as Just Wear This."""
+    swap = f"{config.PUBLIC_BASE}/o/{oid}/swap"
+    html = html.replace("<span class=\"by\">Just Wear This</span>", "<span class=\"by\">Family outfit plan</span>", 1)
+    html = html.replace("<span class=\"sign\">Can't wait to see you!</span>", "<span class=\"sign\">Have fun at your photos!</span>", 1)
+    contact = f" or email <a href=\"mailto:{config.SUPPORT_EMAIL}\">{config.SUPPORT_EMAIL}</a>" if config.SUPPORT_EMAIL else ""
+    html = html.replace(
+        "Questions about a piece, a size that isn't working, or something you'd like to swap? Reach out to Just Wear This anytime. We'll figure it out together before your session.",
+        f"Something not working, or a piece sold out? <a href=\"{swap}\">Swap it here</a>{contact}. We'll sort it out before photo day.", 1)
+    return html
+
+
 def _with_bar(html, oid, a):
+    html = _family_voice(html, oid)
     bar = _swap_bar(oid, a)
     return html.replace("</body>", bar + "</body>", 1) if "</body>" in html else html + bar
 

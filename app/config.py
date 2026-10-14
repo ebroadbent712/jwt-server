@@ -31,7 +31,8 @@ PRICE_CENTS = int(os.environ.get("PRICE_CENTS", "1900"))
 RESEND_API_KEY = os.environ.get("RESEND_API_KEY", "")
 MAIL_FROM = os.environ.get("MAIL_FROM", "Just Wear This <hello@justwearthis.co>")
 MAIL_REPLY_TO = os.environ.get("MAIL_REPLY_TO", "")
-ALERT_EMAIL = os.environ.get("ALERT_EMAIL", "")                 # where failed builds are reported
+ALERT_EMAIL = os.environ.get("ALERT_EMAIL", "")
+SUPPORT_EMAIL = os.environ.get("SUPPORT_EMAIL", "")              # shown on family plan pages                 # where failed builds are reported
 
 for d in (DATA, PAGES, LOGOS, ORDERS):
     os.makedirs(d, exist_ok=True)
