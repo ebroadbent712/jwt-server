@@ -361,11 +361,12 @@ def stylist(a, fix_note=None, base_plan=None):
 
 
 # ---------- the build job ----------
-def _swap_bar(oid, a):
-    """A small bar on her page: swap a piece (until photo day) and a way to reach us."""
-    return (f"<div style=\"font:14px Jost,system-ui,sans-serif;text-align:center;padding:14px 16px;border-top:1px solid #e2e2e2;"
-            f"margin-top:24px\">Want to change something? <a href=\"{config.PUBLIC_BASE}/o/{oid}/swap\" "
-            f"style=\"color:#121212\">Swap a piece</a>, as many times as you like until photo day.</div>")
+def _swap_block(oid):
+    """A clear 'swap a piece' section, right after Why it works and before the week-before list."""
+    swap = f"{config.PUBLIC_BASE}/o/{oid}/swap"
+    return (f'<section class="colors"><h2>Change your mind?</h2>'
+            f'<p class="story">Swap any piece, as many times as you like until photo day. Your link stays the same.</p>'
+            f'<a class="btn lead" href="{swap}"><span>Swap a piece</span><small>Free until photo day &rarr;</small></a></section>\n  ')
 
 
 def _family_voice(html, oid):
@@ -382,8 +383,10 @@ def _family_voice(html, oid):
 
 def _with_bar(html, oid, a):
     html = _family_voice(html, oid)
-    bar = _swap_bar(oid, a)
-    return html.replace("</body>", bar + "</body>", 1) if "</body>" in html else html + bar
+    m = re.search(r'<section class="colors">\s*<h2>The week before</h2>', html)
+    if m:
+        return html[:m.start()] + _swap_block(oid) + html[m.start():]
+    return html.replace("</body>", _swap_block(oid) + "</body>", 1)
 
 
 def build(oid, request_note=None):
