@@ -290,8 +290,9 @@ h2{font-size:11px;font-weight:300;letter-spacing:.24em;text-transform:uppercase;
 .pname{all:unset;cursor:pointer;font-size:15px;font-weight:500;line-height:1.3}
 .pnote{font-size:14px;line-height:1.4;color:var(--soft)}
 .prow{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:6px;flex-wrap:wrap}
-.acts{display:flex;gap:6px;align-items:center}
-.mini{all:unset;cursor:pointer;font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--ink);padding:0 10px;min-height:32px;display:inline-flex;align-items:center;color:var(--ink);background:#fff}
+.acts{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:8px}
+.acts.three{grid-template-columns:repeat(3,1fr)}
+.mini{all:unset;cursor:pointer;font-size:10px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;border:1px solid var(--ink);padding:0 6px;min-height:36px;display:flex;align-items:center;justify-content:center;text-align:center;white-space:nowrap;color:var(--ink);background:#fff}
 .mini.on{background:var(--ink);color:#fff}
 .mini:focus-visible,.go:focus-visible,.pname:focus-visible,.ph:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 .go{all:unset;cursor:pointer;font-size:11px;font-weight:400;letter-spacing:.22em;text-transform:uppercase;text-decoration:underline;text-underline-offset:4px}
@@ -428,8 +429,8 @@ function render() {
           <span class="pbody">
             <button class="pname" type="button" data-open>${esc(it.name)}</button>
             ${it.note ? `<span class="pnote">${esc(it.note)}</span>` : ""}
-            <span class="prow"><button class="go" type="button" data-open>${it.owned ? "See it" : "Shop"} &rarr;</button>
-              <span class="acts">${it.owned ? `<span class="status have">You have this</span>` : `${st === "ordered" ? `<span class="status ordered">Ordered</span>` : ""}<button class="mini ${st === "have" ? "on" : ""}" type="button" data-have aria-pressed="${st === "have"}">${st === "have" ? "Have it &check;" : "Have it"}</button>`}${D.swap ? `<a class="mini" href="${D.swap}?piece=${encodeURIComponent(id)}">Swap</a>` : ""}</span></span>
+            ${!it.owned && st === "ordered" ? `<span class="status ordered">Ordered</span>` : ""}${it.owned ? `<span class="status have">You have this</span>` : ""}
+            <span class="acts${D.swap ? " three" : ""}">${it.owned ? "" : `<button class="mini ${st === "have" ? "on" : ""}" type="button" data-have aria-pressed="${st === "have"}">${st === "have" ? "Have it &check;" : "Have it"}</button>`}<button class="mini" type="button" data-open>${it.owned ? "See it" : "Shop it"}</button>${D.swap ? `<a class="mini" href="${D.swap}?piece=${encodeURIComponent(id)}">Swap it</a>` : ""}</span>
           </span>
         </div>`; }).join("")}</div>
     </div>`).join("");
