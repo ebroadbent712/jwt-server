@@ -496,7 +496,7 @@ def build(oid, request_note=None):
         plan, html, title, notes = stylist(o["answers"], request_note, o.get("plan") if request_note else None,
                                            extra={"swap_url": f"{config.PUBLIC_BASE}/o/{oid}/swap"})
         pid = store.save_page("family", _with_bar(html, oid, o["answers"]), title, "plan", o.get("page_id"))
-        o.update(status="ready", page_id=pid, plan=plan, url=f"{config.PUBLIC_BASE}/p/{pid}", swap_pending=False)
+        o.update(status="ready", page_id=pid, plan=plan, url=f"{config.PUBLIC_BASE}/p/{pid}", swap_pending=False, error="")
         log(o, "ready " + "; ".join(n for n in notes if not n.startswith("usage"))[:300])
         o.setdefault("usage", []).append(next((n for n in notes if n.startswith("usage")), ""))
         first = not o.get("emailed")

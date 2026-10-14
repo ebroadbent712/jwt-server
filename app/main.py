@@ -36,6 +36,15 @@ async def healthz(request):
     return PlainTextResponse("ok " + os.environ.get("RENDER_GIT_COMMIT", "")[:7])
 
 
+def _status_cell(o):
+    st = o.get("status", "")
+    if st in ("paid", "building"):
+        return "<b>building…</b>"
+    if st == "failed":
+        return "<b style='color:#b00'>failed</b> ⚠ " + html.escape((o.get("error") or "")[:80])
+    return html.escape(st)
+
+
 # ---------- admin (Emily only; token lives in the Render dashboard) ----------
 def _admin_ok(request):
     tok = request.headers.get("x-admin-token") or request.query_params.get("token", "")
@@ -62,7 +71,7 @@ async def admin_keys(request: Request):
                 family.log(o, "rebuild from admin")
                 family.save_order(o)
                 family.build_async(o["id"])
-                made = f"<p style='background:#eef7ee;padding:12px'>Rebuilding {html.escape(o['email'])}'s plan. Reload in a minute.</p>"
+                made = f"<p style='background:#eef7ee;padding:12px'>Rebuilding {html.escape(o['email'])}'s plan. This page updates itself until it's done.</p>"
         elif form.get("name"):
             key = store.create_key(form["name"].strip(), form.get("email", "").strip())
             return JSONResponse({"key": key, "connector_url": f"{config.PUBLIC_BASE}/mcp/{key}"})
@@ -101,7 +110,7 @@ async def admin_home(request: Request):
                 family.log(o, "rebuild from admin")
                 family.save_order(o)
                 family.build_async(o["id"])
-                made = f"<p style='background:#eef7ee;padding:12px'>Rebuilding {html.escape(o['email'])}'s plan. Reload in a minute.</p>"
+                made = f"<p style='background:#eef7ee;padding:12px'>Rebuilding {html.escape(o['email'])}'s plan. This page updates itself until it's done.</p>"
         elif form.get("name"):
             key = store.create_key(form["name"].strip(), (form.get("email") or "").strip())
             made = f"<p style='background:#eef7ee;padding:12px'>Connector link for <b>{html.escape(form['name'])}</b>:<br><code>{config.PUBLIC_BASE}/mcp/{key}</code></p>"
@@ -116,12 +125,15 @@ async def admin_home(request: Request):
         f"<input type=hidden name=delete_page value='{m['id']}'><button>Delete</button></form></td></tr>"
         for m in store.all_pages()) or "<tr><td colspan=4>No pages yet.</td></tr>"
     order_rows = "".join(
-        f"<tr><td>{html.escape(o.get('created','')[:16].replace('T',' '))}</td><td>{html.escape(o.get('email',''))}</td>"
+        f"<tr><td>{html.escape(o.get('created','')[:16].replace('T',' '))}</td><td><b>{html.escape(o['answers'].get('family') or o['answers'].get('who',''))}</b><br>{html.escape(o.get('email',''))}</td>"
         f"<td>{len(o['answers']['people'])}</td><td>{html.escape((o.get('payment') or {}).get('code') or (o.get('payment') or {}).get('method',''))}</td>"
-        f"<td title='{html.escape(chr(10).join(o.get('log', [])[-6:]))}'>{html.escape(o['status'])}{' ⚠ ' + html.escape(o.get('error','')[:80]) if o.get('error') else ''}</td>"
+        f"<td title='{html.escape(chr(10).join(o.get('log', [])[-6:]))}'>{_status_cell(o)}</td>"
         f"<td>{o.get('swaps',0)}</td><td>{_open_link(o.get('url'))}</td>"
         f"<td><form method=post action='/admin?token={tok}'><input type=hidden name=rebuild value='{o['id']}'><button>Rebuild</button></form></td></tr>"
         for o in family.all_orders()[:200]) or "<tr><td colspan=8>No orders yet.</td></tr>"
+    busy = [o for o in family.all_orders()[:200] if o.get("status") in ("paid", "building")] or (made and "Rebuilding" in made)
+    busy_note = ("<p style='background:#fff6dd;padding:10px'>Building now. This page refreshes every 15 seconds until every plan is done.</p>"
+                 f"<script>setTimeout(function(){{location.href='/admin?token={tok}'}},15000)</script>") if busy else ""
     code_rows = "".join(f"<tr><td><code>{c}</code></td><td>{html.escape(v.get('note') or '')}</td><td>{html.escape(v.get('used_by') or '')}</td></tr>"
                         for c, v in sorted(payments.codes().items(), key=lambda x: x[1].get('made',''), reverse=True)) or "<tr><td colspan=3>None yet.</td></tr>"
     return HTMLResponse(f"""<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
@@ -131,7 +143,7 @@ async def admin_home(request: Request):
 <input name=email placeholder="Email (optional)" size=28> <button>Make link</button></form>
 <h2>Connector links</h2><table><tr><th>Name</th><th>Email</th><th>Made</th><th>Pages</th><th>Link</th></tr>{rows}</table>
 <h2>Published pages</h2><table><tr><th>Page</th><th>By</th><th>Updated</th><th></th></tr>{page_rows}</table>
-<h2>Family orders</h2><table><tr><th>When</th><th>Email</th><th>People</th><th>Paid by</th><th>Status</th><th>Swaps</th><th>Plan</th><th></th></tr>{order_rows}</table>
+<h2>Family orders</h2>{busy_note}<table><tr><th>When</th><th>Family / email</th><th>People</th><th>Paid by</th><th>Status</th><th>Swaps</th><th>Plan</th><th></th></tr>{order_rows}</table>
 <h2>Beta codes</h2><form method=post action="/admin?token={tok}">Make <input name=make_codes type=number value=10 min=1 max=50 style="width:70px"> codes
 <input name=note placeholder="Note (e.g. Oct beta moms)" size=28> <button>Make codes</button></form>
 <table><tr><th>Code</th><th>Note</th><th>Used by</th></tr>{code_rows}</table>
