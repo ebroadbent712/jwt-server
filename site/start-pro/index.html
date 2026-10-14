@@ -1,0 +1,63 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Get set up · Just Wear This</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>:root{--ink:#121212;--soft:#5f5f5f;--line:#e2e2e2;--wash:#f4f4f2}*{box-sizing:border-box}
+body{margin:0;background:#fff;color:var(--ink);font:16px/1.65 Jost,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+main{max-width:680px;margin:0 auto;padding:18px 22px 64px}
+.mark{font-family:Anton,Impact,sans-serif;font-size:17px;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:12px;display:block;color:var(--ink);text-decoration:none}
+h1{font-family:"Bodoni Moda",Georgia,serif;font-weight:500;font-size:clamp(34px,8vw,46px);line-height:1.05;margin:32px 0 10px}
+h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;margin:38px 0 8px}
+p,li{color:#2a2a2a} a{color:var(--ink)} .lead{font-size:18px;color:var(--ink)} .soft{color:var(--soft);font-size:15px}
+ol{padding-left:22px} li{margin:6px 0} b{font-weight:500}
+code{font:15px/1.4 ui-monospace,Menlo,monospace;background:var(--wash);padding:2px 6px;word-break:break-all}
+.step{border-top:1px solid var(--ink);padding-top:4px}
+.say{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--line)}
+.say div{padding:12px 0;border-bottom:1px solid var(--line)} .say i{font-family:"Bodoni Moda",Georgia,serif;font-size:17px}
+.say span{display:block;color:var(--soft);font-size:15px}
+.box{background:var(--wash);padding:16px 18px;margin:14px 0}
+</style></head>
+<body><main><a class="mark" href="/">Just Wear This.</a>
+<h1>Get set up</h1>
+<p class="lead">About 10 minutes, once. After that, every client's outfit plan takes a couple of minutes.</p>
+<p class="soft">You'll need a Claude account (the free plan works) and the personal connector link Emily sent you.</p>
+
+<div class="step"><h2>1. Turn on code execution</h2>
+<p>In Claude, open <b>Settings</b>, then <b>Capabilities</b>, and turn on <b>Code execution and file creation</b>. Just Wear This uses it to lay out each family's board.</p></div>
+
+<div class="step"><h2>2. Install the plugin</h2>
+<ol><li>Open <b>Customize</b>, then <b>Plugins</b>.</li>
+<li>Choose <b>Add marketplace</b> and type <code>ps-tools-store/dhxp-9pkw</code></li>
+<li>Find <b>Just Wear This</b> and tap <b>Install</b>.</li>
+<li>Turn on <b>Sync automatically</b>, so new pieces and fixes arrive on their own.</li></ol></div>
+
+<div class="step"><h2>3. Connect your client pages</h2>
+<p>This is what turns each plan into a link your client opens on her phone.</p>
+<ol><li>Open <b>Settings</b>, then <b>Connectors</b>, and choose <b>Add custom connector</b>.</li>
+<li>Name it <b>Just Wear This</b>.</li>
+<li>Paste your personal connector link (it starts with <code>justwearthis.co/mcp/</code>) and save.</li></ol>
+<p class="soft">Your link is just for your business, so please don't share it.</p></div>
+
+<div class="step"><h2>4. Make your first plan</h2>
+<p>Start a new chat and say:</p>
+<div class="box">Just Wear This, make my client questionnaire.</div>
+<p>You'll get a link to a short, tap-to-answer questionnaire with your business name on it. Use that one link for every client. When answers come back, paste them into a new chat with what you know about the session:</p>
+<div class="box">Plan for the Parkers. Family session, late October, Loose Park under the big trees, golden hour. Here are her answers: …</div>
+<p>The first time, Claude asks a few quick questions about your business (your editing style, how clients reach you, colors you never want) and suggests one line to save in your Claude profile so it never asks again.</p></div>
+
+<div class="step"><h2>5. Send it</h2>
+<p>You'll get a <code>justwearthis.co/p/…</code> link. Text or email it to your client. She opens it on her phone, no login: everyone's outfit, the colors and why they work, every piece to shop, and buttons to mark what she has or has ordered. Ask for a change any time and the same link updates.</p></div>
+
+<h2>Things you can say</h2>
+<div class="say">
+<div><i>"Warmer layer for Dad" or "No pattern on the baby"</i><span>Swaps just that piece and updates the page.</span></div>
+<div><i>Send a photo: "Does this work?"</i><span>A yes, no or "yes if," with the reason, and an offer to build around it.</span></div>
+<div><i>"Mom already has a cream sweater she loves"</i><span>Builds the plan around it and marks it "You have this."</span></div>
+<div><i>"Make a plan for the Lees: Sarah, Mike, Ava 6, baby Theo, Loose Park in October"</i><span>A surprise plan with no questionnaire.</span></div>
+</div>
+
+<h2>If something's off</h2>
+<p><b>Claude doesn't seem to know Just Wear This.</b> Start a new chat and begin with "Just Wear This:". Check it's turned on under Customize, Plugins.</p>
+<p><b>You got a file instead of a link.</b> Check the connector from step 3 is added and turned on, then ask Claude to publish the page.</p>
+<p><b>Anything else</b>, or a piece that doesn't look right: text me or email <a href="mailto:emily@justwearthis.co">emily@justwearthis.co</a>. While you're testing, that's exactly what I want to hear.</p>
+</main></body></html>
