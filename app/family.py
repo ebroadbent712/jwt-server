@@ -226,6 +226,9 @@ Rules for this flow:
 - title_right: a short line about the setting (for example "A park at golden hour"). subtitle_right: "<Season> | Family photos" or "Holiday | Christmas card photos".
 - Leave out palette and settings_override.
 - Client-facing copy speaks to her family warmly. Never mention AI, Claude, the library or the catalog.
+- Headline: three short lines in plain mom language, specific to this family's colors, setting and pieces. Don't open with "One ___ anchor" and don't use styling jargon like "anchor", "palette" or "tonal".
+- Talk about the clothes, never bodies: no "bump", "figure", "flattering", "slimming" or "hides". Say what the piece is ("a roomy wrap dress", "soft and stretchy"), not what it does for a body.
+- "Won't wear" is a hard rule. No short sleeves means long sleeves on the piece itself (a cardigan over a short-sleeve dress doesn't count). No heels means flat shoes or boots with a flat or block heel under 1 inch.
 - Reply with only the plan JSON: start your reply with {{ and end it with }}. No other text, no code fences, no questions."""
 
 
@@ -340,10 +343,56 @@ def check_plan(plan, a, items):
         note = pp.get("note") or {}
         if note.get("points_to") and note["points_to"] not in its:
             probs.append(f"{pp.get('label')}: the note points to {note['points_to']}, which they aren't wearing.")
+    for idx, pp in enumerate(people):
+        src = a["people"][idx] if idx < len(a["people"]) else None
+        if src and src.get("nope"):
+            for iid in pp.get("items") or []:
+                if iid in byid:
+                    hit = nope_hit(src["nope"], byid[iid])
+                    if hit:
+                        probs.append(f"{pp.get('label')} won't wear {hit}, but {iid} ({byid[iid]['name']}) is one. Pick another piece.")
+    copy = json.dumps([plan.get(k) for k in ("headline", "story", "why_it_works", "piece_notes")]).lower()
+    for w in COPY_BANNED:
+        if re.search(rf"\b{w}\b", copy):
+            probs.append(f'Client copy uses "{w}". Talk about the clothes in plain words instead.')
     for k in ("family_name", "headline", "story", "why_it_works", "prep_checklist", "piece_notes"):
         if not plan.get(k):
             probs.append(f"{k} is missing.")
     return probs
+
+
+COPY_BANNED = ["anchor", "anchors", "bump", "figure", "flattering", "slimming", "hides", "curves", "tummy"]
+
+# "won't wear" words -> what to look for in a piece's name/tags
+NOPE_RULES = [
+    (r"short[- ]?sleeve|sleeveless|bare arms", r"short[- ]sleeve|puff[- ]sleeve|flutter|cap[- ]sleeve|sleeveless|tank|\btee\b|t-shirt|polo"),
+    (r"short (hem|skirt|dress)|short hems|mini", r"\bmini\b|shorts?\b|skort"),
+    (r"heel", r"heel|stiletto|pump\b"),
+    (r"dress(es)?\b", r"\bdress\b|jumper dress|romper"),
+    (r"skirt", r"skirt"),
+    (r"collar", r"collar|button[- ]down|button[- ]up|oxford|(?<!sweat)shirt\b|polo"),
+    (r"\bbows?\b", r"\bbows?\b"),
+    (r"\bties?\b|neckties?", r"\bties?\b|bow tie"),
+    (r"sport ?coats?|blazers?|suit jackets?", r"sport coat|blazer|suit jacket"),
+    (r"sequin|sparkle|glitter", r"sequin|sparkle|glitter|metallic"),
+    (r"turtleneck", r"turtleneck"),
+    (r"jeans|denim", r"jeans|denim|chambray"),
+    (r"velvet", r"velvet"),
+    (r"tights", r"tights"),
+    (r"scratchy|wool|itchy", r"\bwool\b|tweed|mohair|fisherman"),
+]
+
+
+def nope_hit(nope, item):
+    n = nope.lower()
+    text = " ".join([item.get("name", ""), item.get("category", ""), item.get("cat", ""), " ".join(item.get("tags", []) if isinstance(item.get("tags"), list) else [])]).lower()
+    for said, look in NOPE_RULES:
+        if re.search(said, n) and re.search(look, text):
+            # a dress-style rule shouldn't trip on "dress shoes"/"dress pants"
+            if look.startswith(r"\bdress") and re.search(r"dress (shoe|pant|boot|shirt)", text):
+                continue
+            return re.search(said, n).group(0)
+    return None
 
 
 def fake_plan(a, items):
