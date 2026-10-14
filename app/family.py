@@ -256,17 +256,34 @@ class StylistError(Exception):
     pass
 
 
+_claude_slots = threading.Semaphore(int(os.environ.get("CLAUDE_CONCURRENCY", "2")))  # stay under the API's rate limits
+
+
 def call_claude(system, messages):
     key = config.ANTHROPIC_API_KEY
     if not key:
         raise StylistError("ANTHROPIC_API_KEY isn't set on the server.")
-    r = httpx.post("https://api.anthropic.com/v1/messages", timeout=240, headers={
-        "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
-        json={"model": config.ANTHROPIC_MODEL, "max_tokens": 6000, "system": system, "messages": messages})
-    if r.status_code != 200:
-        raise StylistError(f"Claude API {r.status_code}: {r.text[:300]}")
-    data = r.json()
-    return "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text"), data.get("usage", {})
+    last = ""
+    for attempt in range(6):
+        with _claude_slots:
+            try:
+                r = httpx.post("https://api.anthropic.com/v1/messages", timeout=240, headers={
+                    "x-api-key": key, "anthropic-version": "2023-06-01", "content-type": "application/json"},
+                    json={"model": config.ANTHROPIC_MODEL, "max_tokens": 6000, "system": system, "messages": messages})
+            except httpx.HTTPError as e:
+                r, last = None, f"network: {e}"
+        if r is not None and r.status_code == 200:
+            data = r.json()
+            return "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text"), data.get("usage", {})
+        if r is not None:
+            last = f"Claude API {r.status_code}: {r.text[:300]}"
+            if r.status_code not in (429, 500, 502, 503, 504, 529):
+                break
+            wait = float(r.headers.get("retry-after") or 0) or min(60, 5 * 2 ** attempt)
+        else:
+            wait = min(60, 5 * 2 ** attempt)
+        time.sleep(wait)
+    raise StylistError(last)
 
 
 def parse_plan(text):

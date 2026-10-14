@@ -115,7 +115,8 @@ async def api_status(request: Request):
     if not o:
         return JSONResponse({"status": "missing"}, 404)
     return JSONResponse({"status": o["status"], "url": o.get("url") if o["status"] == "ready" else None,
-                         "swapping": bool(o.get("swap_pending"))})
+                         "swapping": bool(o.get("swap_pending")),
+                         "problem": (o.get("error") or "")[:300] if o["status"] == "failed" else ""})
 
 
 async def stripe_webhook(request: Request):
