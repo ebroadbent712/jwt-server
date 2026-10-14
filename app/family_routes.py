@@ -1,9 +1,11 @@
 """Web routes for the family version: order, pay, status, swaps."""
 import html, json
 
+import io, os
+
 import httpx
 from starlette.requests import Request
-from starlette.responses import HTMLResponse, JSONResponse, RedirectResponse
+from starlette.responses import FileResponse, HTMLResponse, JSONResponse, RedirectResponse, Response
 from starlette.routing import Route
 
 from . import config, family, payments
@@ -28,8 +30,10 @@ padding:17px;border:1px solid var(--ink);background:var(--ink);color:#fff;cursor
 .dots::after{{content:"";animation:d 1.5s steps(4) infinite}}@keyframes d{{0%{{content:""}}25%{{content:"."}}50%{{content:".."}}75%{{content:"..."}}}}
 .person{{border-top:1px solid var(--ink);padding:14px 0;display:flex;flex-direction:column;gap:8px}}
 .person b{{font-family:"Bodoni Moda",serif;font-size:21px;font-weight:500}}
-label.pc{{display:flex;gap:10px;align-items:flex-start;font-size:15px;cursor:pointer}}
-label.pc input{{margin-top:5px;width:18px;height:18px;accent-color:#121212}}
+label.pc{{display:flex;gap:14px;align-items:center;font-size:15px;cursor:pointer;padding:4px 0}}
+label.pc input{{width:20px;height:20px;accent-color:#121212;flex:none}}
+label.pc img{{width:72px;height:72px;object-fit:contain;flex:none;border:1px solid var(--line)}}
+label.pc:has(input:checked) img{{border-color:var(--ink)}}
 textarea{{font:16px Jost,sans-serif;width:100%;min-height:110px;border:1px solid var(--ink);padding:12px 14px;border-radius:0}}
 .err{{color:#9b2c2c}}
 </style></head><body><main><div class="mark">Just Wear This.</div>{body}</main>{refresh_js}</body></html>""")
@@ -184,7 +188,7 @@ async def swap_page(request: Request):
     names = {i["id"]: i["name"] for i in family.catalog()["items"]}
     people = "".join(
         f"<div class=person><b>{E(p['label'])}</b>" + "".join(
-            f"<label class=pc><input type=checkbox name=piece value='{E(i)}'> {E(names.get(i, i))}</label>" for i in p["items"]) + "</div>"
+            f"<label class=pc><input type=checkbox name=piece value='{E(i)}'><img src='/lib/{E(i)}.jpg' alt='' loading=lazy><span>{E(names.get(i, i))}</span></label>" for i in p["items"]) + "</div>"
         for p in o["plan"]["people"])
     return _page("Swap a piece", f"""<h1>Swap a piece.</h1>
 <p class=soft>Tick anything you'd like changed, or tell us what you're after. Everything else stays the same, and your link doesn't change.</p>
@@ -196,7 +200,28 @@ async def swap_page(request: Request):
 <p class=soft><a href="{E(o['url'])}" style="color:#121212">Back to my plan</a></p>""")
 
 
+async def piece_thumb(request: Request):
+    """Small square picture of a library piece (for the swap page), made once and kept on the disk."""
+    iid = request.path_params["iid"].upper()
+    item = next((i for i in family.catalog()["items"] if i["id"] == iid), None)
+    if not item:
+        return Response(status_code=404)
+    out = os.path.join(config.THUMBS, iid + ".jpg")
+    if not os.path.exists(out):
+        from PIL import Image
+        src = os.path.join(config.ENGINE, "library", "images", item["file"])
+        if not os.path.exists(src):
+            return Response(status_code=404)
+        im = Image.open(src).convert("RGB")
+        im.thumbnail((240, 240))
+        bg = Image.new("RGB", (240, 240), "white")
+        bg.paste(im, ((240 - im.width) // 2, (240 - im.height) // 2))
+        bg.save(out, "JPEG", quality=85)
+    return FileResponse(out, media_type="image/jpeg", headers={"Cache-Control": "public, max-age=604800"})
+
+
 ROUTES = [
+    Route("/lib/{iid}.jpg", piece_thumb),
     Route("/api/family/order", api_order, methods=["POST"]),
     Route("/api/family/status/{oid}", api_status),
     Route("/api/stripe/webhook", stripe_webhook, methods=["POST"]),

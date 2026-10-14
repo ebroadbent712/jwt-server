@@ -13,6 +13,7 @@ LOGOS = os.path.join(DATA, "logos")
 KEYS_FILE = os.path.join(DATA, "keys.json")
 HEALTH_FILE = os.path.join(DATA, "link_health.json")
 ORDERS = os.path.join(DATA, "orders")
+THUMBS = os.path.join(DATA, "thumbs")
 CODES_FILE = os.path.join(DATA, "codes.json")
 
 PUBLIC_BASE = os.environ.get("PUBLIC_BASE", "https://justwearthis.co").rstrip("/")
@@ -34,5 +35,5 @@ MAIL_REPLY_TO = os.environ.get("MAIL_REPLY_TO", "")
 ALERT_EMAIL = os.environ.get("ALERT_EMAIL", "")
 SUPPORT_EMAIL = os.environ.get("SUPPORT_EMAIL", "")              # shown on family plan pages                 # where failed builds are reported
 
-for d in (DATA, PAGES, LOGOS, ORDERS):
+for d in (DATA, PAGES, LOGOS, ORDERS, THUMBS):
     os.makedirs(d, exist_ok=True)
