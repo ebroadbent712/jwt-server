@@ -457,3 +457,19 @@ def can_swap(o):
         return dt.date.today() <= dt.date.fromisoformat(o["answers"]["date"])
     except Exception:
         return True
+
+
+def resume_unfinished():
+    """After a restart (a deploy), finish any plan that was mid-build so no family is left waiting."""
+    n = 0
+    for o in all_orders()[:300]:
+        if o.get("status") in ("paid", "building"):
+            note = None
+            if o.get("swap_pending") and o.get("plan"):
+                last = next((l for l in reversed(o.get("log", [])) if "swap requested" in l), "")
+                note = "She asked for a swap: " + last.split("swap requested:", 1)[-1].strip() if last else None
+            log(o, "resuming after a restart")
+            save_order(o)
+            build_async(o["id"], note)
+            n += 1
+    return n

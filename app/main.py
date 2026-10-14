@@ -217,6 +217,10 @@ class App:
         if msg["type"] == "lifespan.startup":
             self._stack = contextlib.AsyncExitStack()
             await self._stack.enter_async_context(mcp.session_manager.run())
+            try:
+                family.resume_unfinished()
+            except Exception as e:
+                print("resume failed:", e)
             if config.CHECK_ENABLED:
                 self._nightly = asyncio.get_running_loop().create_task(links.nightly())
             await send({"type": "lifespan.startup.complete"})
