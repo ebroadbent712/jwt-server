@@ -398,7 +398,7 @@ a.rreach{text-decoration:underline;text-decoration-color:var(--line);text-underl
     <span class="who">{{STUDIO}}</span>
     {{CONTACT}}
     <small>{{WEBSITE}}</small>
-    <small>Links show the look, not always the exact piece.</small>
+    <small>The pictures show the look. Shop links go to close matches from real stores, not always the exact piece.</small>
   </footer>
 </div>
 
@@ -456,7 +456,7 @@ function openSheet(id) {
   const it = byId[id], st = stat(id);
   const lead = it.links.length ? it.links[Math.min(1, it.links.length - 1)].tier : "";
   const shop = it.owned ? `<span class="owned">You already have this one.</span>` :
-    (it.links.length ? `<span class="similar">${it.links.length > 1 ? `Similar picks at ${it.links.length} prices` : "A similar pick"}</span><div class="shop">${it.links.map(l => `<a class="btn ${l.tier === lead ? "lead" : ""}" href="${l.url}" target="_blank" rel="noopener">
+    (it.links.length ? `<span class="similar">${it.links.length > 1 ? `Close matches at ${it.links.length} prices` : "A close match"}</span><div class="shop">${it.links.map(l => `<a class="btn ${l.tier === lead ? "lead" : ""}" href="${l.url}" target="_blank" rel="noopener">
         <span>${l.tier}</span><small>${esc(l.store)} &rarr;</small></a>`).join("")}</div>
       <span class="nolink">${it.links.length < 3 ? "Close matches look just as good: the colors and the mix matter more than the exact piece. We only list a pick when it's a close match, so some pieces have fewer options." : "Close matches look just as good: the colors and the mix matter more than the exact piece. Splurge on the favorite, save on the rest."}</span>` : "");
   document.getElementById("sheet").innerHTML = `

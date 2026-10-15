@@ -150,7 +150,7 @@ a.rreach{text-decoration:underline;text-decoration-color:var(--line);text-underl
 
 
 <div class="wrap">
-  <div class="sample-bar" id="sbar"><b>Sample plan</b> · This is the page your family gets</div>
+  <div class="sample-bar" id="sbar"><b>Sample plan</b> · Demo: shop links and swaps are turned off</div>
   <header class="top"><span class="mark">Just Wear This.</span><span class="by">Your photographer</span></header>
 
   <section class="hero">
@@ -196,15 +196,15 @@ a.rreach{text-decoration:underline;text-decoration-color:var(--line);text-underl
   
   <section class="reveal">
     <span class="caps">The real family</span>
-    <h2>The plan. Then the photo.</h2>
+    <h2>Real family photo. Here's how I'd plan the outfits.</h2>
     <img src="/img/session-garden.jpg" alt="The family walking a garden path in ivory, soft gray, blush and tan" width="1400" height="1050" loading="lazy">
-    <p>This is the real family, on the garden path at golden hour. Same colors, same textures, same easy feel as the plan above.</p>
+    <p>This family's session came first, on the garden path at golden hour. I built the plan above afterward, from the Just Wear This library, to show how I'd dress them.</p>
   </section>
   <section class="cta" id="cta">
     <h2 id="cta-h">Want this for your family?</h2>
-    <p id="cta-p">Early access is coming soon. If you got this link from us, you're already on the list, so you'll hear first.</p>
-    <a id="cta-a" href="https://justwearthis.myflodesk.com/dfk1n9lz1l">Get early access</a>
-    <small id="cta-s">Everyone's outfit on one page, every piece at up to three prices, swaps until photo day. $19.</small>
+    <p id="cta-p">Family plans open soon. Join the first-access list and I'll email you when they do.</p>
+    <a id="cta-a" href="https://justwearthis.myflodesk.com/dfk1n9lz1l">Get first access</a>
+    <small id="cta-s">Everyone's outfit on one page, close matches at up to three prices, swaps until photo day. $19.</small>
   </section>
 </div>
 
@@ -262,7 +262,7 @@ function openSheet(id) {
   const it = byId[id], st = stat(id);
   const lead = it.links.length ? it.links[Math.min(1, it.links.length - 1)].tier : "";
   const shop = it.owned ? `<span class="owned">You already have this one.</span>` :
-    (it.links.length ? `<span class="similar">${it.links.length > 1 ? `Similar picks at ${it.links.length} prices` : "A similar pick"}</span><div class="shop">${it.links.map(l => `<a class="btn ${l.tier === lead ? "lead" : ""}" href="${l.url}" target="_blank" rel="noopener">
+    (it.links.length ? `<span class="similar">${it.links.length > 1 ? `Close matches at ${it.links.length} prices` : "A close match"}</span><div class="shop">${it.links.map(l => `<a class="btn ${l.tier === lead ? "lead" : ""}" href="${l.url}" target="_blank" rel="noopener">
         <span>${l.tier}</span><small>${esc(l.store)} &rarr;</small></a>`).join("")}</div>
       <span class="nolink">${it.links.length < 3 ? "Close matches look just as good: the colors and the mix matter more than the exact piece. We only list a pick when it's a close match, so some pieces have fewer options." : "Close matches look just as good: the colors and the mix matter more than the exact piece. Splurge on the favorite, save on the rest."}</span>` : "");
   document.getElementById("sheet").innerHTML = `
@@ -305,12 +305,12 @@ render();
   var pro = /[?&]for=pro\b/.test(location.search);
   var JOIN = pro ? "https://justwearthis.myflodesk.com/xz7nvreyhh" : "https://justwearthis.myflodesk.com/dfk1n9lz1l";
   if (pro) {
-    document.getElementById("sbar").innerHTML = "<b>Sample plan</b> · This is the page your client gets";
+    document.getElementById("sbar").innerHTML = "<b>Sample plan</b> · The page your client gets · Demo: shop links and swaps are off";
     document.querySelectorAll(".top .by, .foot .who").forEach(function(el){ el.textContent = "Your business name"; });
-    document.getElementById("cta-h").textContent = "Want to send this to every client?";
-    document.getElementById("cta-p").textContent = "Founding spots are coming soon. If you got this link from us, you're already on the list, so you'll hear first.";
-    document.getElementById("cta-a").textContent = "Join the founding list";
-    document.getElementById("cta-s").textContent = "Your business name on every page. One purchase, no subscription.";
+    document.getElementById("cta-h").textContent = "Want this for your clients?";
+    document.getElementById("cta-p").textContent = "The photographer version is in private beta. Join the interest list and I'll let you know when it's ready.";
+    document.getElementById("cta-a").textContent = "Join the interest list";
+    document.getElementById("cta-s").textContent = "Your business name on every client's plan.";
   }
   document.getElementById("cta-a").href = JOIN;
   var toast = document.createElement("div");
@@ -323,7 +323,7 @@ render();
     e.preventDefault(); e.stopPropagation();
     toast.innerHTML = (pro ? "In your client's plan, they can swap any piece they don't love, right up to photo day. "
                            : "In your plan, you can swap any piece you don't love, right up to photo day. ")
-      + '<a href="' + JOIN + '">' + (pro ? "Join the founding list" : "Get early access") + "</a>";
+      + '<a href="' + JOIN + '">' + (pro ? "Join the interest list" : "Get first access") + "</a>";
     toast.classList.add("on");
     clearTimeout(tt); tt = setTimeout(function(){ toast.classList.remove("on"); }, 4500);
   }, true);
@@ -340,7 +340,7 @@ render();
     var note = document.querySelector("#sheet .nolink");
     var msg = document.createElement("p");
     msg.className = "locknote";
-    msg.innerHTML = (pro ? "In your client's plan" : "In your plan") + ", these open the store, ready to buy, at up to three prices. <a href=\"" + JOIN + "\">" + (pro ? "Join the founding list" : "Get early access") + "</a>";
+    msg.innerHTML = (pro ? "In your client's plan" : "In your plan") + ", these open the store, ready to buy, at up to three prices. <a href=\"" + JOIN + "\">" + (pro ? "Join the interest list" : "Get first access") + "</a>";
     if (note) note.replaceWith(msg); else row.after(msg);
   };
 })();
