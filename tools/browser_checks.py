@@ -6,6 +6,10 @@
 results.json: [{"url": ..., "status": "ok"|"dead"|"unchecked", "note": "..."}]. "unchecked" entries are skipped.
 After recording, commit and push: Render redeploys and the server uses the results for 21 days.
 
+PACE: one product page at a time, about 10 seconds apart, by opening it in the tab. Never fire fetch() loops at a
+store: H&M blocked Emily's own browser ("Access Denied") after a fast burst on Oct 15. Stop a store at the first
+block page and come back another day. A block page is never a reason to call a link dead.
+
 How to check one link in Chrome: open the URL, wait ~2s, then run PROBE (below) in the page. Read it as:
   dead  = redirected to a category/search page, a not-found page, OutOfStock only, or only "Notify me" buttons
   ok    = an "Add to bag/cart" button (InStock in the page data helps confirm)
