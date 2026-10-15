@@ -5,6 +5,8 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ENGINE = os.path.join(ROOT, "engine")          # copy of the just-wear-this skill (scripts, library, fonts)
 SITE = os.path.join(ROOT, "site")              # the public website (index.html, img/, still-looking/ ...)
 CATALOG = os.path.join(ENGINE, "library", "catalog.json")
+# Results of browser checks (Claude in Chrome) for stores that block the server. Committed with the library.
+BROWSER_CHECKS = os.path.join(ENGINE, "library", "browser_checks.json")
 
 # Render mounts a persistent disk here (see render.yaml). Locally it falls back to ./data.
 DATA = os.environ.get("DATA_DIR") or os.path.join(ROOT, "data")
@@ -12,6 +14,7 @@ PAGES = os.path.join(DATA, "pages")
 LOGOS = os.path.join(DATA, "logos")
 KEYS_FILE = os.path.join(DATA, "keys.json")
 HEALTH_FILE = os.path.join(DATA, "link_health.json")
+CHECK_RUN_FILE = os.path.join(DATA, "link_check_run.json")
 ORDERS = os.path.join(DATA, "orders")
 THUMBS = os.path.join(DATA, "thumbs")
 CODES_FILE = os.path.join(DATA, "codes.json")

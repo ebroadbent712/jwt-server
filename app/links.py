@@ -3,6 +3,10 @@
 A board prints justwearthis.co/s/W-DRS-003-mid. The server sends the client to the store page if it's live; if it
 died, to another live price for the same piece; then to the store's own search for that kind of piece; then to the
 still-looking page. A link only counts as dead after two failed checks in a row.
+
+Some stores (Target, H&M, Lulus...) block the server, so the nightly check can't see them. Those are checked in a real
+browser (Claude in Chrome) and recorded in engine/library/browser_checks.json. A browser result fills in wherever the
+server's own result is "unchecked", for BROWSER_DAYS days; a fresher server "ok" or "dead" always wins.
 """
 import asyncio, datetime, json, os, re, threading, time
 from urllib.parse import quote_plus, urlparse
@@ -46,9 +50,57 @@ def _save_health(h):
     os.replace(tmp, config.HEALTH_FILE)
 
 
-def is_dead(url, h=None):
-    rec = (h or health()).get(url)
-    return bool(rec and rec.get("dead"))
+BROWSER_DAYS = 21
+_browser = {"mtime": 0, "checks": {}}
+
+
+def browser_checks():
+    try:
+        m = os.path.getmtime(config.BROWSER_CHECKS)
+    except OSError:
+        return {}
+    if m != _browser["mtime"]:
+        try:
+            _browser["checks"] = json.load(open(config.BROWSER_CHECKS)).get("links", {})
+        except (json.JSONDecodeError, OSError):
+            _browser["checks"] = {}
+        _browser["mtime"] = m
+    return _browser["checks"]
+
+
+def _fresh(day):
+    try:
+        d = datetime.date.fromisoformat(day[:10])
+    except (TypeError, ValueError):
+        return False
+    return (datetime.date.today() - d).days <= BROWSER_DAYS
+
+
+def effective(url, h=None, b=None):
+    """The status a link is treated as: {'status': 'ok'|'dead'|'unchecked', 'source': 'server'|'browser'|'none', ...}."""
+    h = health() if h is None else h
+    b = browser_checks() if b is None else b
+    srv, br = h.get(url), b.get(url)
+    if srv and (srv.get("dead") or srv.get("status") == "ok"):
+        srv_day = (srv.get("checked") or "")[:10]
+        if not (br and _fresh(br.get("checked")) and br.get("checked", "")[:10] > srv_day):
+            return {"status": "dead" if srv.get("dead") else "ok", "source": "server", "note": srv.get("note", ""),
+                    "checked": srv.get("checked", "")}
+    if br and _fresh(br.get("checked")) and br.get("status") in ("ok", "dead"):
+        return {"status": br["status"], "source": "browser", "note": br.get("note", ""), "checked": br.get("checked", "")}
+    if srv:
+        return {"status": "unchecked", "source": "server", "note": srv.get("note", ""), "checked": srv.get("checked", "")}
+    return {"status": "unchecked", "source": "none", "note": "never checked", "checked": ""}
+
+
+def is_dead(url, h=None, b=None):
+    return effective(url, h, b)["status"] == "dead"
+
+
+def has_live_link(piece, h=None, b=None):
+    """False only when every link the piece has is known dead (or it has none)."""
+    us = [u for u in (piece.get("shop_links") or {}).values() if u]
+    return any(not is_dead(u, h, b) for u in us)
 
 
 # ---------------- store search fallback ----------------
@@ -94,10 +146,10 @@ def resolve(code):
     if not piece:
         return STILL_LOOKING, "unknown piece"
     links = piece.get("shop_links") or {}
-    h = health()
+    h, b = health(), browser_checks()
     for t in FALLBACK_ORDER[tier]:
         u = links.get(t)
-        if u and not is_dead(u, h):
+        if u and not is_dead(u, h, b):
             return u, "direct" if t == tier else f"fallback:{t}"
     for t in FALLBACK_ORDER[tier]:  # every link dead: the store's own search for this kind of piece
         u = links.get(t)
@@ -180,6 +232,7 @@ async def check_all(only_host=None):
         if not only_host or h == only_host:
             by_host.setdefault(h, []).append(u)
     results = {}
+    started = time.strftime("%Y-%m-%d %H:%M")
     limits = httpx.Limits(max_connections=8)
     async with httpx.AsyncClient(headers={"User-Agent": UA, "Accept-Language": "en-US,en;q=0.9"},
                                  follow_redirects=True, timeout=25, limits=limits) as client:
@@ -205,25 +258,45 @@ async def check_all(only_host=None):
             if u not in urls:
                 del h[u]
         _save_health(h)
-    return summary()
+    s = summary()
+    try:
+        json.dump({"started": started, "finished": time.strftime("%Y-%m-%d %H:%M"), "host": only_host or "all",
+                   "checked": len(results), "summary": s}, open(config.CHECK_RUN_FILE, "w"), indent=1)
+    except OSError:
+        pass
+    return s
+
+
+def last_run():
+    try:
+        return json.load(open(config.CHECK_RUN_FILE))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def all_links():
+    """{url: [piece-tier, ...]} for every link in the library."""
+    urls = {}
+    for pid, it in pieces().items():
+        for t, u in (it.get("shop_links") or {}).items():
+            if u:
+                urls.setdefault(u, []).append(f"{pid}-{t}")
+    return urls
 
 
 def summary():
-    h = health()
+    h, b = health(), browser_checks()
+    urls = all_links()
     counts = {"ok": 0, "dead": 0, "unchecked": 0}
-    for rec in h.values():
-        if rec.get("dead"):
-            counts["dead"] += 1
-        elif rec.get("status") == "ok":
-            counts["ok"] += 1
-        else:
-            counts["unchecked"] += 1
-    no_live = []
-    for pid, it in pieces().items():
-        links = [u for u in (it.get("shop_links") or {}).values() if u]
-        if links and all(is_dead(u, h) for u in links):
-            no_live.append(pid)
-    return {"links": len(h), **counts, "pieces_with_no_live_link": sorted(no_live)}
+    by_source = {"server": 0, "browser": 0}
+    for u in urls:
+        e = effective(u, h, b)
+        counts[e["status"]] += 1
+        if e["status"] != "unchecked":
+            by_source[e["source"]] += 1
+    no_live = sorted(pid for pid, it in pieces().items()
+                     if [u for u in (it.get("shop_links") or {}).values() if u] and not has_live_link(it, h, b))
+    return {"links": len(urls), **counts, "checked_by": by_source, "pieces_with_no_live_link": no_live}
 
 
 async def nightly():

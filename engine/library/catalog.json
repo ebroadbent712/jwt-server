@@ -1432,10 +1432,9 @@
     "harvest",
     "evergreen"
    ],
-   "link_tier": "3 links",
+   "link_tier": "2 links",
    "description": "Teen girls' crewneck sweater in soft ivory, approximately #EFE7D6. Chunky cable knit, relaxed slightly cropped fit, long sleeves with ribbed cuffs. No logos.",
    "shop_links": {
-    "everyday": "https://www2.hm.com/en_us/productpage.1291789001.html",
     "mid": "https://www.quince.com/women/100-organic-cotton-cropped-cable-sweater?color=ivory",
     "splurge": "https://www.shopdoen.com/products/hallstatt-sweater-ivory"
    },
@@ -6763,7 +6762,7 @@
    "link_tier": "1 link",
    "description": "Cream ballet flats. A pair of soft ivory leather ballet flats with a rounded toe, leather lining and a thin flexible rubber sole.",
    "shop_links": {
-    "everyday": "https://www.target.com/p/women-39-s-ruthie-ballet-flats-a-new-day-8482-cream-8/-/A-1010659696"
+    "everyday": "https://oldnavy.gap.com/browse/product.do?pid=795204022"
    }
   },
   {
@@ -6956,7 +6955,7 @@
    "link_tier": "1 link",
    "description": "Blush ballet flats. A pair of soft powder-pink ballet flats with a rounded toe, a thin flat sole, and a small flat bow on each vamp.",
    "shop_links": {
-    "everyday": "https://www2.hm.com/en_us/productpage.1297205002.html"
+    "everyday": "https://www.target.com/p/kids-diana-slip-on-ballet-flats-cat-jack/-/A-92604667?preselect=94810015"
    }
   },
   {
@@ -7108,7 +7107,7 @@
    "link_tier": "3 links",
    "description": "Cream ballet flats. Slip-on almond-toe ballet flat in smooth cream faux leather with a small bow at the front and a flat sole.",
    "shop_links": {
-    "everyday": "https://www.target.com/p/women-39-s-ruthie-ballet-flats-a-new-day-8482-cream-8/-/A-1010659696",
+    "everyday": "https://oldnavy.gap.com/browse/product.do?pid=795204022",
     "mid": "https://www.lulus.com/products/baylee-cream-perforated-suede-buckle-ballet-flats/2829811.html",
     "splurge": "https://www.nordstrom.com/s/sam-edelman-marcie-ballet-flat-women/8207349"
    }
@@ -8001,11 +8000,9 @@
    "color_stories": [
     "winter-white"
    ],
-   "link_tier": "1 link",
+   "link_tier": "0 links",
    "description": "Champagne ballet flats. A pair of classic rounded-toe ballet flats in soft gold metallic leather with a low-cut topline and thin flat sole.",
-   "shop_links": {
-    "everyday": "https://www2.hm.com/en_us/productpage.1273657003.html"
-   }
+   "shop_links": {}
   },
   {
    "id": "W-BTM-012",

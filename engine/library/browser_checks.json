@@ -1,0 +1,200 @@
+{
+ "note": "Written by tools/browser_checks.py. See app/links.py.",
+ "links": {
+  "https://factory.jcrew.com/p/mens/categories/clothing/shirts/casual-shirts/flex-oxford-casual-shirt/J6180": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://factory.jcrew.com/p/mens/categories/shoes/shoes/classic-penny-loafers/CT008": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://hopeandhenry.com/products/25fg6171a-ivory-eyelet-organic-tiered-eyelet-dress": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=1182260032": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=408049012": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=795204022": {
+   "status": "ok",
+   "note": "cream, add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=898709002": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=911169002": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=911184002": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://tnuck.com/products/herringbone-meg-a-line-mini-skirt": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://us.boden.com/products/boys-everyday-short-sleeve-t-shirt-white-b2967wht": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.gap.com/browse/product.do?pid=1181428002": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.gap.com/browse/product.do?pid=518209002": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=452549001": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.janieandjack.com/item/boys-the-twill-pant-100030676.html?lang=en_US": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.jcrew.com/p/BE611?color_name=stone": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.jcrew.com/p/boys/categories/clothing/bottoms/chino/boys-slim-fit-stretch-chino-pant/AZ588": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.jcrew.com/p/mens/categories/shoes/dress-shoes/AV166?display=all&fit=Men&colorProductCode=AV166&colorCode=RD5803": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.landsend.com/products/boys-iron-knee-blend-plain-front-chino-pants/id_365236": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.lulus.com/products/baylee-cream-perforated-suede-buckle-ballet-flats/2829811.html": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.nordstrom.com/s/hyperlight-soft-grey-houndstooth-check-wool-linen-blend-sport-coat-regular-big/8806040": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.nordstrom.com/s/marc-fisher-ltd-yanara-pointed-toe-bootie-women/7556095": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.nordstrom.com/s/polo-ralph-lauren-classic-oxford-button-down-sport-shirt/6438743": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.nordstrom.com/s/sam-edelman-marcie-ballet-flat-women/8207349": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.quince.com/men/mens-organic-stretch-cotton-chino-pants---straight-fit?color=stone": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.quince.com/men/stretch-wool-blazer?color=grey-melange": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.quince.com/unisex/italian-leather-stretch-sock-bootie?color=bone": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.quince.com/unisex/kid-100-organic-cotton-jersey-short-sleeve-tee?color=white": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.quince.com/women/100-organic-cotton-cropped-cable-sweater?color=ivory": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.quince.com/women/cashmere/cashmere-crewneck-sweater?color=heather-grey": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.quince.com/women/silk/silk-skirt?color=champagne": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.shopdoen.com/products/hallstatt-sweater-ivory": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.target.com/p/kids-boston-court-lace-up-sneakers-cat-jack-white/-/A-1011102525": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www.target.com/p/kids-diana-slip-on-ballet-flats-cat-jack/-/A-92604667?preselect=94810015": {
+   "status": "ok",
+   "note": "blush, ships",
+   "checked": "2026-10-15"
+  },
+  "https://www.target.com/p/women-39-s-ruthie-ballet-flats-a-new-day-8482-cream-8/-/A-1010659696": {
+   "status": "dead",
+   "note": "out of stock",
+   "checked": "2026-10-15"
+  },
+  "https://www2.hm.com/en_us/productpage.1244463005.html": {
+   "status": "ok",
+   "note": "add to bag",
+   "checked": "2026-10-15"
+  },
+  "https://www2.hm.com/en_us/productpage.1273657003.html": {
+   "status": "dead",
+   "note": "now goes to the ballet flats category",
+   "checked": "2026-10-15"
+  },
+  "https://www2.hm.com/en_us/productpage.1291789001.html": {
+   "status": "dead",
+   "note": "sold out in every size",
+   "checked": "2026-10-15"
+  },
+  "https://www2.hm.com/en_us/productpage.1297205002.html": {
+   "status": "dead",
+   "note": "sold out in every size",
+   "checked": "2026-10-15"
+  }
+ }
+}

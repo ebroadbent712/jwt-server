@@ -156,19 +156,28 @@ async def admin_links(request: Request):
     if request.method == "POST":
         asyncio.get_running_loop().create_task(links.check_all(request.query_params.get("host")))
         return JSONResponse({"started": True, "note": "Takes 20 to 40 minutes. Reload this page later."})
-    h = links.health()
+    h, bc = links.health(), links.browser_checks()
     s = links.summary()
-    rows = sorted(((u, r) for u, r in h.items() if r.get("dead") or r.get("status") != "ok"),
-                  key=lambda x: (not x[1].get("dead"), x[0]))
+    run = links.last_run()
+    urls = links.all_links()
+    rows = []
+    for u, ps in urls.items():
+        ef = links.effective(u, h, bc)
+        if ef["status"] != "ok":
+            rows.append((u, ps, ef))
+    rows.sort(key=lambda x: (x[2]["status"] != "dead", x[0]))
     e = html.escape
-    body = "".join(f"<tr><td>{'DEAD' if r.get('dead') else e(r.get('status',''))}</td><td>{e(', '.join(r.get('pieces', [])))}</td>"
-                   f"<td><a href='{e(u)}'>{e(u[:70])}</a></td><td>{e(r.get('note',''))}</td><td>{e(r.get('checked',''))}</td></tr>"
-                   for u, r in rows)
+    body = "".join(f"<tr><td>{'DEAD' if ef['status'] == 'dead' else 'not checked'}</td><td>{e(', '.join(ps))}</td>"
+                   f"<td><a href='{e(u)}'>{e(u[:70])}</a></td><td>{e(ef['note'])}</td><td>{e(ef['source'])}</td>"
+                   f"<td>{e(ef['checked'])}</td></tr>" for u, ps, ef in rows)
+    ran = (f"Last server check: {e(run.get('finished', ''))} ({run.get('checked', 0)} links)." if run
+           else "Last server check: none recorded yet.")
     return HTMLResponse(f"""<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
 <title>Link health</title><style>body{{font:14px system-ui;margin:20px}}td{{padding:4px 8px;border-bottom:1px solid #ddd;vertical-align:top}}</style>
-<h1>Shop link health</h1><p>{s['links']} links: {s['ok']} live, {s['dead']} dead, {s['unchecked']} not checkable by the server.</p>
+<h1>Shop link health</h1><p>{s['links']} links: {s['ok']} live, {s['dead']} dead, {s['unchecked']} not checked.
+Checked by the server: {s['checked_by']['server']}. Checked in the browser: {s['checked_by']['browser']}.</p><p>{ran}</p>
 <p><b>Pieces with no live link ({len(s['pieces_with_no_live_link'])}):</b> {e(', '.join(s['pieces_with_no_live_link'])) or 'none'}</p>
-<table><tr><th>Status</th><th>Pieces</th><th>Link</th><th>Why</th><th>Checked</th></tr>{body}</table>""")
+<table><tr><th>Status</th><th>Pieces</th><th>Link</th><th>Why</th><th>Checked by</th><th>When</th></tr>{body}</table>""")
 
 
 # ---------- old addresses from the Netlify _redirects file (everything except /s/, which is live now) ----------

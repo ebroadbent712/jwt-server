@@ -5,7 +5,7 @@ import json, os, re, secrets, threading, time, traceback
 
 import httpx
 
-from . import config, render, store
+from . import config, links, render, store
 
 # ---------- orders (one JSON file each on the persistent disk) ----------
 ORDER_ID = re.compile(r"^[a-f0-9]{16}$")
@@ -162,9 +162,12 @@ def candidates(a):
     cat = catalog()
     stocked = {k for k, v in cat["color_stories"].items() if v.get("stocked")}
     wanted = set().union(*(persons_for(p) for p in a["people"]))
+    h, b = links.health(), links.browser_checks()
     out = []
     for i in cat["items"]:
         if i.get("link_tier") == "0 links" or not (set(i.get("color_stories", [])) & stocked):
+            continue
+        if not links.has_live_link(i, h, b):  # every shop link known dead: leave it out until it's fixed
             continue
         if _fits(i, wanted):
             out.append(i)

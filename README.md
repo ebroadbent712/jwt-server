@@ -21,6 +21,11 @@ One Render web service for justwearthis.co:
 The nightly link check runs inside the service at 3:15am Central. A link only counts as dead after two failed checks in
 a row; stores that wall off automated visits (Target, H&M, Lulus and a few others) are marked "not checkable", never dead.
 
+Stores that block the server (Target, H&M, Lulus, Amazon, Kohl's...) are checked in Emily's Chrome by Claude and
+recorded in `engine/library/browser_checks.json` with `tools/browser_checks.py` (`list` shows what's due, `record`
+merges results). A browser result counts for 21 days wherever the server's own result is "not checked". Family plans
+skip any piece whose every shop link is known dead. `/admin/links` shows both sources and when the server last ran.
+
 ## Pieces
 
 - `engine/` is a copy of the just-wear-this skill (scripts, library, fonts). Pages are built with the same code the
