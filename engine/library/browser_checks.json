@@ -56,6 +56,46 @@
    "note": "add to bag",
    "checked": "2026-10-15"
   },
+  "https://www.amazon.com/Amazon-Essentials-Classic-fit-Soft-Touch-Long-Sleeve/dp/B08T7J9KYB": {
+   "status": "ok",
+   "note": "Add to Cart, In Stock (Sage Green Heather)",
+   "checked": "2026-10-16"
+  },
+  "https://www.amazon.com/Amazon-Essentials-Crewneck-Cotton-Sweater/dp/B0D814ZDWP": {
+   "status": "ok",
+   "note": "Add to Cart; redirects to B07YGH7ZN9 Blue Heather (only 1 left in default size)",
+   "checked": "2026-10-16"
+  },
+  "https://www.amazon.com/Amazon-Essentials-Long-Sleeve-Quarter-Zip-Sweatshirt/dp/B08X2D4WX7": {
+   "status": "ok",
+   "note": "Add to Cart, In Stock",
+   "checked": "2026-10-16"
+  },
+  "https://www.amazon.com/Amazon-Essentials-Standard-Crewneck-Sweater/dp/B07WJWVY3R": {
+   "status": "dead",
+   "note": "Currently unavailable, no Add to Cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.amazon.com/Amazon-Essentials-Straight-Pocket-Corduroy/dp/B0F3XZNTLG": {
+   "status": "ok",
+   "note": "Add to Cart, In Stock (Dark Olive)",
+   "checked": "2026-10-16"
+  },
+  "https://www.amazon.com/clp/B07F28XSFB": {
+   "status": "ok",
+   "note": "Add to cart on listing page",
+   "checked": "2026-10-16"
+  },
+  "https://www.amazon.com/clp/B07QGKXWCP": {
+   "status": "ok",
+   "note": "Add to cart on listing page",
+   "checked": "2026-10-16"
+  },
+  "https://www.amazon.com/dp/B0FPMB1KHN": {
+   "status": "ok",
+   "note": "Add to Cart",
+   "checked": "2026-10-16"
+  },
   "https://www.gap.com/browse/product.do?pid=1181428002": {
    "status": "ok",
    "note": "add to bag",
@@ -71,10 +111,80 @@
    "note": "add to bag",
    "checked": "2026-10-15"
   },
+  "https://www.janieandjack.com/item/baby-girl-baby-floral-pointelle-ruffle-romper-200770419.html?lang=en_US": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
+  "https://www.janieandjack.com/item/baby-girl-the-velvet-lace-collar-baby-dress-108633001.html": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
+  "https://www.janieandjack.com/item/boys-leather-belt-100032790.html?lang=en_US": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
+  "https://www.janieandjack.com/item/boys-leather-driving-shoe-104448002.html": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
+  "https://www.janieandjack.com/item/boys-speckled-cable-knit-sweater-vest-108974001.html": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
+  "https://www.janieandjack.com/item/boys-the-classic-blazer-100033568.html": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
+  "https://www.janieandjack.com/item/boys-the-classic-cardigan-100049472.html": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
   "https://www.janieandjack.com/item/boys-the-twill-pant-100030676.html?lang=en_US": {
    "status": "ok",
    "note": "add to bag",
    "checked": "2026-10-15"
+  },
+  "https://www.janieandjack.com/item/boys-the-velvet-blazer-108284001.html": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
+  "https://www.janieandjack.com/item/girls-ruffle-collar-sweater-109163001.html": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
+  "https://www.janieandjack.com/item/girls-the-velvet-bow-dress-108710001.html": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
+  "https://www.janieandjack.com/item/kids-baby-bow-soft-headband-200588148.html?lang=en_US": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
+  "https://www.janieandjack.com/item/kids-baby-patent-rosette-ballet-flat-107576001.html": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
+  "https://www.janieandjack.com/item/kids-classic-riding-boot-108323001.html": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
+  "https://www.janieandjack.com/item/kids-double-strap-mj-red-300076460.html": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
   },
   "https://www.jcrew.com/p/BE611?color_name=stone": {
    "status": "ok",
@@ -91,6 +201,36 @@
    "note": "add to bag",
    "checked": "2026-10-15"
   },
+  "https://www.kohls.com/product/prd-5623121/mens-apt-9-premier-flex-slim-fit-corduroy-sport-coat.jsp": {
+   "status": "dead",
+   "note": "Out of stock",
+   "checked": "2026-10-16"
+  },
+  "https://www.kohls.com/product/prd-5697160/mens-sonoma-goods-for-life-winter-fair-isle-sweater.jsp": {
+   "status": "dead",
+   "note": "Out of stock",
+   "checked": "2026-10-16"
+  },
+  "https://www.kohls.com/product/prd-5988496/baby-little-planet-by-carters-organic-cotton-fair-isle-sweater-pants-set.jsp": {
+   "status": "dead",
+   "note": "Out of stock (OutOfStock, pickup and shipping not available)",
+   "checked": "2026-10-16"
+  },
+  "https://www.kohls.com/product/prd-6987177/apt-9-faux-suede-trucker-jacket.jsp": {
+   "status": "dead",
+   "note": "Out of stock",
+   "checked": "2026-10-16"
+  },
+  "https://www.kohls.com/product/prd-7013799/sonoma-goods-for-life-harlann-mens-moc-toe-lug-sole-hiker-boots.jsp": {
+   "status": "ok",
+   "note": "Add to cart, InStock",
+   "checked": "2026-10-16"
+  },
+  "https://www.kohls.com/product/prd-7531301/apt-9-ingot-womens-suede-kitten-heel-ankle-boots.jsp": {
+   "status": "ok",
+   "note": "Add to cart; colors offered now Brownsnake/Black/Stud/Brown (no cognac listed)",
+   "checked": "2026-10-16"
+  },
   "https://www.landsend.com/products/boys-iron-knee-blend-plain-front-chino-pants/id_365236": {
    "status": "ok",
    "note": "add to bag",
@@ -100,6 +240,66 @@
    "status": "ok",
    "note": "add to bag",
    "checked": "2026-10-15"
+  },
+  "https://www.lulus.com/products/bixby-ivory-ribbed-surplice-bodycon-sweater-midi-dress/2745891.html": {
+   "status": "ok",
+   "note": "Add to Bag",
+   "checked": "2026-10-16"
+  },
+  "https://www.lulus.com/products/calla-love-mauve-pink-jacquard-satin-slip-dress/1005002.html": {
+   "status": "dead",
+   "note": "OutOfStock, restock alert only",
+   "checked": "2026-10-16"
+  },
+  "https://www.lulus.com/products/coziest-poise-ivory-cable-knit-long-sleeve-sweater-mini-dress/2467791.html": {
+   "status": "ok",
+   "note": "Add to Bag (some sizes sold out)",
+   "checked": "2026-10-16"
+  },
+  "https://www.lulus.com/products/cozy-sweetness-ivory-eyelash-knit-cropped-cardigan/2483311.html": {
+   "status": "ok",
+   "note": "Add to Bag (some sizes sold out)",
+   "checked": "2026-10-16"
+  },
+  "https://www.lulus.com/products/graceful-finesse-dusty-rose-pleated-long-sleeve-maxi-dress/2255136.html": {
+   "status": "ok",
+   "note": "Add to Bag (some sizes sold out)",
+   "checked": "2026-10-16"
+  },
+  "https://www.lulus.com/products/i-believe-in-fairy-tales-dusty-rose-midi-skirt/236882.html": {
+   "status": "dead",
+   "note": "OutOfStock, restock alert only",
+   "checked": "2026-10-16"
+  },
+  "https://www.lulus.com/products/marvari-taupe-suede-square-toe-knee-high-boots/2309351.html": {
+   "status": "dead",
+   "note": "OutOfStock, restock alert only",
+   "checked": "2026-10-16"
+  },
+  "https://www.lulus.com/products/oakleigh-camel-suede-pointed-toe-ankle-boots/2154436.html": {
+   "status": "dead",
+   "note": "OutOfStock, restock alert only",
+   "checked": "2026-10-16"
+  },
+  "https://www.lulus.com/products/precious-aura-champagne-satin-feather-long-sleeve-midi-dress/2235816.html": {
+   "status": "ok",
+   "note": "Add to Bag (some sizes sold out)",
+   "checked": "2026-10-16"
+  },
+  "https://www.lulus.com/products/refined-attitude-brown-ribbed-side-button-midi-sweater-dress/2496311.html": {
+   "status": "ok",
+   "note": "Add to Bag",
+   "checked": "2026-10-16"
+  },
+  "https://www.lulus.com/products/seasonal-sweetie-rust-brown-ribbed-knit-pullover-sweater/1924176.html": {
+   "status": "dead",
+   "note": "OutOfStock, restock alert only",
+   "checked": "2026-10-16"
+  },
+  "https://www.lulus.com/products/va-va-voom-burgundy-velvet-backless-long-sleeve-midi-dress/2240496.html": {
+   "status": "ok",
+   "note": "Add to Bag",
+   "checked": "2026-10-16"
   },
   "https://www.nordstrom.com/s/hyperlight-soft-grey-houndstooth-check-wool-linen-blend-sport-coat-regular-big/8806040": {
    "status": "ok",
@@ -156,10 +356,35 @@
    "note": "add to bag",
    "checked": "2026-10-15"
   },
+  "https://www.samedelman.com/product/girls-kids-penny-riding-boot-3021936/new-whiskey-leather-ec0225548": {
+   "status": "dead",
+   "note": "Page Not Found (404)",
+   "checked": "2026-10-16"
+  },
   "https://www.shopdoen.com/products/hallstatt-sweater-ivory": {
    "status": "ok",
    "note": "add to bag",
    "checked": "2026-10-15"
+  },
+  "https://www.target.com/p/boys-39-suit-pants-cat-38-jack-8482-gray-12/-/A-92495488": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/hope-henry-layette-baby-boy-long-sleeve-button-front-chambray-romper-infant-0-3-months/-/A-89309692": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/hudson-baby-baby-and-toddler-cozy-fleece-and-faux-shearling-booties-cream-0-6-months/-/A-82658329": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/kids-39-rune-slip-on-sneakers-cat-38-jack-8482-cognac-13/-/A-92540113": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
   },
   "https://www.target.com/p/kids-boston-court-lace-up-sneakers-cat-jack-white/-/A-1011102525": {
    "status": "ok",
@@ -171,30 +396,375 @@
    "note": "blush, ships",
    "checked": "2026-10-15"
   },
+  "https://www.target.com/p/lands-end-men-s-bedford-rib-quarter-zip-sweater-large-burgundy-spritz/-/A-1005649576": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/lands-end-men-s-long-hopsack-blazer-deep-navy/-/A-89299874": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/levi-39-s-174-men-39-s-501-8482-regular-fit-straight-jeans-dark-rinse-33x32/-/A-94812591": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/men-39-s-every-wear-fleece-crewneck-pullover-sweatshirt-goodfellow-38-co-8482-heathered-gray-xxl/-/A-95216838": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/men-39-s-every-wear-long-sleeve-oxford-button-down-shirt-goodfellow-38-co-8482-light-pink-xl/-/A-95209555": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/men-39-s-leo-dress-shoes-goodfellow-38-co-8482-brown-9-5/-/A-94566330": {
+   "status": "dead",
+   "note": "Out of stock, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/men-39-s-long-sleeve-cotton-textured-crewneck-pullover-sweater-goodfellow-38-co-8482-olive-green-s/-/A-95020696": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/men-39-s-tall-every-wear-long-sleeve-oxford-button-down-shirt-goodfellow-38-co-8482-blue-gingham-xxlt/-/A-94897056": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/men-39-s-vintage-long-sleeve-texture-henley-shirt-goodfellow-38-co-8482-light-brown-l/-/A-95216883": {
+   "status": "ok",
+   "note": "Shipping available (Arrives by Oct 20); Add to cart after size pick",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/men-s-cade-court-sneakers-goodfellow-co-white/-/A-94812290": {
+   "status": "ok",
+   "note": "Shipping available (Arrives by Oct 20); Add to cart after size pick",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/men-s-quilted-shirt-jacket-olive-medium/-/A-1007840821": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/the-peanutshell-baby-girl-rompers-2-pack-navy-floral-3-6-months/-/A-1002518696": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/toddler-parker-sneakers-cat-38-jack-8482-navy-blue-12t/-/A-94244806": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/women-39-s-button-up-hourglass-ribbed-v-neck-cardigan-sweater-a-new-day-8482-burgundy-3x/-/A-95185684": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/women-39-s-button-up-midi-sweater-dress-a-new-day-8482-brown-l/-/A-95149992": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/women-39-s-heritage-crewneck-pullover-sweater-universal-thread-8482-burgundy-xs/-/A-95025172": {
+   "status": "ok",
+   "note": "Add to cart with Shipping (out of stock at local store only)",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/women-39-s-long-sleeve-belted-satin-midi-shirtdress-a-new-day-8482-champagne-m/-/A-95051285": {
+   "status": "dead",
+   "note": "Out of stock, Add to cart disabled, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/women-39-s-long-sleeve-knit-maxi-a-line-dress-universal-thread-8482-green-s/-/A-95147755": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/women-39-s-mary-heels-a-new-day-8482-burgundy-8/-/A-95153556": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/women-39-s-morisa-stephanie-ankle-boots-universal-thread-8482-cognac-12/-/A-95153244": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/women-39-s-relaxed-cable-turtleneck-pullover-sweater-universal-thread-8482-cream-xxl/-/A-95077909": {
+   "status": "ok",
+   "note": "Add to cart with Shipping (out of stock at local store only)",
+   "checked": "2026-10-16"
+  },
   "https://www.target.com/p/women-39-s-ruthie-ballet-flats-a-new-day-8482-cream-8/-/A-1010659696": {
    "status": "dead",
    "note": "out of stock",
    "checked": "2026-10-15"
+  },
+  "https://www.target.com/p/women-39-s-short-sleeve-contrast-midi-dress-a-new-day-8482-navy-blue-polka-dots-s/-/A-1010814184": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/women-s-cosette-tall-boots-universal-thread-cognac/-/A-95174664": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/women-s-merritt-flats-and-slip-ons-with-memory-foam-insole-universal-thread-brown/-/A-94985105": {
+   "status": "ok",
+   "note": "Add to cart",
+   "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/wranglers-men-39-s-relaxed-fit-straight-jeans-dark-wash-34x30/-/A-90919098": {
+   "status": "ok",
+   "note": "Shipping available (Arrives by Oct 20); Add to cart after size pick",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_ca/productpage.1241442006.html": {
+   "status": "dead",
+   "note": "non-US store",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_ca/productpage.1286499002.html": {
+   "status": "dead",
+   "note": "non-US store",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_ca/productpage.1321537001.html": {
+   "status": "dead",
+   "note": "non-US store",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_gb/productpage.1289615001.html": {
+   "status": "dead",
+   "note": "non-US store",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.0584764001.html": {
+   "status": "dead",
+   "note": "OutOfStock, only Coming soon",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1164511009.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1166941002.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1178100008.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1182416008.html": {
+   "status": "dead",
+   "note": "Redirects to a category page",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1188798001.html": {
+   "status": "dead",
+   "note": "Redirects to a category page",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1212826001.html": {
+   "status": "dead",
+   "note": "Redirects to a category page",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1230818012.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1238670004.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1241599002.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1241917001.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
   },
   "https://www2.hm.com/en_us/productpage.1244463005.html": {
    "status": "ok",
    "note": "add to bag",
    "checked": "2026-10-15"
   },
+  "https://www2.hm.com/en_us/productpage.1244854002.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1247530003.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1248170005.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1261373006.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1261758002.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1261950001.html": {
+   "status": "dead",
+   "note": "Redirects to a category page",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1265122001.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1267153001.html": {
+   "status": "ok",
+   "note": "Add to bag, sizes available",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1268034001.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1272756001.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
   "https://www2.hm.com/en_us/productpage.1273657003.html": {
    "status": "dead",
    "note": "now goes to the ballet flats category",
    "checked": "2026-10-15"
+  },
+  "https://www2.hm.com/en_us/productpage.1283093002.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1283102002.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1289476004.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
   },
   "https://www2.hm.com/en_us/productpage.1291789001.html": {
    "status": "dead",
    "note": "sold out in every size",
    "checked": "2026-10-15"
   },
+  "https://www2.hm.com/en_us/productpage.1295449002.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1295449003.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1296200006.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1296588002.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
   "https://www2.hm.com/en_us/productpage.1297205002.html": {
    "status": "dead",
    "note": "sold out in every size",
    "checked": "2026-10-15"
+  },
+  "https://www2.hm.com/en_us/productpage.1297285001.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1304120001.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1304686003.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1305039004.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1308330001.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1311942003.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1311996006.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1315091001.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1315091003.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1316824001.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1324742001.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1350227002.html": {
+   "status": "dead",
+   "note": "Every size crossed out, only Notify me",
+   "checked": "2026-10-16"
   }
  }
 }
