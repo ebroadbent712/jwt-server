@@ -21,6 +21,16 @@
    "note": "add to bag",
    "checked": "2026-10-15"
   },
+  "https://oldnavy.gap.com/browse/product.do?pid=1182697012": {
+   "status": "ok",
+   "note": "Old Navy Cable-Knit Crew-Neck Sweater, Creme De La Creme",
+   "checked": "2026-10-19"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=1184389002": {
+   "status": "ok",
+   "note": "Old Navy Ruffle Collar Peplum Top, White Lilies",
+   "checked": "2026-10-19"
+  },
   "https://oldnavy.gap.com/browse/product.do?pid=408049012": {
    "status": "ok",
    "note": "add to bag",
@@ -35,6 +45,11 @@
    "status": "ok",
    "note": "add to bag",
    "checked": "2026-10-15"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=909787002": {
+   "status": "ok",
+   "note": "Old Navy Loose Fit Twill Shirt, Olive Green",
+   "checked": "2026-10-19"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=911169002": {
    "status": "ok",
@@ -96,15 +111,40 @@
    "note": "Add to Cart",
    "checked": "2026-10-16"
   },
+  "https://www.gap.com/browse/product.do?pid=1181389002": {
+   "status": "ok",
+   "note": "Gap Baby Waffle Sweater Set, Ivory frost stripe",
+   "checked": "2026-10-19"
+  },
   "https://www.gap.com/browse/product.do?pid=1181428002": {
    "status": "ok",
    "note": "add to bag",
    "checked": "2026-10-15"
   },
+  "https://www.gap.com/browse/product.do?pid=1183435002": {
+   "status": "ok",
+   "note": "Gap Baby & Toddler Poplin Plaid Dress, white red plaid, puff sleeves",
+   "checked": "2026-10-19"
+  },
+  "https://www.gap.com/browse/product.do?pid=1185719012": {
+   "status": "ok",
+   "note": "Gap Kids Plaid Smocked-Waist Dress, red holiday plaid",
+   "checked": "2026-10-19"
+  },
   "https://www.gap.com/browse/product.do?pid=518209002": {
    "status": "ok",
    "note": "add to bag",
    "checked": "2026-10-15"
+  },
+  "https://www.gap.com/browse/product.do?pid=908927012": {
+   "status": "ok",
+   "note": "Gap Kids CashSoft Cardigan, Wispy mauve",
+   "checked": "2026-10-19"
+  },
+  "https://www.gap.com/browse/product.do?pid=912565022": {
+   "status": "ok",
+   "note": "Gap Baby & Toddler Corduroy Pull-On Baggy Pants, Moonstone",
+   "checked": "2026-10-19"
   },
   "https://www.gapfactory.com/browse/product.do?pid=452549001": {
    "status": "ok",

@@ -121,7 +121,7 @@ SEARCH = {
     "www.kohls.com": "https://www.kohls.com/search.jsp?search={q}",
     "www.amazon.com": "https://www.amazon.com/s?k={q}",
     "www.quince.com": "https://www.quince.com/search?query={q}",
-    "www.lulus.com": "https://www.lulus.com/search?q={q}",
+    "www.lulus.com": "https://www.lulus.com/searchresults?q={q}",
 }
 PERSON_WORD = {"women": "women's", "men": "men's", "girls": "girls", "boys": "boys", "toddlers": "toddler",
                "babies": "baby", "teen girls": "girls", "teen boys": "boys"}
