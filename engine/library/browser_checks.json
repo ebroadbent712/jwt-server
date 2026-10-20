@@ -706,6 +706,11 @@
    "note": "Redirects to a category page",
    "checked": "2026-10-16"
   },
+  "https://www2.hm.com/en_us/productpage.1195099008.html": {
+   "status": "ok",
+   "note": "White boucle, most sizes, Add to bag (replacement for W-OUT-013)",
+   "checked": "2026-10-20"
+  },
   "https://www2.hm.com/en_us/productpage.1212826001.html": {
    "status": "dead",
    "note": "Redirects to a category page",
@@ -955,6 +960,11 @@
    "status": "dead",
    "note": "Every size crossed out, only Notify me",
    "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1350722002.html": {
+   "status": "ok",
+   "note": "Ivory, all sizes, Add to bag (replacement for W-TOP-013)",
+   "checked": "2026-10-20"
   }
  }
 }
