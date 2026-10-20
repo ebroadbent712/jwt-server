@@ -73,6 +73,19 @@ def make_codes(n, note=""):
     return out
 
 
+def make_code_for(name):
+    """One code for one named mom (the admin page's main way to make codes)."""
+    with _lock:
+        cs = codes()
+        while True:
+            c = "BETA-" + "".join(secrets.choice("ABCDEFGHJKLMNPQRSTUVWXYZ23456789") for _ in range(5))
+            if c not in cs:
+                break
+        cs[c] = {"note": name, "for": name, "made": time.strftime("%Y-%m-%d"), "used_by": None}
+        store._write(config.CODES_FILE, cs)
+    return c
+
+
 def norm(code):
     return re.sub(r"[^A-Z0-9-]", "", (code or "").upper())
 

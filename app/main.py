@@ -84,13 +84,54 @@ def _open_link(url):
     return f"<a href='{html.escape(url)}' target=_blank>open</a>" if url else ""
 
 
+ADMIN_CSS = """
+:root{--ink:#111;--soft:#666;--line:#e3e3e3;--ok:#e9f5ec;--warn:#fff4d6;--bad:#fbeaea}
+*{box-sizing:border-box}
+body{font:15px/1.45 system-ui,-apple-system,sans-serif;color:var(--ink);background:#fff;margin:0;padding:24px max(16px,env(safe-area-inset-left)) 60px}
+main{max-width:980px;margin:0 auto}
+h1{font-size:22px;margin:0 0 4px}
+h2{font-size:13px;letter-spacing:.12em;text-transform:uppercase;margin:34px 0 10px;border-top:2px solid var(--ink);padding-top:12px}
+h3{font-size:15px;margin:22px 0 8px}
+.sub{color:var(--soft);margin:0 0 6px}
+.note{padding:12px 14px;margin:14px 0;border:1px solid var(--line)}
+.note.ok{background:var(--ok)}.note.warn{background:var(--warn)}.note.bad{background:var(--bad)}
+.bigform{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:8px 0}
+input{font:inherit;padding:8px 10px;border:1px solid #bbb;border-radius:4px}
+button{font:inherit;padding:8px 14px;border:1px solid var(--ink);background:var(--ink);color:#fff;border-radius:4px;cursor:pointer}
+button.ghost{background:#fff;color:var(--ink);padding:5px 10px;font-size:13px}
+.wrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th{text-align:left;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--soft);font-weight:600;padding:6px 8px;border-bottom:1px solid var(--ink)}
+td{padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+code{font-size:13px;word-break:break-all}
+.muted{color:var(--soft)}
+details{margin:10px 0}
+summary{cursor:pointer;font-weight:600;padding:6px 0}
+.link{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+"""
+
+ADMIN_JS = """<script>
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-copy]');if(!b)return;const t=b.getAttribute('data-copy');
+try{await navigator.clipboard.writeText(t);b.textContent='Copied';}catch(_){prompt('Copy this link:',t);}setTimeout(()=>b.textContent='Copy link',1500);});
+</script>"""
+
+
+def _code_link(c):
+    return f"{config.PUBLIC_BASE}/start/?code={c}"
+
+
+def _copy_btn(text, label="Copy link"):
+    return f"<button type=button class=ghost data-copy='{html.escape(text)}'>{label}</button>"
+
+
 async def admin_home(request: Request):
-    """A plain page for Emily: make a connector link for a buyer, see who has one, open the link report."""
+    """A plain page for Emily: mom beta codes and family orders first, photographer connector tools below."""
     if not _admin_ok(request):
         return HTMLResponse("""<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
 <title>Admin</title><form style="font:16px system-ui;margin:40px"><p>Admin password</p><input name=token type=password autofocus>
 <button>Open</button></form>""", status_code=200 if not request.query_params.get("token") else 403)
     tok = html.escape(request.query_params.get("token", ""))
+    e = html.escape
     made = ""
     if request.method == "POST":
         form = await request.form()
@@ -98,10 +139,16 @@ async def admin_home(request: Request):
             pid = str(form["delete_page"])
             meta = store.page_meta(pid) or {}
             if store.delete_page(pid):
-                made = f"<p style='background:#fbeaea;padding:12px'>Deleted <b>{html.escape(meta.get('title') or pid)}</b>. That link now shows the not-found page.</p>"
+                made = f"<div class='note bad'>Deleted <b>{e(meta.get('title') or pid)}</b>. That link now shows the not-found page.</div>"
+        elif form.get("code_for"):
+            name = str(form["code_for"]).strip()[:60]
+            c = payments.make_code_for(name)
+            link = _code_link(c)
+            made = (f"<div class='note ok'><b>{e(name)}'s link is ready.</b> Paste it into her \"When she says yes\" text."
+                    f"<div class=link style='margin-top:8px'><code>{e(link)}</code>{_copy_btn(link)}</div></div>")
         elif form.get("make_codes"):
             made_codes = payments.make_codes(form.get("make_codes") or 1, (form.get("note") or "").strip())
-            made = "<p style='background:#eef7ee;padding:12px'>New beta codes (one use each):<br><code>" + "<br>".join(made_codes) + "</code></p>"
+            made = "<div class='note ok'>New spare codes (one use each):<br><code>" + "<br>".join(made_codes) + "</code></div>"
         elif form.get("rebuild"):
             o = family.get_order(str(form["rebuild"]))
             if o:
@@ -110,44 +157,102 @@ async def admin_home(request: Request):
                 family.log(o, "rebuild from admin")
                 family.save_order(o)
                 family.build_async(o["id"])
-                made = f"<p style='background:#eef7ee;padding:12px'>Rebuilding {html.escape(o['email'])}'s plan. This page updates itself until it's done.</p>"
+                made = f"<div class='note ok'>Rebuilding {e(o['email'])}'s plan. This page updates itself until it's done.</div>"
         elif form.get("name"):
             key = store.create_key(form["name"].strip(), (form.get("email") or "").strip())
-            made = f"<p style='background:#eef7ee;padding:12px'>Connector link for <b>{html.escape(form['name'])}</b>:<br><code>{config.PUBLIC_BASE}/mcp/{key}</code></p>"
-    rows = "".join(f"<tr><td>{html.escape(v['name'])}</td><td>{html.escape(v.get('email') or '')}</td><td>{v['created']}</td>"
-                   f"<td>{len(store.pages_for(k))}</td><td><code>{config.PUBLIC_BASE}/mcp/{k}</code></td></tr>"
-                   for k, v in store.keys().items() if v.get("active", True))
-    names = {k: v["name"] for k, v in store.keys().items()}
-    page_rows = "".join(
-        f"<tr><td><a href='/{'p' if m.get('kind') == 'plan' else 'q'}/{m['id']}' target=_blank>{html.escape(m.get('title') or m['id'])}</a></td>"
-        f"<td>{html.escape(names.get(m.get('key'), '?'))}</td><td>{html.escape((m.get('updated') or '')[:16].replace('T', ' '))}</td>"
-        f"<td><form method=post action='/admin?token={tok}' onsubmit=\"return confirm('Delete this page for good? Anyone with the link will see a not-found page.')\">"
-        f"<input type=hidden name=delete_page value='{m['id']}'><button>Delete</button></form></td></tr>"
-        for m in store.all_pages()) or "<tr><td colspan=4>No pages yet.</td></tr>"
+            made = (f"<div class='note ok'>Connector link for <b>{e(form['name'])}</b>:"
+                    f"<div class=link style='margin-top:8px'><code>{config.PUBLIC_BASE}/mcp/{key}</code>{_copy_btn(f'{config.PUBLIC_BASE}/mcp/{key}')}</div></div>")
+
+    orders = family.all_orders()[:200]
+    by_id = {o["id"]: o for o in orders}
+
+    # ----- beta codes, split into what Emily actually needs to see -----
+    cs = sorted(payments.codes().items(), key=lambda x: (x[1].get("made", ""), x[0]), reverse=True)
+    waiting = [(c, v) for c, v in cs if v.get("for") and not v.get("used_by")]
+    used = [(c, v) for c, v in cs if v.get("used_by")]
+    spare = [(c, v) for c, v in cs if not v.get("for") and not v.get("used_by")]
+
+    def who_used(v):
+        o = by_id.get(v.get("used_by")) or family.get_order(v.get("used_by") or "") or {}
+        fam = (o.get("answers") or {}).get("family") or (o.get("answers") or {}).get("who") or ""
+        return " · ".join(x for x in (fam, o.get("email", "")) if x) or e(v.get("used_by") or "")
+
+    waiting_rows = "".join(
+        f"<tr><td><b>{e(v['for'])}</b></td><td class=muted>{e(v.get('made',''))}</td><td><code>{c}</code></td><td>{_copy_btn(_code_link(c))}</td></tr>"
+        for c, v in waiting) or "<tr><td colspan=4 class=muted>Nobody yet. Make a link above when a mom says yes.</td></tr>"
+    used_rows = "".join(
+        f"<tr><td><b>{e(v.get('for') or v.get('note') or '')}</b></td><td>{e(who_used(v))}</td><td class=muted>{e((v.get('used') or '')[:10])}</td>"
+        f"<td>{_open_link((by_id.get(v.get('used_by')) or {}).get('url'))}</td></tr>"
+        for c, v in used) or "<tr><td colspan=4 class=muted>No codes used yet.</td></tr>"
+    spare_rows = "".join(
+        f"<tr><td><code>{c}</code></td><td class=muted>{e(v.get('note') or '')}</td><td class=muted>{e(v.get('made',''))}</td><td>{_copy_btn(_code_link(c))}</td></tr>"
+        for c, v in spare)
+
+    # ----- family orders -----
     order_rows = "".join(
-        f"<tr><td>{html.escape(o.get('created','')[:16].replace('T',' '))}</td><td><b>{html.escape(o['answers'].get('family') or o['answers'].get('who',''))}</b><br>{html.escape(o.get('email',''))}</td>"
-        f"<td>{len(o['answers']['people'])}</td><td>{html.escape((o.get('payment') or {}).get('code') or (o.get('payment') or {}).get('method',''))}</td>"
-        f"<td title='{html.escape(chr(10).join(o.get('log', [])[-6:]))}'>{_status_cell(o)}</td>"
+        f"<tr><td class=muted>{e(o.get('created','')[:16].replace('T',' '))}</td><td><b>{e(o['answers'].get('family') or o['answers'].get('who',''))}</b><br><span class=muted>{e(o.get('email',''))}</span></td>"
+        f"<td>{len(o['answers']['people'])}</td><td>{e((o.get('payment') or {}).get('code') or (o.get('payment') or {}).get('method',''))}</td>"
+        f"<td title='{e(chr(10).join(o.get('log', [])[-6:]))}'>{_status_cell(o)}</td>"
         f"<td>{o.get('swaps',0)}</td><td>{_open_link(o.get('url'))}</td>"
-        f"<td><form method=post action='/admin?token={tok}'><input type=hidden name=rebuild value='{o['id']}'><button>Rebuild</button></form></td></tr>"
-        for o in family.all_orders()[:200]) or "<tr><td colspan=8>No orders yet.</td></tr>"
-    busy = [o for o in family.all_orders()[:200] if o.get("status") in ("paid", "building")] or (made and "Rebuilding" in made)
-    busy_note = ("<p style='background:#fff6dd;padding:10px'>Building now. This page refreshes every 15 seconds until every plan is done.</p>"
+        f"<td><form method=post action='/admin?token={tok}'><input type=hidden name=rebuild value='{o['id']}'><button class=ghost>Rebuild</button></form></td></tr>"
+        for o in orders) or "<tr><td colspan=8 class=muted>No orders yet.</td></tr>"
+    busy = [o for o in orders if o.get("status") in ("paid", "building")] or (made and "Rebuilding" in made)
+    busy_note = ("<div class='note warn'>Building now. This page refreshes every 15 seconds until every plan is done.</div>"
                  f"<script>setTimeout(function(){{location.href='/admin?token={tok}'}},15000)</script>") if busy else ""
-    code_rows = "".join(f"<tr><td><code>{c}</code></td><td>{html.escape(v.get('note') or '')}</td><td>{html.escape(v.get('used_by') or '')}</td></tr>"
-                        for c, v in sorted(payments.codes().items(), key=lambda x: x[1].get('made',''), reverse=True)) or "<tr><td colspan=3>None yet.</td></tr>"
-    return HTMLResponse(f"""<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1">
-<title>Just Wear This admin</title><style>body{{font:15px system-ui;margin:24px;max-width:1000px}}td{{padding:4px 8px;border-bottom:1px solid #ddd}}input{{font:inherit;padding:6px}}</style>
-<h1>Just Wear This admin</h1>{made}
-<h2>New connector link</h2><form method=post action="/admin?token={tok}"><input name=name placeholder="Photographer or business name" required size=32>
-<input name=email placeholder="Email (optional)" size=28> <button>Make link</button></form>
-<h2>Connector links</h2><table><tr><th>Name</th><th>Email</th><th>Made</th><th>Pages</th><th>Link</th></tr>{rows}</table>
-<h2>Published pages</h2><table><tr><th>Page</th><th>By</th><th>Updated</th><th></th></tr>{page_rows}</table>
-<h2>Family orders</h2>{busy_note}<table><tr><th>When</th><th>Family / email</th><th>People</th><th>Paid by</th><th>Status</th><th>Swaps</th><th>Plan</th><th></th></tr>{order_rows}</table>
-<h2>Beta codes</h2><form method=post action="/admin?token={tok}">Make <input name=make_codes type=number value=10 min=1 max=50 style="width:70px"> codes
-<input name=note placeholder="Note (e.g. Oct beta moms)" size=28> <button>Make codes</button></form>
-<table><tr><th>Code</th><th>Note</th><th>Used by</th></tr>{code_rows}</table>
-<p><a href="/admin/links?token={tok}">Shop link health report</a></p>""")
+
+    # ----- photographer tools -----
+    rows = "".join(f"<tr><td>{e(v['name'])}</td><td>{e(v.get('email') or '')}</td><td class=muted>{v['created']}</td>"
+                   f"<td>{len(store.pages_for(k))}</td><td><code>{config.PUBLIC_BASE}/mcp/{k}</code></td></tr>"
+                   for k, v in store.keys().items() if v.get("active", True)) or "<tr><td colspan=5 class=muted>None yet.</td></tr>"
+    names = {k: v["name"] for k, v in store.keys().items()}
+    pages = store.all_pages()
+    page_rows = "".join(
+        f"<tr><td><a href='/{'p' if m.get('kind') == 'plan' else 'q'}/{m['id']}' target=_blank>{e(m.get('title') or m['id'])}</a></td>"
+        f"<td>{e(names.get(m.get('key'), '?'))}</td><td class=muted>{e((m.get('updated') or '')[:16].replace('T', ' '))}</td>"
+        f"<td><form method=post action='/admin?token={tok}' onsubmit=\"return confirm('Delete this page for good? Anyone with the link will see a not-found page.')\">"
+        f"<input type=hidden name=delete_page value='{m['id']}'><button class=ghost>Delete</button></form></td></tr>"
+        for m in pages) or "<tr><td colspan=4 class=muted>No pages yet.</td></tr>"
+
+    return HTMLResponse(f"""<!doctype html><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Just Wear This admin</title><style>{ADMIN_CSS}</style>
+<main>
+<h1>Just Wear This admin</h1>
+<p class=sub>{len(waiting)} waiting on a plan · {len(used)} used {'code' if len(used)==1 else 'codes'} · {len(orders)} family {'order' if len(orders)==1 else 'orders'}</p>
+{made}
+
+<h2>Mom beta testers</h2>
+<h3>A mom said yes? Make her link.</h3>
+<form method=post action="/admin?token={tok}" class=bigform><input name=code_for placeholder="Her name" required maxlength=60 size=24 aria-label="Mom's name"><button>Make her link</button></form>
+<p class="sub">One code per mom. Her link fills in the code, so she never has to type it.</p>
+
+<h3>Sent, not used yet ({len(waiting)})</h3>
+<div class=wrap><table><tr><th>Mom</th><th>Made</th><th>Code</th><th></th></tr>{waiting_rows}</table></div>
+
+<h3>Used ({len(used)})</h3>
+<div class=wrap><table><tr><th>Mom</th><th>Order</th><th>Used</th><th>Plan</th></tr>{used_rows}</table></div>
+
+<details><summary>Spare codes ({len(spare)} unused, from earlier batches)</summary>
+<p class=sub>Older codes made in bulk. They still work. You don't need these anymore, but they're here if you want one.</p>
+<div class=wrap><table><tr><th>Code</th><th>Note</th><th>Made</th><th></th></tr>{spare_rows or "<tr><td colspan=4 class=muted>None.</td></tr>"}</table></div>
+<form method=post action="/admin?token={tok}" class=bigform>Make <input name=make_codes type=number value=5 min=1 max=50 style="width:70px" aria-label="How many"> spare codes
+<input name=note placeholder="Note" size=20 aria-label="Note"> <button class=ghost>Make codes</button></form>
+</details>
+
+<h2>Family orders</h2>{busy_note}
+<div class=wrap><table><tr><th>When</th><th>Family / email</th><th>People</th><th>Paid by</th><th>Status</th><th>Swaps</th><th>Plan</th><th></th></tr>{order_rows}</table></div>
+
+<h2>Photographers</h2>
+<details><summary>New connector link</summary>
+<form method=post action="/admin?token={tok}" class=bigform><input name=name placeholder="Photographer or business name" required size=30 aria-label="Business name">
+<input name=email placeholder="Email (optional)" size=24 aria-label="Email"> <button>Make link</button></form></details>
+<details><summary>Connector links ({sum(1 for v in store.keys().values() if v.get("active", True))})</summary>
+<div class=wrap><table><tr><th>Name</th><th>Email</th><th>Made</th><th>Pages</th><th>Link</th></tr>{rows}</table></div></details>
+<details><summary>Published pages ({len(pages)})</summary>
+<div class=wrap><table><tr><th>Page</th><th>By</th><th>Updated</th><th></th></tr>{page_rows}</table></div></details>
+
+<h2>Shop links</h2>
+<p><a href="/admin/links?token={tok}">Shop link health report</a></p>
+</main>{ADMIN_JS}""")
 
 
 async def admin_links(request: Request):
