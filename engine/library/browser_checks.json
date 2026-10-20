@@ -206,6 +206,21 @@
    "note": "add to bag",
    "checked": "2026-10-15"
   },
+  "https://www.hannaandersson.com/boys-clothing-hoodies-sweatshirts/82234-76X.html": {
+   "status": "ok",
+   "note": "InStock",
+   "checked": "2026-10-20"
+  },
+  "https://www.hannaandersson.com/boys-clothing-pants/80824-BX0.html": {
+   "status": "ok",
+   "note": "InStock",
+   "checked": "2026-10-20"
+  },
+  "https://www.hannaandersson.com/girls-accessories-tights-socks/80941-76X.html": {
+   "status": "ok",
+   "note": "InStock",
+   "checked": "2026-10-20"
+  },
   "https://www.janieandjack.com/item/baby-girl-baby-floral-pointelle-ruffle-romper-200770419.html?lang=en_US": {
    "status": "ok",
    "note": "Add to cart, InStock",
@@ -456,6 +471,21 @@
    "note": "Page Not Found (404)",
    "checked": "2026-10-16"
   },
+  "https://www.sezane.com/us-en/product/gaspard-cardigan/burgundy": {
+   "status": "ok",
+   "note": "InStock",
+   "checked": "2026-10-20"
+  },
+  "https://www.sezane.com/us-en/product/marino-trousers/navy": {
+   "status": "ok",
+   "note": "InStock",
+   "checked": "2026-10-20"
+  },
+  "https://www.sezane.com/us-en/product/octobre-editions/flynn-sweater/sage-green": {
+   "status": "ok",
+   "note": "InStock",
+   "checked": "2026-10-20"
+  },
   "https://www.shopdoen.com/products/hallstatt-sweater-ivory": {
    "status": "ok",
    "note": "add to bag",
@@ -646,6 +676,11 @@
    "note": "OutOfStock, only Coming soon",
    "checked": "2026-10-16"
   },
+  "https://www2.hm.com/en_us/productpage.0608999002.html": {
+   "status": "dead",
+   "note": "coming soon, not buyable",
+   "checked": "2026-10-20"
+  },
   "https://www2.hm.com/en_us/productpage.1164511009.html": {
    "status": "dead",
    "note": "Every size crossed out, only Notify me",
@@ -676,10 +711,30 @@
    "note": "Redirects to a category page",
    "checked": "2026-10-16"
   },
+  "https://www2.hm.com/en_us/productpage.1217931001.html": {
+   "status": "ok",
+   "note": "Add to bag",
+   "checked": "2026-10-20"
+  },
+  "https://www2.hm.com/en_us/productpage.1219018001.html": {
+   "status": "dead",
+   "note": "every size sold out",
+   "checked": "2026-10-20"
+  },
+  "https://www2.hm.com/en_us/productpage.1220978036.html": {
+   "status": "ok",
+   "note": "some sizes in stock",
+   "checked": "2026-10-20"
+  },
   "https://www2.hm.com/en_us/productpage.1230818012.html": {
    "status": "dead",
    "note": "Every size crossed out, only Notify me",
    "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1237776017.html": {
+   "status": "ok",
+   "note": "some sizes in stock",
+   "checked": "2026-10-20"
   },
   "https://www2.hm.com/en_us/productpage.1238670004.html": {
    "status": "dead",
@@ -695,6 +750,11 @@
    "status": "dead",
    "note": "Every size crossed out, only Notify me",
    "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1242877031.html": {
+   "status": "ok",
+   "note": "InStock",
+   "checked": "2026-10-20"
   },
   "https://www2.hm.com/en_us/productpage.1244463005.html": {
    "status": "ok",
@@ -716,6 +776,16 @@
    "note": "Every size crossed out, only Notify me",
    "checked": "2026-10-16"
   },
+  "https://www2.hm.com/en_us/productpage.1255070001.html": {
+   "status": "dead",
+   "note": "sold out, notify me only",
+   "checked": "2026-10-20"
+  },
+  "https://www2.hm.com/en_us/productpage.1255487003.html": {
+   "status": "dead",
+   "note": "sold out, notify me only",
+   "checked": "2026-10-20"
+  },
   "https://www2.hm.com/en_us/productpage.1261373006.html": {
    "status": "dead",
    "note": "Every size crossed out, only Notify me",
@@ -735,6 +805,11 @@
    "status": "dead",
    "note": "Every size crossed out, only Notify me",
    "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1266547001.html": {
+   "status": "dead",
+   "note": "sold out, notify me only",
+   "checked": "2026-10-20"
   },
   "https://www2.hm.com/en_us/productpage.1267153001.html": {
    "status": "ok",
@@ -771,6 +846,11 @@
    "note": "Every size crossed out, only Notify me",
    "checked": "2026-10-16"
   },
+  "https://www2.hm.com/en_us/productpage.1289684011.html": {
+   "status": "ok",
+   "note": "some sizes in stock",
+   "checked": "2026-10-20"
+  },
   "https://www2.hm.com/en_us/productpage.1291789001.html": {
    "status": "dead",
    "note": "sold out in every size",
@@ -806,6 +886,11 @@
    "note": "Every size crossed out, only Notify me",
    "checked": "2026-10-16"
   },
+  "https://www2.hm.com/en_us/productpage.1302939001.html": {
+   "status": "dead",
+   "note": "sold out, notify me only",
+   "checked": "2026-10-20"
+  },
   "https://www2.hm.com/en_us/productpage.1304120001.html": {
    "status": "dead",
    "note": "Every size crossed out, only Notify me",
@@ -825,6 +910,16 @@
    "status": "dead",
    "note": "Every size crossed out, only Notify me",
    "checked": "2026-10-16"
+  },
+  "https://www2.hm.com/en_us/productpage.1308398001.html": {
+   "status": "dead",
+   "note": "sold out, notify me only",
+   "checked": "2026-10-20"
+  },
+  "https://www2.hm.com/en_us/productpage.1308403001.html": {
+   "status": "dead",
+   "note": "sold out, notify me only",
+   "checked": "2026-10-20"
   },
   "https://www2.hm.com/en_us/productpage.1311942003.html": {
    "status": "dead",
