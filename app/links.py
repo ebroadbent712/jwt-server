@@ -50,7 +50,7 @@ def _save_health(h):
     os.replace(tmp, config.HEALTH_FILE)
 
 
-BROWSER_DAYS = 21
+BROWSER_DAYS = 7  # browser checks run Tuesdays and Fridays, so a result is never more than a few days old
 _browser = {"mtime": 0, "checks": {}}
 
 
