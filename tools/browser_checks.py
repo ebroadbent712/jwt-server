@@ -4,7 +4,8 @@
   python3 tools/browser_checks.py record results.json         merge results into engine/library/browser_checks.json
 
 results.json: [{"url": ..., "status": "ok"|"dead"|"unchecked", "note": "..."}]. "unchecked" entries are skipped.
-After recording, commit and push: Render redeploys and the server uses the results for 21 days.
+After recording, commit and push: Render redeploys and the server uses the results for 7 days.
+Runs Tuesdays and Fridays; each run checks every store link not already checked in the last 2 days.
 
 PACE: one product page at a time, about 10 seconds apart, by opening it in the tab. Never fire fetch() loops at a
 store: H&M blocked Emily's own browser ("Access Denied") after a fast burst on Oct 15. Stop a store at the first
@@ -21,7 +22,8 @@ from urllib.parse import urlparse
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 CATALOG = os.path.join(ROOT, "engine", "library", "catalog.json")
 OUT = os.path.join(ROOT, "engine", "library", "browser_checks.json")
-DAYS = 21
+DAYS = 7
+RECHECK_AFTER = 2  # days; so the Tuesday and Friday runs each check every link
 WALLED = {"www.target.com", "www2.hm.com", "www.lulus.com", "www.sezane.com", "shop.mango.com", "www.samedelman.com",
           "www.kohls.com", "www.amazon.com", "www.hannaandersson.com", "www.walmart.com", "www.janieandjack.com"}
 
@@ -51,7 +53,7 @@ def due(show_all=False):
             if not u:
                 continue
             rec = done.get(u)
-            fresh = rec and (today - datetime.date.fromisoformat(rec["checked"][:10])).days <= DAYS - 7
+            fresh = rec and (today - datetime.date.fromisoformat(rec["checked"][:10])).days < RECHECK_AFTER
             host = urlparse(u).netloc.lower()
             if show_all or (host in WALLED and not fresh):
                 rows.append((host not in WALLED, host, it["id"], tier, it["name"], u))
