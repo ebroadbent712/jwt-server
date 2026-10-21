@@ -1,6 +1,56 @@
 {
  "note": "Written by tools/browser_checks.py. See app/links.py.",
  "links": {
+  "https://bananarepublic.gap.com/browse/product.do?pid=1180002002": {
+   "status": "ok",
+   "note": "Banana Republic Italian Suede Sneaker, Chocolate Brown",
+   "checked": "2026-10-21"
+  },
+  "https://bananarepublic.gap.com/browse/product.do?pid=1180271022": {
+   "status": "ok",
+   "note": "Banana Republic Mid-Rise Relaxed Painter Pull-On Pant, Cream White",
+   "checked": "2026-10-21"
+  },
+  "https://bananarepublic.gap.com/browse/product.do?pid=649136032": {
+   "status": "ok",
+   "note": "Banana Republic Slim Wrinkle-Resistant Dress Pant, Charcoal Gray",
+   "checked": "2026-10-21"
+  },
+  "https://bananarepublic.gap.com/browse/product.do?pid=767542052": {
+   "status": "ok",
+   "note": "Banana Republic Suede Trucker Jacket, Light Tan",
+   "checked": "2026-10-21"
+  },
+  "https://bananarepublic.gap.com/browse/product.do?pid=904568012": {
+   "status": "ok",
+   "note": "Banana Republic Italian Suede Chukka Boot, Medium Brown",
+   "checked": "2026-10-21"
+  },
+  "https://bananarepublic.gap.com/browse/product.do?pid=904783002": {
+   "status": "ok",
+   "note": "Banana Republic Italian Suede Loafer, Chocolate Brown",
+   "checked": "2026-10-21"
+  },
+  "https://bananarepublic.gap.com/browse/product.do?pid=906610012": {
+   "status": "ok",
+   "note": "Banana Republic Italian Melton Top Coat, Camel Brown",
+   "checked": "2026-10-21"
+  },
+  "https://bananarepublic.gap.com/browse/product.do?pid=906684022": {
+   "status": "ok",
+   "note": "Banana Republic Loose Corduroy Pant, Olive Green",
+   "checked": "2026-10-21"
+  },
+  "https://bananarepublic.gap.com/browse/product.do?pid=906685012": {
+   "status": "ok",
+   "note": "Banana Republic Straight Selvedge Jean, Rinse Dark Wash",
+   "checked": "2026-10-21"
+  },
+  "https://bananarepublic.gap.com/browse/product.do?pid=915606012": {
+   "status": "ok",
+   "note": "Banana Republic Larkspur Cotton-Silk Mock-Neck Cardigan, Radicchio Burgundy",
+   "checked": "2026-10-21"
+  },
   "https://factory.jcrew.com/p/mens/categories/clothing/shirts/casual-shirts/flex-oxford-casual-shirt/J6180": {
    "status": "ok",
    "note": "add to bag",
@@ -19,102 +69,482 @@
   "https://oldnavy.gap.com/browse/product.do?pid=1182257012": {
    "status": "ok",
    "note": "Old Navy SoSoft Crew-Neck Cable Knit Sweater, Naturalist Blue",
-   "checked": "2026-10-19"
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=1182260032": {
    "status": "ok",
-   "note": "add to bag",
-   "checked": "2026-10-15"
+   "note": "Old Navy Shrunken Cozy Wool-Blend Crew-Neck Sweater, Light Grey",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=1182697012": {
    "status": "ok",
    "note": "Old Navy Cable-Knit Crew-Neck Sweater, Creme De La Creme",
-   "checked": "2026-10-19"
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=1184094002": {
    "status": "ok",
-   "note": "Old Navy Relaxed Plaid Flannel Pocket Shirt, Red Plaid",
-   "checked": "2026-10-19"
+   "note": "Old Navy Relaxed Long-Sleeve Flannel Pocket Shirt, Red Plaid",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=1184380002": {
+   "status": "ok",
+   "note": "Old Navy Satin Button-Down Shirt, Cherry Bark",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=1184389002": {
    "status": "ok",
-   "note": "Old Navy Ruffle Collar Peplum Top, White Lilies",
-   "checked": "2026-10-19"
+   "note": "Old Navy Long-Sleeve Ruffle Collar Peplum Top, White Lilies",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=1188714002": {
+   "status": "dead",
+   "note": "Old Navy Longline Twill Double-Breasted Blazer: brown color gone, link now opens Medium Charcoal (only color left)",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=1194741002": {
+   "status": "ok",
+   "note": "Old Navy Column Denim Midi Skirt, Dark Wash",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=407525002": {
+   "status": "ok",
+   "note": "Old Navy Loose Rotation Crew-Neck Sweatshirt, Heather Gray",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=408047072": {
+   "status": "ok",
+   "note": "Old Navy Slim Rotation Chino Pants, A Stone's Throw",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=408049002": {
+   "status": "ok",
+   "note": "Old Navy Straight Rotation Chino Pants, In the Navy",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=408049012": {
    "status": "ok",
-   "note": "add to bag",
-   "checked": "2026-10-15"
+   "note": "Old Navy Straight Rotation Chino Pants, A Stone's Throw",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=621665002": {
+   "status": "ok",
+   "note": "Old Navy Reversible Belt for Boys, Black/Brown",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=689913052": {
+   "status": "ok",
+   "note": "Old Navy Classic Fit Everyday Oxford Shirt, Coastal Highway",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=689913072": {
+   "status": "ok",
+   "note": "Old Navy Classic Fit Everyday Oxford Shirt, Pressed Flower (light pink)",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=691138052": {
+   "status": "ok",
+   "note": "Old Navy Classic Fit Everyday Shirt, Blue Gingham",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=732603002": {
+   "status": "ok",
+   "note": "Old Navy High-Waisted Wow Wide-Leg Jeans, Dark Wash",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=734875002": {
+   "status": "ok",
+   "note": "Old Navy High-Waisted Wow Straight Ankle Jeans, Dark Wash",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=761659002": {
+   "status": "ok",
+   "note": "Old Navy Faux-Leather Gender-Neutral Lace-Up Sneakers for Kids, Creme De La Creme",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=761659012": {
+   "status": "ok",
+   "note": "Old Navy Faux-Leather Gender-Neutral Lace-Up Sneakers for Kids, Cognac Brown",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=766703022": {
+   "status": "ok",
+   "note": "Old Navy Faux-Leather Loafer, Lite Burgundy",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=784247032": {
+   "status": "ok",
+   "note": "Old Navy Slim-Fit Twill Dress Pants, Charcoal",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=784253022": {
    "status": "ok",
    "note": "Old Navy 90s Straight-Fit Twill Dress Pants, Charcoal",
-   "checked": "2026-10-19"
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=784253032": {
    "status": "ok",
    "note": "Old Navy 90s Straight-Fit Twill Dress Pants, Medium Heather Gray",
-   "checked": "2026-10-19"
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=789040022": {
+   "status": "ok",
+   "note": "Old Navy Crew-Neck Sweater for Boys, Medium Heather Gray",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=795204022": {
    "status": "ok",
-   "note": "cream, add to bag",
-   "checked": "2026-10-15"
+   "note": "Old Navy Soft-Knit Pointed-Toe Ballet Flats, Cream",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=801627022": {
+   "status": "ok",
+   "note": "Old Navy Faux-Leather Loafers for Men, Russet Brown",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=802130002": {
+   "status": "ok",
+   "note": "Old Navy Utility Jean Overalls for Toddler Boys, Dark Wash",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=804394002": {
+   "status": "ok",
+   "note": "Old Navy Double Secure-Strap Faux-Suede Sneakers for Toddler Boys, Navy Blue",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=848946002": {
+   "status": "ok",
+   "note": "Old Navy Straight Built-In Flex Jeans, Dark Wash",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=889970032": {
+   "status": "ok",
+   "note": "Old Navy Mary Jane Ballet Flats for Women, Espresso",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=892310002": {
+   "status": "ok",
+   "note": "Old Navy Wow Pull-On Straight Leg Jeans for Boys, Dark Wash",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=894115032": {
    "status": "ok",
    "note": "Old Navy SoSoft Cropped Crew-Neck Cardigan, Sea Salt",
-   "checked": "2026-10-19"
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=894115112": {
+   "status": "dead",
+   "note": "Old Navy SoSoft Cropped Crew-Neck Cardigan: blush color gone, link now opens Black Jack; no pink/blush option left",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=897139012": {
    "status": "ok",
-   "note": "Old Navy SoSoft Cropped Crew-Neck Cardigan, Blush On You",
-   "checked": "2026-10-19"
+   "note": "Old Navy Cozy Ribbed Bow-Pocket Cardigan Sweater for Toddler Girls, Light Brown Heather",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=898709002": {
    "status": "ok",
-   "note": "add to bag",
-   "checked": "2026-10-15"
+   "note": "Old Navy Softest Crew-Neck T-Shirt for Boys, Bright White",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=900246032": {
+   "status": "ok",
+   "note": "Old Navy Longline Open-Front Wrap, Heather Camel",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903200012": {
+   "status": "ok",
+   "note": "Old Navy Long-Sleeve Cable-Knit Sweater for Girls, Cool Almond",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903424022": {
+   "status": "ok",
+   "note": "Old Navy SoSoft Turtleneck Tunic Sweater, Sycamore Bark",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903424032": {
+   "status": "ok",
+   "note": "Old Navy SoSoft Turtleneck Tunic Sweater, Dried Herb",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903424042": {
+   "status": "ok",
+   "note": "Old Navy SoSoft Turtleneck Tunic Sweater, Wish Bone",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=903449032": {
    "status": "ok",
    "note": "Old Navy SoSoft Ribbed V-Neck Sweater, Apple Cinnamon",
-   "checked": "2026-10-19"
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903453002": {
+   "status": "ok",
+   "note": "Old Navy Seaside Cotton Shaker Oversized Tunic Sweater, Powder Pink",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903459002": {
+   "status": "ok",
+   "note": "Old Navy Crew-Neck Sweater, Russet Brown",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=903459012": {
    "status": "ok",
    "note": "Old Navy Crew-Neck Sweater, Forest Canopy",
-   "checked": "2026-10-19"
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903459022": {
+   "status": "ok",
+   "note": "Old Navy Crew-Neck Sweater, Brown Heather (olive-brown on page)",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903459042": {
+   "status": "ok",
+   "note": "Old Navy Crew-Neck Sweater, In the Navy",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903462002": {
+   "status": "ok",
+   "note": "Old Navy Essential Crew-Neck Sweater, Medium Blue Heather",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=903462052": {
    "status": "ok",
    "note": "Old Navy Essential Crew-Neck Sweater, Antique Burgundy",
-   "checked": "2026-10-19"
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903464002": {
+   "status": "ok",
+   "note": "Old Navy SoSoft Cardigan Sweater, Charcoal",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903481012": {
+   "status": "ok",
+   "note": "Old Navy Long-Sleeve Cable-Knit Sweater for Toddler Girls, Warm Ivory",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903723012": {
+   "status": "ok",
+   "note": "Old Navy High-Waisted Bounce Fleece Maxi Skirt, Oatmeal Heather",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903833002": {
+   "status": "ok",
+   "note": "Old Navy Relaxed Loose Built-In Flex Jeans, Dark Wash",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903844002": {
+   "status": "ok",
+   "note": "Old Navy Cozy Crew-Neck Wool-Blend Cardigan, Rose Dawn",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903876012": {
+   "status": "ok",
+   "note": "Old Navy Sleeveless Sweater-Knit Jumpsuit for Baby, Oatmeal Heather",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903885002": {
+   "status": "ok",
+   "note": "Old Navy Oversized Crew-Neck Sweater for Boys, Baltic Amber",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=904893032": {
+   "status": "ok",
+   "note": "Old Navy Oversized Longline Overcoat, Oatmeal",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=905468002": {
+   "status": "ok",
+   "note": "Old Navy 90s Loose Corduroy Pants, Coffee Grounds",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=905481022": {
+   "status": "ok",
+   "note": "Old Navy High-Waisted Wide-Leg Trouser Pants, Toasted Almond",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=905532012": {
+   "status": "ok",
+   "note": "Old Navy Faux-Suede Low-Heel Booties for Women, Camel",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=905567012": {
+   "status": "ok",
+   "note": "Old Navy Knee-High Riding Boots for Women, Dark Chocolate (reddish brown on page)",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=905896002": {
+   "status": "ok",
+   "note": "Old Navy Faux-Suede Derby Boots for Men, Dark Walnut",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=906152042": {
+   "status": "ok",
+   "note": "Old Navy Sweater Fleece Quarter-Zip, Heather Grey",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=906179002": {
+   "status": "ok",
+   "note": "Old Navy Sweater-Fleece Quarter-Zip for Boys, In the Navy",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=906180002": {
    "status": "ok",
    "note": "Old Navy Sweater-Fleece Quarter-Zip for Boys, Dark Walnut",
-   "checked": "2026-10-19"
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=906180012": {
+   "status": "ok",
+   "note": "Old Navy Sweater-Fleece Quarter-Zip for Boys, Dill Caper",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=906372012": {
+   "status": "ok",
+   "note": "Old Navy SoSoft Long-Sleeve V-Neck Mini Sweater Dress, Earthen",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=907010002": {
+   "status": "ok",
+   "note": "Old Navy Loose Canvas Workwear Jacket, Honeyed Acorn",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=907468002": {
+   "status": "dead",
+   "note": "Old Navy Relaxed Long Twill Topcoat for Men: opens Dark Walnut (gray-brown check); no camel color (only black, brown plaid, gray herringbone)",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=907479032": {
+   "status": "ok",
+   "note": "Old Navy Relaxed Long-Sleeve Flannel Pocket Shirt, Earthen",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=907498002": {
+   "status": "ok",
+   "note": "Old Navy Loose Fit Long-Sleeve Corduroy Shirt, Baltic Amber",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=907866002": {
+   "status": "ok",
+   "note": "Old Navy Faux-Suede Booties for Girls, Tan",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=907972002": {
+   "status": "ok",
+   "note": "Old Navy Oversized Long-Sleeve Flannel Shirt for Boys, Medium Green Plaid",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=907973002": {
+   "status": "ok",
+   "note": "Old Navy Oversized Long-Sleeve Denim Shirt for Boys, Medium Wash",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=907981002": {
+   "status": "ok",
+   "note": "Old Navy Relaxed Unlined Blazer, In the Navy",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=908154002": {
+   "status": "ok",
+   "note": "Old Navy Long-Sleeve Waffle Knit Henley T-Shirt for Toddler Boys, Howlite",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=908449002": {
+   "status": "ok",
+   "note": "Old Navy Long-Sleeve Denim Jumpsuit for Baby, Medium Wash",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=908546002": {
    "status": "ok",
-   "note": "Old Navy Tapered Pull-On Corduroy Pants for Toddler Boys, In The Navy",
-   "checked": "2026-10-19"
+   "note": "Old Navy Tapered Pull-On Corduroy Pants for Toddler Boys, In the Navy",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=908564002": {
+   "status": "dead",
+   "note": "Old Navy: original green check dress gone, link redirects to Puff-Sleeve Plaid Dress for Toddler Girls in Red Plaid (no green option)",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=908855002": {
+   "status": "ok",
+   "note": "Old Navy Fit & Flare Prairie Midi Dress, Redwood Burl (solid rust; no rust floral wrap found)",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=908855012": {
+   "status": "ok",
+   "note": "Old Navy Fit & Flare Prairie Midi Dress, Earthen",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=909057052": {
+   "status": "ok",
+   "note": "Old Navy Long-Sleeve Waffle Henley T-Shirt, Kicking Up Dust (camel khaki)",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=909057062": {
+   "status": "ok",
+   "note": "Old Navy Long-Sleeve Waffle Henley T-Shirt, Jurassic Green (olive waffle henley; no waffle crewneck)",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=909333002": {
+   "status": "ok",
+   "note": "Old Navy Long-Sleeve Western Denim Shirt Dress for Toddler Girls, Dark Wash",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=909335002": {
+   "status": "ok",
+   "note": "Old Navy Fit and Flare Bow-Trim Velvet Dress for Toddler Girls, Fusion Red (closest to maroon; only other option is red plaid)",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=909452012": {
+   "status": "ok",
+   "note": "Old Navy Faux-Suede Chelsea Boots for Women, Warm Taupe",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=909462052": {
+   "status": "ok",
+   "note": "Old Navy Fitted Long-Sleeve Ruffled Dress for Girls, Navy Floral",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=909486022": {
+   "status": "ok",
+   "note": "Old Navy Snug Long-Sleeve Ribbed T-Shirt, Wish Bone",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=909785012": {
+   "status": "ok",
+   "note": "Old Navy Long-Sleeve Heavyweight Plaid Flannel Pocket Shirt, Green Plaid",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=909787002": {
    "status": "ok",
-   "note": "Old Navy Loose Fit Twill Shirt, Olive Green",
-   "checked": "2026-10-19"
+   "note": "Old Navy Loose Fit Long-Sleeve Twill Shirt, Olive Green (twill overshirt; no olive quilted one)",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=911124002": {
+   "status": "ok",
+   "note": "Old Navy Ruffle-Collar Boho Maxi Dress, Brown Floral",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=911156012": {
+   "status": "ok",
+   "note": "Old Navy Plaid Midi Skirt, Large Green Plaid",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=911169002": {
    "status": "ok",
-   "note": "add to bag",
-   "checked": "2026-10-15"
+   "note": "Old Navy Satin A-Line Maxi Skirt, Rose Dawn",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=911169032": {
+   "status": "ok",
+   "note": "Old Navy Satin A-Line Maxi Skirt, Emberglow",
+   "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=911184002": {
    "status": "ok",
-   "note": "add to bag",
-   "checked": "2026-10-15"
+   "note": "Old Navy Mini Wrap Skirt, Neutral Plaid",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=911347012": {
+   "status": "ok",
+   "note": "Old Navy Long-Sleeve Statement Collar Button-Front Top, White Lilies",
+   "checked": "2026-10-21"
   },
   "https://tnuck.com/products/herringbone-meg-a-line-mini-skirt": {
    "status": "ok",
@@ -125,6 +555,16 @@
    "status": "ok",
    "note": "add to bag",
    "checked": "2026-10-15"
+  },
+  "https://us.boden.com/products/women-elsie-cashmere-crew-cardigan-deep-burgundy-k1273ree": {
+   "status": "ok",
+   "note": "Boden Elsie Cashmere Crew Cardigan, Deep Burgundy",
+   "checked": "2026-10-21"
+  },
+  "https://us.boden.com/products/women-lucy-chunky-cotton-cardigan-maroon-banner-k1201lpr": {
+   "status": "ok",
+   "note": "Boden Lucy Chunky Cotton Cardigan, Maroon banner",
+   "checked": "2026-10-21"
   },
   "https://www.amazon.com/Amazon-Essentials-Classic-fit-Soft-Touch-Long-Sleeve/dp/B08T7J9KYB": {
    "status": "ok",
@@ -166,45 +606,355 @@
    "note": "Add to Cart",
    "checked": "2026-10-16"
   },
+  "https://www.gap.com/browse/product.do?pid=1180244002": {
+   "status": "ok",
+   "note": "Gap Denim Midi Pencil Skirt, Dark indigo wash",
+   "checked": "2026-10-21"
+  },
   "https://www.gap.com/browse/product.do?pid=1181389002": {
    "status": "ok",
    "note": "Gap Baby Waffle Sweater Set, Ivory frost stripe",
-   "checked": "2026-10-19"
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=1181427012": {
+   "status": "ok",
+   "note": "Gap Kids Pointelle Rib Dress, New heather grey",
+   "checked": "2026-10-21"
   },
   "https://www.gap.com/browse/product.do?pid=1181428002": {
    "status": "ok",
-   "note": "add to bag",
-   "checked": "2026-10-15"
+   "note": "Gap Kids Pointelle Drop-Waist Tiered Dress, Oatmeal heather",
+   "checked": "2026-10-21"
   },
   "https://www.gap.com/browse/product.do?pid=1183435002": {
    "status": "ok",
-   "note": "Gap Baby & Toddler Poplin Plaid Dress, white red plaid, puff sleeves",
-   "checked": "2026-10-19"
+   "note": "Gap Baby & Toddler Poplin Plaid Dress, White red plaid",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=1183677012": {
+   "status": "ok",
+   "note": "Gap CashSoft Waffle Crew Sweater, deep camel",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=1184264012": {
+   "status": "ok",
+   "note": "Gap Kids Cable-Knit Sweater, Tapestry navy",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=1184693012": {
+   "status": "ok",
+   "note": "Gap Lightweight CashSoft Rib Sweater Maxi Dress, Terra brown",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=1184720002": {
+   "status": "ok",
+   "note": "Gap Corduroy Knee-Length Skirt, Kola nut brown",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=1184738012": {
+   "status": "ok",
+   "note": "Gap Corduroy Easy Wide-Leg Pants, Terra brown",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=1184791002": {
+   "status": "ok",
+   "note": "Gap Corduroy Crop Jacket, Palomino brown (ginger corduroy; no corduroy blazer found)",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=1184982022": {
+   "status": "ok",
+   "note": "Gap Lightweight CashSoft Rib Turtleneck Sweater, Ivory beige frost",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=1185079002": {
+   "status": "ok",
+   "note": "Gap CashSoft Cable-Knit Sweater Vest, Camel heather tan",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=1185430022": {
+   "status": "ok",
+   "note": "Gap Baby Cable-Knit Cardigan Sweater Outfit Set, Dark night navy",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=1185439002": {
+   "status": "ok",
+   "note": "Gap Baby Cable-Knit Hat & Sweater One-Piece Set, Green",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=1185719002": {
+   "status": "ok",
+   "note": "Gap Kids Plaid Smocked-Waist Dress, Green plaid",
+   "checked": "2026-10-21"
   },
   "https://www.gap.com/browse/product.do?pid=1185719012": {
    "status": "ok",
-   "note": "Gap Kids Plaid Smocked-Waist Dress, red holiday plaid",
-   "checked": "2026-10-19"
+   "note": "Gap Kids Plaid Smocked-Waist Dress, Red holiday plaid",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=215599072": {
+   "status": "ok",
+   "note": "Gap Baby Brannan Booties, Dark night",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=215599092": {
+   "status": "ok",
+   "note": "Gap Baby Brannan Booties, French vanilla",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=406725002": {
+   "status": "ok",
+   "note": "Gap High Rise Stride Wide-Leg Jeans, Dark wash",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=416620092": {
+   "status": "ok",
+   "note": "Gap Adult VintageSoft Crew Sweatshirt, Light heather gray",
+   "checked": "2026-10-21"
   },
   "https://www.gap.com/browse/product.do?pid=518209002": {
    "status": "ok",
-   "note": "add to bag",
-   "checked": "2026-10-15"
+   "note": "Gap Kids Classic Sneakers, New off white",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=619568012": {
+   "status": "ok",
+   "note": "Gap Oxford Button-Down Shirt, Light blue",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=756326002": {
+   "status": "ok",
+   "note": "Gap Kids Uniform Stretch Straight Khakis, New british khaki",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=761177002": {
+   "status": "ok",
+   "note": "Gap Kids Uniform Relaxed Oxford Shirt, Blue oxford",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=791571022": {
+   "status": "ok",
+   "note": "Gap Kids 100% Cotton Uniform Cardigan Sweater, New off white",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=800531012": {
+   "status": "ok",
+   "note": "Gap 365 Low Rise Pleated Wide-Leg Trousers, Beachwood beige",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=800546232": {
+   "status": "ok",
+   "note": "Gap CashSoft Crop Cardigan, Noir red",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=820732172": {
+   "status": "dead",
+   "note": "Gap 100% Cotton Oversized Sweater: opens Arctic green (bright kelly green, not forest); no solid dark green option",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=821175002": {
+   "status": "ok",
+   "note": "Gap Toddler Vegan Leather Boat Shoes, Dark brown",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=839482142": {
+   "status": "ok",
+   "note": "Gap Modern Crewneck Cardigan, Noir red",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=883681002": {
+   "status": "ok",
+   "note": "Gap Baby Bow Headband, Barely pink",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=906357082": {
+   "status": "ok",
+   "note": "Gap Baby & Toddler CashSoft Cable-Knit Sweater, Ivory frost",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=907038002": {
+   "status": "ok",
+   "note": "Gap Baby & Toddler Denim Big Shirt, Medium indigo",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=907276052": {
+   "status": "ok",
+   "note": "Gap CashSoft Crew Sweater, Terra brown",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=908886012": {
+   "status": "ok",
+   "note": "Gap CashSoft Oversized Chunky Cardigan, Cobblestone beige",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=908887082": {
+   "status": "ok",
+   "note": "Gap CashSoft Crew Sweater, Purple bordeaux",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=908921032": {
+   "status": "ok",
+   "note": "Gap Kids 100% Cotton Oversized Rollneck Sweater, Toasted almond brown",
+   "checked": "2026-10-21"
   },
   "https://www.gap.com/browse/product.do?pid=908927012": {
    "status": "ok",
    "note": "Gap Kids CashSoft Cardigan, Wispy mauve",
-   "checked": "2026-10-19"
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=908979002": {
+   "status": "ok",
+   "note": "Gap Baby Brannan Bear Sweater One-Piece, Navy uniform",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=910037002": {
+   "status": "ok",
+   "note": "Gap Puff-Sleeve Corset Maxi Dress, Terra brown",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=910229002": {
+   "status": "ok",
+   "note": "Gap Baby & Toddler Peacoat, Blue (navy on page)",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=910810002": {
+   "status": "ok",
+   "note": "Gap Baby Ruffle Collar Floral Bubble Bodysuit, Blue floral",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=911751012": {
+   "status": "ok",
+   "note": "Gap Kids Corduroy Utility Shirt, Terra brown",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=912127012": {
+   "status": "ok",
+   "note": "Gap Kids Corduroy Relaxed Straight Pants, Kola nut",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=912215002": {
+   "status": "ok",
+   "note": "Gap Baby & Toddler Denim Drop-Waist Dress, Dark wash",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=912550002": {
+   "status": "ok",
+   "note": "Gap Baby & Toddler Workwear Overalls, Dark wash",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=912565002": {
+   "status": "ok",
+   "note": "Gap Baby & Toddler Corduroy Pull-On Baggy Pants, Dark night cord",
+   "checked": "2026-10-21"
   },
   "https://www.gap.com/browse/product.do?pid=912565022": {
    "status": "ok",
    "note": "Gap Baby & Toddler Corduroy Pull-On Baggy Pants, Moonstone",
-   "checked": "2026-10-19"
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=912623012": {
+   "status": "ok",
+   "note": "Gap Scoop-Neck Lace-Trim Tiered Maxi Dress, Terra brown",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=912770002": {
+   "status": "ok",
+   "note": "Gap Kids Sherpa-Lined Vegan Suede Boots, Cognac",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=912987002": {
+   "status": "ok",
+   "note": "Gap Kids Vegan Suede Zip Boots, Terra brown",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=913897012": {
+   "status": "ok",
+   "note": "Gap Textured Dobby Fitted Shirt, New off white",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=915375072": {
+   "status": "ok",
+   "note": "Gap Modern Turtleneck, Navy blue",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=915486012": {
+   "status": "ok",
+   "note": "Gap Kids VintageSoft Relaxed Sweatshirt, Terra brown",
+   "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=915487002": {
+   "status": "ok",
+   "note": "Gap Kids VintageSoft Quarter-Zip Pullover, Vintage navy",
+   "checked": "2026-10-21"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=1177041021": {
+   "status": "ok",
+   "note": "Gap Factory 100% Cotton Relaxed Fisherman Stitch Crewneck Sweater, Tan chino",
+   "checked": "2026-10-21"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=1178861001": {
+   "status": "ok",
+   "note": "Gap Factory Kids Original Straight Corduroy Pants, New classic navy",
+   "checked": "2026-10-21"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=1179465021": {
+   "status": "ok",
+   "note": "Gap Factory Modern Ribbed Maxi Dress, Vintage indigo",
+   "checked": "2026-10-21"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=1179468001": {
+   "status": "ok",
+   "note": "Gap Factory Denim Puff Sleeve Mini Dress, Medium wash",
+   "checked": "2026-10-21"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=1179725021": {
+   "status": "ok",
+   "note": "Gap Factory Kids Pointelle Dress, Charcoal heather grey",
+   "checked": "2026-10-21"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=1181803001": {
+   "status": "ok",
+   "note": "Gap Factory Kids Corduroy Mini Skirt, Brown cord",
+   "checked": "2026-10-21"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=1182534001": {
+   "status": "ok",
+   "note": "Gap Factory Baby Ribbed Brannan Bear One-Piece, Blackwatch plaid",
+   "checked": "2026-10-21"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=1184297001": {
+   "status": "ok",
+   "note": "Gap Factory Baby Velvet Ballet Flats, Modern red",
+   "checked": "2026-10-21"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=1187033001": {
+   "status": "ok",
+   "note": "Gap Factory Kids Smocked Plaid Dress, Blackwatch plaid",
+   "checked": "2026-10-21"
   },
   "https://www.gapfactory.com/browse/product.do?pid=452549001": {
    "status": "ok",
-   "note": "add to bag",
-   "checked": "2026-10-15"
+   "note": "Gap Factory Oxford Shirt in Standard Fit, white",
+   "checked": "2026-10-21"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=462294001": {
+   "status": "ok",
+   "note": "Gap Factory Toddler Chambray Shirt, medium wash",
+   "checked": "2026-10-21"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=513934091": {
+   "status": "ok",
+   "note": "Gap Factory Kids Poplin Shirt, Blue gingham",
+   "checked": "2026-10-21"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=821576011": {
+   "status": "ok",
+   "note": "Gap Factory Classic Cotton Shirt, optic white",
+   "checked": "2026-10-21"
+  },
+  "https://www.gapfactory.com/browse/product.do?pid=836100011": {
+   "status": "ok",
+   "note": "Gap Factory Relaxed Khakis, Olive night",
+   "checked": "2026-10-21"
   },
   "https://www.hannaandersson.com/boys-clothing-hoodies-sweatshirts/82234-76X.html": {
    "status": "ok",
@@ -310,6 +1060,16 @@
    "status": "ok",
    "note": "add to bag",
    "checked": "2026-10-15"
+  },
+  "https://www.jcrew.com/p/womens/categories/clothing/pants/wide-leg/carolina-pant-in-four-season-stretch/CP150?color_name=navy": {
+   "status": "ok",
+   "note": "J.Crew Carolina Pant in Four-Season Stretch, Navy",
+   "checked": "2026-10-21"
+  },
+  "https://www.jcrew.com/p/womens/categories/shoes/ballets/bea-mary-jane-ballet-flats-in-leather/CR908?color_name=candlelight": {
+   "status": "ok",
+   "note": "J.Crew Bea Mary Jane Ballet Flats in Leather, Candlelight",
+   "checked": "2026-10-21"
   },
   "https://www.kohls.com/product/prd-5623121/mens-apt-9-premier-flex-slim-fit-corduroy-sport-coat.jsp": {
    "status": "dead",
@@ -518,8 +1278,8 @@
   },
   "https://www.target.com/p/kids-diana-slip-on-ballet-flats-cat-jack/-/A-92604667?preselect=94810015": {
    "status": "ok",
-   "note": "blush, ships",
-   "checked": "2026-10-15"
+   "note": "Target Kids' Diana Slip-On Ballet Flats Cat & Jack, Blush",
+   "checked": "2026-10-21"
   },
   "https://www.target.com/p/lands-end-men-s-bedford-rib-quarter-zip-sweater-large-burgundy-spritz/-/A-1005649576": {
    "status": "ok",
