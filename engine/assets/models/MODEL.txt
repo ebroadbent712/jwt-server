@@ -1,0 +1,4 @@
+u2netp.onnx: U^2-Net (small) salient object detection model by Xuebin Qin et al.,
+https://github.com/xuebinqin/U-2-Net, released under the Apache License 2.0.
+ONNX export as distributed by the rembg project (MIT). Used by scripts/clean_photo.py to
+take the background out of a client's photo of their own piece.
