@@ -1,6 +1,6 @@
 """The family version: a mom answers questions on justwearthis.co, pays (or uses a beta code), and Claude styles her
 family's plan with the same rules, library and page engine the photographer plugin uses."""
-import datetime as dt
+import base64, datetime as dt, io
 import json, os, re, secrets, threading, time, traceback
 
 import httpx
@@ -52,6 +52,49 @@ def log(o, msg):
     o.setdefault("log", []).append(f"{time.strftime('%m-%d %H:%M')} {msg}")
 
 
+# ---------- photos of pieces she already owns ----------
+PHOTO_ID = re.compile(r"^[a-f0-9]{20}$")
+MAX_PHOTOS = 4
+
+
+class BadPhoto(ValueError):
+    pass
+
+
+def save_photo(data):
+    """Stores a phone photo of a piece she owns: turned upright, at most 1600px, re-saved as a plain JPEG (which drops
+    the location and camera details). Returns its id."""
+    from PIL import Image, ImageOps
+    try:
+        im = Image.open(io.BytesIO(data))
+        im = ImageOps.exif_transpose(im).convert("RGB")
+    except Exception:
+        raise BadPhoto("That file didn't open as a photo. Try a JPG or PNG.")
+    if min(im.size) < 120:
+        raise BadPhoto("That photo is too small to see the piece. Try a bigger one.")
+    im.thumbnail((1600, 1600), Image.LANCZOS)
+    pid = secrets.token_hex(10)
+    im.save(photo_path(pid), "JPEG", quality=88)
+    return pid
+
+
+def photo_path(pid):
+    return os.path.join(config.UPLOADS, pid + ".jpg")
+
+
+def photo_ok(pid):
+    return bool(PHOTO_ID.match(pid or "")) and os.path.exists(photo_path(pid))
+
+
+def _photo_b64(pid, size=1000):
+    from PIL import Image
+    im = Image.open(photo_path(pid)).convert("RGB")
+    im.thumbnail((size, size), Image.LANCZOS)
+    buf = io.BytesIO()
+    im.save(buf, "JPEG", quality=85)
+    return base64.b64encode(buf.getvalue()).decode()
+
+
 # ---------- answers ----------
 class BadAnswers(ValueError):
     pass
@@ -98,6 +141,27 @@ def clean_answers(a):
     out["prints"] = a.get("prints") if a.get("prints") in PRINTS else "A little is nice"
     for k, n in (("love", 120), ("never", 120), ("own", 500), ("extra", 600)):
         out[k] = _s(a.get(k), n)
+    names = {p["name"].lower(): p["name"] for p in people}
+    photos = []
+    for ph in (a.get("photos") or [])[:MAX_PHOTOS]:
+        if not isinstance(ph, dict) or not photo_ok(ph.get("id")):
+            continue  # an upload that never finished: skip it rather than stop her
+        who = names.get(_s(ph.get("person"), 40).lower())
+        if not who:
+            raise BadAnswers("Pick who's wearing each piece in your photos.")
+        photos.append({"id": ph["id"], "person": who, "what": _s(ph.get("what"), 120)})
+    out["photos"] = photos
+    return out
+
+
+def person_changes(old, new):
+    """Plain sentences for what changed between two sets of answers' people (same people, same order)."""
+    out = []
+    labels = {"name": "name", "age": "age", "kidAge": "age in years", "shop": "shops from", "dress": "dressing up", "nope": "won't wear"}
+    for p, q in zip(old["people"], new["people"]):
+        diffs = [f"{label} was \"{p.get(k) or '-'}\", now \"{q.get(k) or '-'}\"" for k, label in labels.items() if (p.get(k) or "") != (q.get(k) or "")]
+        if diffs:
+            out.append(f"{q['name']}: " + "; ".join(diffs) + ".")
     return out
 
 
@@ -122,7 +186,9 @@ def answers_text(a):
         f"2. How dressy: {a['level']}",
         f"3. Colors they love: {a['love'] or 'no preference'}. Never: {a['never'] or 'none'}",
         f"4. Prints: {a['prints']}",
-        f"5. Already own and want to wear: {a['own'] or 'nothing'}",
+        f"5. Already own and want to wear: {a['own'] or ('nothing else' if a.get('photos') else 'nothing')}",
+        *[f"   Photo {n} (photo id {ph['id']}): {ph['person']}'s own {ph['what'] or 'piece (see the photo)'}"
+          for n, ph in enumerate(a.get("photos") or [], 1)],
         f"6. Anything else: {a['extra'] or 'nothing'}",
     ])
 
@@ -225,6 +291,7 @@ Rules for this flow:
 - Only use item ids from the list in the message. Each person's pieces must be listed for that kind of person (women, men, girls, boys, teen girls, teen boys, toddlers, babies, kids, or "also" that person).
 - Labels: the first names exactly as she gave them (or Mom, Dad). Order: adults first, then kids oldest to youngest.
 - If she owns something that matches a library piece closely, use that piece and list it in "owned" with a label naming her real piece; otherwise ignore the owned note.
+- Photos of pieces she owns: each photo comes with its photo id and who wears it. Put every photographed piece in that person's outfit and build the rest of the family around it (it usually sets the colors). In that person's items use the closest library piece of the same kind and color as a stand-in, and add an "owned" entry: {{"id": "<that library id>", "label": "<her real piece in a few words, for example Ava's own brown boots>", "photo": "<photo id>", "crop": [left, top, right, bottom]}}. The crop is fractions of the photo (0 to 1), framed tightly on the piece; always leave out faces and people. Use a photo's id only once. If a photo doesn't show a piece of clothing, shoes or an accessory, leave it out.
 - dress_level: if she said "Not sure", choose from the setting (usually Dressy casual). If she said Formal, use the dressiest Polished pieces and print Polished.
 - title_right: a short line about the setting (for example "A park at golden hour"). subtitle_right: "<Season> | Family photos" or "Holiday | Christmas card photos".
 - Leave out palette and settings_override.
@@ -243,6 +310,16 @@ def recently_used(limit=40, min_uses=2):
         for p in (o.get("plan") or {}).get("people", []):
             c.update(p.get("items", []))
     return [iid for iid, n in c.most_common() if n >= min_uses]
+
+
+def user_content(a, text):
+    """The message as Claude reads it: her photos first (each named by its id), then the words."""
+    blocks = []
+    for n, ph in enumerate(a.get("photos") or [], 1):
+        if photo_ok(ph["id"]):
+            blocks += [{"type": "text", "text": f"Photo {n}, photo id {ph['id']}: {ph['person']}'s own {ph['what'] or 'piece'}"},
+                       {"type": "image", "source": {"type": "base64", "media_type": "image/jpeg", "data": _photo_b64(ph["id"])}}]
+    return blocks + [{"type": "text", "text": text}] if blocks else text
 
 
 def user_prompt(a, items, fix=None, avoid=None):
@@ -354,6 +431,7 @@ def check_plan(plan, a, items):
                     hit = nope_hit(src["nope"], byid[iid])
                     if hit:
                         probs.append(f"{pp.get('label')} won't wear {hit}, but {iid} ({byid[iid]['name']}) is one. Pick another piece.")
+    probs += photo_probs(plan, a)
     copy = json.dumps([plan.get(k) for k in ("headline", "story", "why_it_works", "piece_notes")]).lower()
     for w in COPY_BANNED:
         if re.search(rf"\b{w}\b", copy):
@@ -362,6 +440,42 @@ def check_plan(plan, a, items):
         if not plan.get(k):
             probs.append(f"{k} is missing.")
     return probs
+
+
+def photo_probs(plan, a):
+    """Her photographed pieces: each on the right person, cropped sensibly, used once."""
+    probs = []
+    mine = {ph["id"]: ph for ph in a.get("photos") or []}
+    worn = {pp.get("label"): set(pp.get("items") or []) for pp in plan.get("people") or []}
+    seen = set()
+    for o in plan.get("owned") or []:
+        if not isinstance(o, dict) or not o.get("photo"):
+            continue
+        pid = o["photo"]
+        if pid not in mine:
+            probs.append(f'owned: "{pid}" is not one of her photo ids.')
+            continue
+        if pid in seen:
+            probs.append(f"owned: photo {pid} is used twice.")
+        seen.add(pid)
+        if o.get("id") not in worn.get(mine[pid]["person"], set()):
+            probs.append(f"owned: photo {pid} is {mine[pid]['person']}'s piece, so its stand-in {o.get('id')} must be in {mine[pid]['person']}'s items.")
+        c = o.get("crop")
+        if c is not None and not (isinstance(c, list) and len(c) == 4 and all(isinstance(x, (int, float)) and 0 <= x <= 1 for x in c)
+                                  and c[0] < c[2] and c[1] < c[3]):
+            probs.append(f"owned: the crop for photo {pid} must be [left, top, right, bottom], fractions from 0 to 1.")
+    missing = [pid for pid in mine if pid not in seen]
+    if missing:
+        probs.append("Her photographed pieces must be in the plan (photo ids " + ", ".join(missing) + "): add each one to its person's outfit with an owned entry. "
+                     "Only leave a photo out if it doesn't show clothing, shoes or an accessory.")
+    return probs
+
+
+def plan_photos(plan, a):
+    """photo id -> file on the disk, for the photos this plan uses."""
+    mine = {ph["id"] for ph in a.get("photos") or []}
+    return {o["photo"]: photo_path(o["photo"]) for o in plan.get("owned") or []
+            if isinstance(o, dict) and o.get("photo") in mine and photo_ok(o["photo"])}
 
 
 COPY_BANNED = ["anchor", "anchors", "bump", "figure", "flattering", "slimming", "hides", "curves", "tummy"]
@@ -433,12 +547,14 @@ def stylist(a, fix_note=None, base_plan=None, extra=None):
     system = system_prompt()
     if config.ANTHROPIC_API_KEY == "fake":
         plan = fake_plan(a, items)
-        html, title, checks = render.build_plan_page(dict(plan, **(extra or {})), FAMILY_BUSINESS)
+        if base_plan:
+            plan["owned"] = base_plan.get("owned") or []
+        html, title, checks = render.build_plan_page(dict(plan, **(extra or {})), FAMILY_BUSINESS, plan_photos(plan, a))
         return plan, html, title, checks + ["fake plan (test mode)"]
     first = user_prompt(a, items, fix_note, avoid=None if base_plan else recently_used())
     if base_plan:
         first += "\n\nHer current plan (change only what she asked for, keep everything else the same):\n" + json.dumps(base_plan)
-    messages = [{"role": "user", "content": first}]
+    messages = [{"role": "user", "content": user_content(a, first)}]
     usage = []
     for attempt in range(3):
         text, u = call_claude(system, messages)
@@ -446,9 +562,15 @@ def stylist(a, fix_note=None, base_plan=None, extra=None):
         try:
             plan = parse_plan(text)
             probs = check_plan(plan, a, items)
+            soft = set(photo_probs(plan, a))
+            if attempt == 2 and probs and all(p in soft for p in probs):
+                print(f"[photos] building without a clean photo match: {probs}")
+                plan["owned"] = [o for o in plan.get("owned") or [] if not isinstance(o, dict) or not o.get("photo")
+                                 or o["photo"] in {ph["id"] for ph in a.get("photos") or []}]
+                probs = []
             if not probs:
                 plan.pop("settings_override", None)
-                html, title, checks = render.build_plan_page(dict(plan, **(extra or {})), FAMILY_BUSINESS)
+                html, title, checks = render.build_plan_page(dict(plan, **(extra or {})), FAMILY_BUSINESS, plan_photos(plan, a))
                 probs = [c for c in checks if c.startswith("CHECK")]
                 if not probs or attempt == 2:
                     return plan, html, title, checks + [f"usage: {usage}"]
@@ -465,7 +587,8 @@ def _swap_block(oid):
     swap = f"{config.PUBLIC_BASE}/o/{oid}/swap"
     return (f'<section class="colors"><h2>Change your mind?</h2>'
             f'<p class="story">Swap any piece, as many times as you like until photo day. Your link stays the same.</p>'
-            f'<a class="btn lead" href="{swap}"><span>Swap a piece</span><small>Free until photo day &rarr;</small></a></section>\n  ')
+            f'<a class="btn lead" href="{swap}"><span>Swap a piece</span><small>Free until photo day &rarr;</small></a>'
+            f'<p class="story">Need to fix someone\'s details, like their age or where they shop? <a href="{config.PUBLIC_BASE}/o/{oid}/edit">Edit a person</a>.</p></section>\n  ')
 
 
 def _family_voice(html, oid):
