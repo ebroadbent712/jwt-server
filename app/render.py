@@ -20,15 +20,25 @@ def _business(b):
     return out
 
 
-def _clean_plan(plan, business):
+def _crop_ok(c):
+    return (isinstance(c, list) and len(c) == 4 and all(isinstance(x, (int, float)) and 0 <= x <= 1 for x in c)
+            and c[0] < c[2] and c[1] < c[3])
+
+
+def _clean_plan(plan, business, photos=None):
     if not isinstance(plan, dict) or not plan.get("family_name") or not plan.get("people"):
         raise BuildError("The plan needs at least family_name and people (each with a label and items).")
     plan = json.loads(json.dumps(plan))  # private copy
     # Files on the photographer's side can't reach the server: owned pieces keep their label and the library
-    # picture stands in; a session photo is skipped.
+    # picture stands in; a session photo is skipped. Photos a mom uploaded on /start/ are on the server's disk
+    # (photos = photo id -> file) and do go on her board.
     notes = []
     for o in plan.get("owned", []):
-        if isinstance(o, dict) and o.pop("photo", None):
+        if isinstance(o, dict) and photos and o.get("photo") in photos:
+            o["photo"] = photos[o["photo"]]
+            if "crop" in o and not _crop_ok(o["crop"]):
+                o.pop("crop")
+        elif isinstance(o, dict) and o.pop("photo", None):
             o.pop("crop", None)
             notes.append(f"{o.get('label') or o.get('id')}: shown with the library picture (photos can't be sent to the page server yet).")
     if plan.pop("hero_photo", None):
@@ -46,9 +56,9 @@ def _run(args, cwd):
     return out
 
 
-def build_plan_page(plan, business):
+def build_plan_page(plan, business, photos=None):
     """Returns (html, title, checks) for the client's outfit page."""
-    plan, notes = _clean_plan(plan, business)
+    plan, notes = _clean_plan(plan, business, photos)
     with _build_lock, tempfile.TemporaryDirectory() as tmp:
         pf = os.path.join(tmp, "plan.json")
         json.dump(plan, open(pf, "w"))

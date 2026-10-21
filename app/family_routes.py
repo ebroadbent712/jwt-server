@@ -35,6 +35,8 @@ label.pc input{{width:20px;height:20px;accent-color:#121212;flex:none}}
 label.pc img{{width:72px;height:72px;object-fit:contain;flex:none;border:1px solid var(--line)}}
 label.pc:has(input:checked) img{{border-color:var(--ink)}}
 textarea{{font:16px Jost,sans-serif;width:100%;min-height:110px;border:1px solid var(--ink);padding:12px 14px;border-radius:0}}
+label.f{{display:flex;flex-direction:column;gap:6px;font-size:11px;letter-spacing:.2em;text-transform:uppercase}}
+label.f input,label.f select{{font:16px Jost,sans-serif;letter-spacing:0;text-transform:none;color:var(--ink);background:#fff;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:10px 0;width:100%}}
 .err{{color:#9b2c2c}}
 </style></head><body><main><div class="mark">Just Wear This.</div>{body}</main>{refresh_js}</body></html>""")
 
@@ -108,6 +110,19 @@ async def api_order(request: Request):
     o["payment"]["session"] = sid
     family.save_order(o)
     return JSONResponse({"next": url})
+
+
+async def api_photo(request: Request):
+    """A photo of a piece she already owns, sent from /start/ (already shrunk on her phone). Returns its id."""
+    if int(request.headers.get("content-length") or 0) > 12_000_000:
+        return JSONResponse({"error": "That photo is too big. Try a smaller one."}, 413)
+    data = await request.body()
+    if not data or len(data) > 12_000_000:
+        return JSONResponse({"error": "That photo didn't come through. Please try again."}, 400)
+    try:
+        return JSONResponse({"id": family.save_photo(data)})
+    except family.BadPhoto as e:
+        return JSONResponse({"error": str(e)}, 400)
 
 
 async def api_status(request: Request):
@@ -188,6 +203,7 @@ async def swap_page(request: Request):
             family.build_async(oid, req)
             return RedirectResponse(f"/o/{oid}", 303)
     names = {i["id"]: i["name"] for i in family.catalog()["items"]}
+    names.update({ow["id"]: ow["label"] for ow in o["plan"].get("owned") or [] if isinstance(ow, dict) and ow.get("label")})
     pre = (request.query_params.get("piece") or "").upper()
     people = "".join(
         f"<div class=person><b>{E(p['label'])}</b>" + "".join(
@@ -200,6 +216,77 @@ async def swap_page(request: Request):
 <label style="display:flex;flex-direction:column;gap:6px;font-size:11px;letter-spacing:.2em;text-transform:uppercase">Anything else? (optional)
 <textarea name=note placeholder="Dad would rather wear jeans. Something warmer for the baby."></textarea></label>
 <button class=btn>Make my swap</button></form>
+<p class=soft>Need to change someone's details instead? <a href="/o/{E(oid)}/edit" style="color:#121212">Edit a person</a></p>
+<p class=soft><a href="{E(o['url'])}" style="color:#121212">Back to my plan</a></p>""")
+
+
+PERSON_FIELDS = (("name", "Name"), ("age", "Age"), ("kidAge", "How old"), ("shop", "Shop from"), ("dress", "Dressing up"), ("nope", "Won't wear"))
+
+
+def _opts(name, choices, cur):
+    return f"<select name={name}>" + "".join(f"<option{' selected' if c == cur else ''}>{E(c)}</option>" for c in choices) + "</select>"
+
+
+async def edit_page(request: Request):
+    """Fix a person's details after the plan is made (a wrong age, Women's picked for Dad...). Restyles only what changed."""
+    oid = request.path_params["oid"]
+    o = family.get_order(oid)
+    if not o or not o.get("plan"):
+        return _page("Not found", "<h1>We couldn't find that plan.</h1>")
+    if not family.can_swap(o):
+        return _page("Photo day has passed", f"""<h1>Photo day has passed.</h1>
+<p class=soft>Changes are open until your photo date. Your plan is still here:</p><a class=btn href="{E(o['url'])}">Open my plan</a>""")
+    a = o["answers"]
+    people = [dict(p) for p in a["people"]]
+    err = ""
+    if request.method == "POST":
+        form = await request.form()
+        for n, p in enumerate(people):
+            for k, _ in PERSON_FIELDS:
+                v = form.get(f"{k}{n}")
+                if v is not None:
+                    p[k] = str(v)
+        if o["status"] == "building":
+            err = "Your last change is still being made. Give it a minute."
+        elif o.get("swaps", 0) >= 25:
+            err = "That's a lot of changes! Reply to your plan email and we'll help by hand."
+        else:
+            renamed = {old["name"]: new["name"] for old, new in zip(a["people"], people)}
+            new_a = dict(a, people=people, photos=[dict(ph, person=renamed.get(ph["person"], ph["person"])) for ph in a.get("photos") or []])
+            try:
+                new_a = family.clean_answers(new_a)
+            except family.BadAnswers as e:
+                err = str(e)
+            else:
+                changes = family.person_changes(a, new_a)
+                if not changes:
+                    err = "Nothing's changed yet. Edit someone's details, then tap the button."
+                else:
+                    req = ("She updated her family's details. " + " ".join(changes) + " Restyle only the people whose details changed, "
+                           "so every piece fits their new details (a new age or 'shop from' means pieces made for that kind of person). "
+                           "Use each person's current name as their label. Keep everyone else's outfit, her own pieces, the color story "
+                           "and the copy the same unless the change needs a small edit.")
+                    o["answers"] = new_a
+                    o["swaps"] = o.get("swaps", 0) + 1
+                    o["swap_pending"] = True
+                    family.log(o, f"swap requested: edited people: {' '.join(changes)}")
+                    family.save_order(o)
+                    family.build_async(oid, req)
+                    return RedirectResponse(f"/o/{oid}", 303)
+    rows = ""
+    for n, p in enumerate(people):
+        rows += f"""<div class=person><b>{E(p['name'])}</b>
+<label class=f>Name<input name=name{n} value="{E(p['name'])}" maxlength=40 required></label>
+<label class=f>Age{_opts(f'age{n}', family.AGES, p['age'])}</label>
+<label class=f>How old? (kids only)<input name=kidAge{n} value="{E(p.get('kidAge') or '')}" inputmode=numeric maxlength=2></label>
+<label class=f>Shop from{_opts(f'shop{n}', family.SHOPS, p['shop'])}</label>
+<label class=f>Dressing up?{_opts(f'dress{n}', ['Happy to', 'Basics only'], p.get('dress') or 'Happy to')}</label>
+<label class=f>Anything they won't wear?<input name=nope{n} value="{E(p.get('nope') or '')}" maxlength=160></label></div>"""
+    return _page("Edit a person", f"""<h1>Edit a person.</h1>
+<p class=soft>Fix anyone's details and we'll restyle just them. Everyone else stays the same, and your link doesn't change.</p>
+{f'<p class=err>{E(err)}</p>' if err else ''}
+<form method=post style="display:flex;flex-direction:column;gap:18px">{rows}
+<button class=btn>Update my plan</button></form>
 <p class=soft><a href="{E(o['url'])}" style="color:#121212">Back to my plan</a></p>""")
 
 
@@ -227,7 +314,9 @@ ROUTES = [
     Route("/lib/{iid}.jpg", piece_thumb),
     Route("/api/family/order", api_order, methods=["POST"]),
     Route("/api/family/status/{oid}", api_status),
+    Route("/api/family/photo", api_photo, methods=["POST"]),
     Route("/api/stripe/webhook", stripe_webhook, methods=["POST"]),
     Route("/o/{oid}", order_page),
     Route("/o/{oid}/swap", swap_page, methods=["GET", "POST"]),
+    Route("/o/{oid}/edit", edit_page, methods=["GET", "POST"]),
 ]

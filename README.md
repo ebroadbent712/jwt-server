@@ -15,6 +15,8 @@ One Render web service for justwearthis.co:
 | `/start/` | The family version: questions, then pay $19 (or a beta code), then the plan |
 | `/o/<order>` | A family's order: "styling your family" while it builds, then straight to her plan |
 | `/o/<order>/swap` | Swap a piece, as often as she likes until photo day (same plan link) |
+| `/o/<order>/edit` | Edit a person (name, age, where they shop, won't-wear) after the plan is made; only the people who changed are restyled |
+| `/api/family/photo` | A photo of a piece she owns, from `/start/`. Saved upright at most 1600px with the location details dropped, in `uploads/` on the disk; her plan shows her real piece |
 | `/api/stripe/webhook` | Stripe tells the server a payment went through |
 | `/healthz` | Health check for Render |
 
