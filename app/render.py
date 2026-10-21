@@ -1,5 +1,5 @@
 """Builds the client pages on the server with the same engine the plugin uses, so Claude only has to send the plan."""
-import json, os, re, subprocess, sys, tempfile, threading
+import hashlib, json, os, re, subprocess, sys, tempfile, threading
 from . import config
 
 _build_lock = threading.Lock()  # one build at a time; the Starter instance has half a CPU
@@ -47,6 +47,30 @@ def _clean_plan(plan, business, photos=None):
     return plan, notes
 
 
+def _clean_photos(plan):
+    """Cut out the background of each uploaded photo the plan uses (kept beside the upload, so swaps reuse it).
+    Runs before the page build; a photo that can't be cut out cleanly gets a frame instead."""
+    for o in plan.get("owned", []):
+        if not (isinstance(o, dict) and o.get("photo") and o["photo"].startswith(config.UPLOADS + os.sep)):
+            continue
+        crop = o.get("crop")
+        key = hashlib.sha1(json.dumps(crop).encode()).hexdigest()[:10]
+        out = o["photo"][:-len(".jpg")] + f"-clean-{key}.png"
+        failed = out + ".failed"
+        if not os.path.exists(out) and not os.path.exists(failed):
+            try:
+                p = subprocess.run([sys.executable, "-m", "app.photo_clean", o["photo"], out] + [str(x) for x in crop or []],
+                                   cwd=config.ROOT, capture_output=True, text=True, timeout=120)
+                if p.returncode != 0:
+                    open(failed, "w").write((p.stderr or "")[-500:])
+            except subprocess.TimeoutExpired:
+                open(failed, "w").write("timed out")
+        if os.path.exists(out):
+            o["photo"] = out
+            o.pop("crop", None)
+        o["clean"] = False  # the engine never loads the model itself
+
+
 def _run(args, cwd):
     p = subprocess.run([sys.executable] + args, cwd=cwd, capture_output=True, text=True, timeout=180)
     out = (p.stdout or "") + (p.stderr or "")
@@ -60,6 +84,7 @@ def build_plan_page(plan, business, photos=None):
     """Returns (html, title, checks) for the client's outfit page."""
     plan, notes = _clean_plan(plan, business, photos)
     with _build_lock, tempfile.TemporaryDirectory() as tmp:
+        _clean_photos(plan)
         pf = os.path.join(tmp, "plan.json")
         json.dump(plan, open(pf, "w"))
         out = _run([os.path.join(SCRIPTS, "build_experience.py"), pf, "--out", tmp], tmp)

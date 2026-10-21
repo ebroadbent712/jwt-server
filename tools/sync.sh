@@ -5,7 +5,7 @@ SRC=${1:-/home/claude/jwt}
 cd "$(dirname "$0")/.."
 rm -rf engine site
 cp -r "$SRC/skill/just-wear-this" engine
-rm -rf engine/assets/models engine/examples
+rm -rf engine/examples  # keep assets/models: family plans clean up photos of pieces moms own
 find engine -name __pycache__ -prune -exec rm -rf {} +
 cp -r "$SRC/site" site
 echo "synced from $SRC"
