@@ -81,6 +81,11 @@
    "note": "Old Navy Cable-Knit Crew-Neck Sweater, Creme De La Creme",
    "checked": "2026-10-21"
   },
+  "https://oldnavy.gap.com/browse/product.do?pid=1182736012": {
+   "status": "ok",
+   "note": "Old Navy Collared Ribbed Quarter-Zip Sweater for Boys, Clove",
+   "checked": "2026-10-21"
+  },
   "https://oldnavy.gap.com/browse/product.do?pid=1184094002": {
    "status": "ok",
    "note": "Old Navy Relaxed Long-Sleeve Flannel Pocket Shirt, Red Plaid",
@@ -304,6 +309,11 @@
   "https://oldnavy.gap.com/browse/product.do?pid=903462002": {
    "status": "ok",
    "note": "Old Navy Essential Crew-Neck Sweater, Medium Blue Heather",
+   "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=903462042": {
+   "status": "ok",
+   "note": "Old Navy Essential Crew-Neck Sweater, Brown Heather",
    "checked": "2026-10-21"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=903462052": {
@@ -1106,6 +1116,16 @@
    "note": "add to bag",
    "checked": "2026-10-15"
   },
+  "https://www.landsend.com/products/mens-all-day-comfort-sneakers/id_388258?attributes=32671": {
+   "status": "ok",
+   "note": "Lands' End Men's All Day Comfort Sneakers, White",
+   "checked": "2026-10-21"
+  },
+  "https://www.landsend.com/products/mens-essential-blazer/id_401667?attributes=16093": {
+   "status": "ok",
+   "note": "Lands' End Men's Essential Blazer, Tide Pool Melange",
+   "checked": "2026-10-21"
+  },
   "https://www.lulus.com/products/baylee-cream-perforated-suede-buckle-ballet-flats/2829811.html": {
    "status": "ok",
    "note": "add to bag",
@@ -1171,15 +1191,40 @@
    "note": "Add to Bag",
    "checked": "2026-10-16"
   },
+  "https://www.nordstrom.com/s/aerin-long-sleeve-knit-dress/8648476?color=444445Q264": {
+   "status": "ok",
+   "note": "Petal & Pup Aerin Long Sleeve Knit Dress, Cream",
+   "checked": "2026-10-21"
+  },
+  "https://www.nordstrom.com/s/agatha-maxi-dress/9065472": {
+   "status": "ok",
+   "note": "Baltic Born Agatha Maxi Dress, Dusty Mauve",
+   "checked": "2026-10-21"
+  },
+  "https://www.nordstrom.com/s/angel-sleeve-midi-bridesmaid-dress/8997208?color=44444FWETG": {
+   "status": "ok",
+   "note": "Oasis Angel Sleeve Midi Dress, Champagne",
+   "checked": "2026-10-21"
+  },
   "https://www.nordstrom.com/s/hyperlight-soft-grey-houndstooth-check-wool-linen-blend-sport-coat-regular-big/8806040": {
    "status": "ok",
    "note": "add to bag",
    "checked": "2026-10-15"
   },
+  "https://www.nordstrom.com/s/julia-jordan-long-slv-midi-dress/9276090": {
+   "status": "ok",
+   "note": "Julia Jordan Long Sleeve Velvet Midi Dress, Wine",
+   "checked": "2026-10-21"
+  },
   "https://www.nordstrom.com/s/marc-fisher-ltd-yanara-pointed-toe-bootie-women/7556095": {
    "status": "ok",
    "note": "add to bag",
    "checked": "2026-10-15"
+  },
+  "https://www.nordstrom.com/s/mona-cable-stitch-long-sleeve-sweater-minidress/8036670": {
+   "status": "ok",
+   "note": "Petal & Pup Mona Cable Stitch Long Sleeve Sweater Minidress, Cream",
+   "checked": "2026-10-21"
   },
   "https://www.nordstrom.com/s/polo-ralph-lauren-classic-oxford-button-down-sport-shirt/6438743": {
    "status": "ok",
