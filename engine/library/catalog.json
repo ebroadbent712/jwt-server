@@ -795,9 +795,11 @@
     "winter-white",
     "holiday-plaid"
    ],
-   "link_tier": "0 links",
+   "link_tier": "1 link",
    "file": "g_acc_003.jpg",
-   "shop_links": {}
+   "shop_links": {
+    "everyday": "https://www.janieandjack.com/item/kids-velvet-bow-barrette-108575002.html"
+   }
   },
   {
    "id": "G-DRS-002",
@@ -6388,9 +6390,11 @@
     "evergreen",
     "cabernet-navy"
    ],
-   "link_tier": "0 links",
+   "link_tier": "1 link",
    "description": "Forest and navy flannel shirt. A long-sleeve button-front cotton flannel shirt in Black Watch tartan, deep forest green and navy blocks crossed by dark black-green lines, with a point collar and buttoned cuffs.",
-   "shop_links": {},
+   "shop_links": {
+    "everyday": "https://oldnavy.gap.com/browse/product.do?pid=1184094032"
+   },
    "pattern_scale": "medium tartan",
    "pattern_family": "black-watch"
   },
@@ -7528,9 +7532,11 @@
    "color_stories": [
     "holiday-plaid"
    ],
-   "link_tier": "0 links",
+   "link_tier": "1 link",
    "description": "Red tartan midi dress. A long-sleeve button-front shirtdress in crisp cotton-stretch red-and-black tartan, with a self-tie waist and a skirt that falls just below the knee.",
-   "shop_links": {},
+   "shop_links": {
+    "splurge": "https://us.boden.com/products/women-una-collared-check-midi-dress-red-blue-and-green-check-d1839red"
+   },
    "pattern_scale": "medium tartan",
    "pattern_family": "red-holiday-tartan",
    "statement": true
@@ -7683,9 +7689,13 @@
    "color_stories": [
     "holiday-plaid"
    ],
-   "link_tier": "0 links",
+   "link_tier": "3 links",
    "description": "Red velvet party dress. A deep holiday-red velvet party dress with short puffed sleeves, a fitted bodice and a full gathered skirt, fully lined and buttoned down the back.",
-   "shop_links": {}
+   "shop_links": {
+    "everyday": "https://www.gap.com/browse/product.do?pid=1185566002",
+    "mid": "https://www.janieandjack.com/item/girls-the-velvet-bow-dress-108710001.html",
+    "splurge": "https://us.boden.com/products/girls-velour-tulle-occasion-dress-rhythmic-red-g5728drd"
+   }
   },
   {
    "id": "G-OUT-006",
@@ -7828,9 +7838,13 @@
    "color_stories": [
     "holiday-plaid"
    ],
-   "link_tier": "0 links",
+   "link_tier": "3 links",
    "description": "Red velvet baby dress. Deep maroon-berry velvet baby dress with short puff sleeves, a tulle-lined skirt and matching bloomers.",
-   "shop_links": {}
+   "shop_links": {
+    "everyday": "https://www.gap.com/browse/product.do?pid=1185566002",
+    "mid": "https://www.janieandjack.com/item/girls-the-velvet-bow-dress-108710001.html",
+    "splurge": "https://www.hannaandersson.com/baby-girl-sets/85623-2EN.html"
+   }
   },
   {
    "id": "BB-DRS-021",
@@ -7975,9 +7989,13 @@
    "color_stories": [
     "holiday-plaid"
    ],
-   "link_tier": "0 links",
+   "link_tier": "3 links",
    "description": "Red tartan A-line skirt. Bright red wool-blend tartan A-line skirt with a back zip, falling just above the knee.",
-   "shop_links": {},
+   "shop_links": {
+    "everyday": "https://oldnavy.gap.com/browse/product.do?pid=911184022",
+    "mid": "https://factory.jcrew.com/p/womens/categories/clothing/skirts/mini-and-knee-length-skirts/wool-blend-a-line-mini-skirt/CZ274",
+    "splurge": "https://us.boden.com/products/women-multi-panel-wool-blend-skirt-red-green-check-hotch-r0988grn"
+   },
    "pattern_scale": "medium tartan",
    "pattern_family": "red-holiday-tartan"
   },
@@ -8129,9 +8147,12 @@
    "color_stories": [
     "holiday-plaid"
    ],
-   "link_tier": "0 links",
+   "link_tier": "2 links",
    "description": "Red tartan skirt. A high-waisted above-the-knee A-line skirt in a bright red wool-blend tartan with a back zip.",
-   "shop_links": {},
+   "shop_links": {
+    "everyday": "https://oldnavy.gap.com/browse/product.do?pid=911184022",
+    "mid": "https://us.boden.com/products/girls-pleated-mini-skirt-red-check-g6192red"
+   },
    "pattern_scale": "medium tartan",
    "pattern_family": "red-holiday-tartan"
   },
@@ -8177,9 +8198,11 @@
    "color_stories": [
     "holiday-plaid"
    ],
-   "link_tier": "0 links",
+   "link_tier": "1 link",
    "description": "Red tartan hair bow. A girls' headband topped with a bow in a red-dominant plaid (described from the listing title; page could not be opened to confirm details).",
-   "shop_links": {},
+   "shop_links": {
+    "everyday": "https://www.janieandjack.com/item/kids-tartan-bow-barrette-108572001.html"
+   },
    "pattern_scale": "small tartan",
    "pattern_family": "red-holiday-tartan"
   },
@@ -8200,9 +8223,11 @@
    "color_stories": [
     "holiday-plaid"
    ],
-   "link_tier": "0 links",
+   "link_tier": "1 link",
    "description": "Red tartan bow tie. A boys' pre-tied bow tie in a red-dominant tartan plaid crossed with thin dark green, navy and yellow lines, on an adjustable neck strap.",
-   "shop_links": {},
+   "shop_links": {
+    "everyday": "https://www.janieandjack.com/item/boys-tartan-bowtie-108953001.html"
+   },
    "pattern_scale": "small tartan",
    "pattern_family": "red-holiday-tartan"
   },
