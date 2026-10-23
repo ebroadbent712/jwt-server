@@ -61,6 +61,11 @@
    "note": "add to bag",
    "checked": "2026-10-15"
   },
+  "https://factory.jcrew.com/p/womens/categories/clothing/skirts/mini-and-knee-length-skirts/wool-blend-a-line-mini-skirt/CZ274": {
+   "status": "ok",
+   "note": "J.Crew Factory Wool-blend A-line mini skirt, Cubeb Berry",
+   "checked": "2026-10-23"
+  },
   "https://hopeandhenry.com/products/25fg6171a-ivory-eyelet-organic-tiered-eyelet-dress": {
    "status": "ok",
    "note": "add to bag",
@@ -90,6 +95,11 @@
    "status": "ok",
    "note": "Old Navy Relaxed Long-Sleeve Flannel Pocket Shirt, Red Plaid",
    "checked": "2026-10-21"
+  },
+  "https://oldnavy.gap.com/browse/product.do?pid=1184094032": {
+   "status": "ok",
+   "note": "Old Navy Relaxed Plaid Flannel Pocket Shirt, Green/Blue Plaid",
+   "checked": "2026-10-23"
   },
   "https://oldnavy.gap.com/browse/product.do?pid=1184380002": {
    "status": "ok",
@@ -551,6 +561,11 @@
    "note": "Old Navy Mini Wrap Skirt, Neutral Plaid",
    "checked": "2026-10-21"
   },
+  "https://oldnavy.gap.com/browse/product.do?pid=911184022": {
+   "status": "ok",
+   "note": "Old Navy Mini Wrap Skirt, Red Plaid",
+   "checked": "2026-10-23"
+  },
   "https://oldnavy.gap.com/browse/product.do?pid=911347012": {
    "status": "ok",
    "note": "Old Navy Long-Sleeve Statement Collar Button-Front Top, White Lilies",
@@ -566,6 +581,16 @@
    "note": "add to bag",
    "checked": "2026-10-15"
   },
+  "https://us.boden.com/products/girls-pleated-mini-skirt-red-check-g6192red": {
+   "status": "ok",
+   "note": "Boden girls Pleated Mini Skirt, Red Check",
+   "checked": "2026-10-23"
+  },
+  "https://us.boden.com/products/girls-velour-tulle-occasion-dress-rhythmic-red-g5728drd": {
+   "status": "ok",
+   "note": "Boden Velour Tulle Occasion Dress, Rhythmic Red",
+   "checked": "2026-10-23"
+  },
   "https://us.boden.com/products/women-elsie-cashmere-crew-cardigan-deep-burgundy-k1273ree": {
    "status": "ok",
    "note": "Boden Elsie Cashmere Crew Cardigan, Deep Burgundy",
@@ -575,6 +600,16 @@
    "status": "ok",
    "note": "Boden Lucy Chunky Cotton Cardigan, Maroon banner",
    "checked": "2026-10-21"
+  },
+  "https://us.boden.com/products/women-multi-panel-wool-blend-skirt-red-green-check-hotch-r0988grn": {
+   "status": "ok",
+   "note": "Boden Multi Panel Wool Blend Skirt, Red/Green Check",
+   "checked": "2026-10-23"
+  },
+  "https://us.boden.com/products/women-una-collared-check-midi-dress-red-blue-and-green-check-d1839red": {
+   "status": "ok",
+   "note": "Boden Una Collared Check Midi Dress, Red Blue and Green Check",
+   "checked": "2026-10-23"
   },
   "https://www.amazon.com/Amazon-Essentials-Classic-fit-Soft-Touch-Long-Sleeve/dp/B08T7J9KYB": {
    "status": "ok",
@@ -690,6 +725,11 @@
    "status": "ok",
    "note": "Gap Baby Cable-Knit Hat & Sweater One-Piece Set, Green",
    "checked": "2026-10-21"
+  },
+  "https://www.gap.com/browse/product.do?pid=1185566002": {
+   "status": "ok",
+   "note": "Gap Baby & Toddler Velour Bow Dress, Modern red",
+   "checked": "2026-10-23"
   },
   "https://www.gap.com/browse/product.do?pid=1185719002": {
    "status": "ok",
@@ -966,6 +1006,11 @@
    "note": "Gap Factory Relaxed Khakis, Olive night",
    "checked": "2026-10-21"
   },
+  "https://www.hannaandersson.com/baby-girl-sets/85623-2EN.html": {
+   "status": "ok",
+   "note": "Hanna Andersson Baby Balloon Sleeve Velvet Dress & Bloomers Set, Pink Flambe",
+   "checked": "2026-10-23"
+  },
   "https://www.hannaandersson.com/boys-clothing-hoodies-sweatshirts/82234-76X.html": {
    "status": "ok",
    "note": "InStock",
@@ -1006,6 +1051,11 @@
    "note": "Add to cart, InStock",
    "checked": "2026-10-16"
   },
+  "https://www.janieandjack.com/item/boys-tartan-bowtie-108953001.html": {
+   "status": "ok",
+   "note": "Janie and Jack Tartan Bowtie, Red Pepper Tartan",
+   "checked": "2026-10-23"
+  },
   "https://www.janieandjack.com/item/boys-the-classic-blazer-100033568.html": {
    "status": "ok",
    "note": "Add to cart, InStock",
@@ -1033,8 +1083,8 @@
   },
   "https://www.janieandjack.com/item/girls-the-velvet-bow-dress-108710001.html": {
    "status": "ok",
-   "note": "Add to cart, InStock",
-   "checked": "2026-10-16"
+   "note": "Janie and Jack The Velvet Bow Dress, Maroon Berry",
+   "checked": "2026-10-23"
   },
   "https://www.janieandjack.com/item/kids-baby-bow-soft-headband-200588148.html?lang=en_US": {
    "status": "ok",
@@ -1055,6 +1105,16 @@
    "status": "ok",
    "note": "Add to cart, InStock",
    "checked": "2026-10-16"
+  },
+  "https://www.janieandjack.com/item/kids-tartan-bow-barrette-108572001.html": {
+   "status": "ok",
+   "note": "Janie and Jack Tartan Bow Barrette, Red Pepper Tartan",
+   "checked": "2026-10-23"
+  },
+  "https://www.janieandjack.com/item/kids-velvet-bow-barrette-108575002.html": {
+   "status": "ok",
+   "note": "Janie and Jack Velvet Bow Barrette, Maroon Berry",
+   "checked": "2026-10-23"
   },
   "https://www.jcrew.com/p/BE611?color_name=stone": {
    "status": "ok",
