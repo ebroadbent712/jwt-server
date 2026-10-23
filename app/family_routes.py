@@ -38,6 +38,11 @@ textarea{{font:16px Jost,sans-serif;width:100%;min-height:110px;border:1px solid
 label.f{{display:flex;flex-direction:column;gap:6px;font-size:11px;letter-spacing:.2em;text-transform:uppercase}}
 label.f input,label.f select{{font:16px Jost,sans-serif;letter-spacing:0;text-transform:none;color:var(--ink);background:#fff;border:0;border-bottom:1px solid var(--ink);border-radius:0;padding:10px 0;width:100%}}
 .err{{color:#9b2c2c}}
+label.story{{display:flex;gap:14px;align-items:flex-start;border-top:1px solid var(--line);padding:14px 0;cursor:pointer}}
+label.story input{{width:20px;height:20px;accent-color:#121212;flex:none;margin-top:4px}}
+label.story>span{{display:flex;flex-direction:column;gap:6px}} label.story b{{font-family:"Bodoni Moda",serif;font-size:19px;font-weight:500}}
+label.story small{{font-family:Jost,sans-serif;font-size:13px;color:var(--soft)}}
+.dots-row{{display:flex;gap:6px}} .dots-row i{{width:22px;height:22px;border-radius:50%;border:1px solid var(--line)}}
 </style></head><body><main><div class="mark">Just Wear This.</div>{body}</main>{refresh_js}</body></html>""")
 
 
@@ -217,6 +222,7 @@ async def swap_page(request: Request):
 <textarea name=note placeholder="Dad would rather wear jeans. Something warmer for the baby."></textarea></label>
 <button class=btn>Make my swap</button></form>
 <p class=soft>Need to change someone's details instead? <a href="/o/{E(oid)}/edit" style="color:#121212">Edit a person</a></p>
+<p class=soft>Want different colors for everyone? <a href="/o/{E(oid)}/colors" style="color:#121212">Change our colors</a></p>
 <p class=soft><a href="{E(o['url'])}" style="color:#121212">Back to my plan</a></p>""")
 
 
@@ -290,6 +296,75 @@ async def edit_page(request: Request):
 <p class=soft><a href="{E(o['url'])}" style="color:#121212">Back to my plan</a></p>""")
 
 
+def _story_choices(cur):
+    """The stocked color stories as radio cards: name and swatches (the catalog summaries use styling words moms shouldn't see)."""
+    out = ""
+    for k, v in family.catalog()["color_stories"].items():
+        if not v.get("stocked"):
+            continue
+        dots = "".join(f"<i style='background:{E(c['hex'])}' title='{E(c['name'])}'></i>" for c in v.get("palette", []))
+        now = " <small>(your plan now)</small>" if k == cur else ""
+        out += (f"<label class=story><input type=radio name=story value='{E(k)}'{' checked' if k == cur else ''}>"
+                f"<span><b>{E(v['name'])}{now}</b><span class=dots-row>{dots}</span></span></label>")
+    return out
+
+
+async def colors_page(request: Request):
+    """Change the whole plan's colors without starting over. Counts as a swap; same link."""
+    oid = request.path_params["oid"]
+    o = family.get_order(oid)
+    if not o or not o.get("plan"):
+        return _page("Not found", "<h1>We couldn't find that plan.</h1>")
+    if not family.can_swap(o):
+        return _page("Photo day has passed", f"""<h1>Photo day has passed.</h1>
+<p class=soft>Changes are open until your photo date. Your plan is still here:</p><a class=btn href="{E(o['url'])}">Open my plan</a>""")
+    a = o["answers"]
+    cur = o["plan"].get("color_story")
+    stories = family.catalog()["color_stories"]
+    err = ""
+    if request.method == "POST":
+        form = await request.form()
+        story = form.get("story") or ""
+        love = family._s(form.get("love"), 120)
+        never = family._s(form.get("never"), 120)
+        if story not in stories or not stories[story].get("stocked"):
+            story = ""
+        if o["status"] == "building":
+            err = "Your last change is still being made. Give it a minute."
+        elif o.get("swaps", 0) >= 25:
+            err = "That's a lot of changes! Reply to your plan email and we'll help by hand."
+        elif (not story or story == cur) and love == a.get("love", "") and never == a.get("never", ""):
+            err = "Pick new colors, or tell us the colors you'd love, then tap the button."
+        else:
+            wish = []
+            if story and story != cur:
+                wish.append(f"Use the color story {story} ({stories[story]['name']}).")
+            if love != a.get("love", ""):
+                wish.append(f"Colors she loves now: {love or 'no preference'}.")
+            if never != a.get("never", ""):
+                wish.append(f"Colors she never wants now: {never or 'none'}.")
+            req = ("She wants new colors for her plan. " + " ".join(wish) + " If she didn't name a color story, pick the stocked one "
+                   "that best fits her new colors. Restyle the whole family in the new colors: change any piece that doesn't fit them, "
+                   "and rewrite the headline and copy to match. Keep everyone's details, her own pieces (build the new colors around "
+                   "them) and the setting the same.")
+            o["answers"] = dict(a, love=love, never=never)
+            o["swaps"] = o.get("swaps", 0) + 1
+            o["swap_pending"] = True
+            family.log(o, f"swap requested: new colors: {' '.join(wish)}")
+            family.save_order(o)
+            family.build_async(oid, req)
+            return RedirectResponse(f"/o/{oid}", 303)
+    owned = " Pieces you photographed stay in, and the new colors are built around them." if a.get("photos") else ""
+    return _page("Change our colors", f"""<h1>Change our colors.</h1>
+<p class=soft>Pick a new set of colors, or tell us what you'd love, and we'll redo everyone's outfits to match. No starting over, and your link doesn't change.{owned}</p>
+{f'<p class=err>{E(err)}</p>' if err else ''}
+<form method=post style="display:flex;flex-direction:column;gap:18px">{_story_choices(cur)}
+<label class=f>Colors you love (optional)<input name=love value="{E(a.get('love') or '')}" maxlength=120 placeholder="Sage, rust, cream"></label>
+<label class=f>Never, please (optional)<input name=never value="{E(a.get('never') or '')}" maxlength=120 placeholder="Orange, bright red"></label>
+<button class=btn>Change my colors</button></form>
+<p class=soft><a href="{E(o['url'])}" style="color:#121212">Back to my plan</a></p>""")
+
+
 async def piece_thumb(request: Request):
     """Small square picture of a library piece (for the swap page), made once and kept on the disk."""
     iid = request.path_params["iid"].upper()
@@ -319,4 +394,5 @@ ROUTES = [
     Route("/o/{oid}", order_page),
     Route("/o/{oid}/swap", swap_page, methods=["GET", "POST"]),
     Route("/o/{oid}/edit", edit_page, methods=["GET", "POST"]),
+    Route("/o/{oid}/colors", colors_page, methods=["GET", "POST"]),
 ]
