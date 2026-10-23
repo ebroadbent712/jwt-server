@@ -588,7 +588,8 @@ def _swap_block(oid):
     return (f'<section class="colors"><h2>Change your mind?</h2>'
             f'<p class="story">Swap any piece, as many times as you like until photo day. Your link stays the same.</p>'
             f'<a class="btn lead" href="{swap}"><span>Swap a piece</span><small>Free until photo day &rarr;</small></a>'
-            f'<p class="story">Need to fix someone\'s details, like their age or where they shop? <a href="{config.PUBLIC_BASE}/o/{oid}/edit">Edit a person</a>.</p></section>\n  ')
+            f'<p class="story">Need to fix someone\'s details, like their age or where they shop? <a href="{config.PUBLIC_BASE}/o/{oid}/edit">Edit a person</a>.</p>'
+            f'<p class="story">Want different colors? <a href="{config.PUBLIC_BASE}/o/{oid}/colors">Change our colors</a>, free until photo day.</p></section>\n  ')
 
 
 def _family_voice(html, oid):
