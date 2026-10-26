@@ -42,7 +42,13 @@ label.story{{display:flex;gap:14px;align-items:flex-start;border-top:1px solid v
 label.story input{{width:20px;height:20px;accent-color:#121212;flex:none;margin-top:4px}}
 label.story>span{{display:flex;flex-direction:column;gap:6px}} label.story b{{font-family:"Bodoni Moda",serif;font-size:19px;font-weight:500}}
 label.story small{{font-family:Jost,sans-serif;font-size:13px;color:var(--soft)}}
-.dots-row{{display:flex;gap:6px}} .dots-row i{{width:22px;height:22px;border-radius:50%;border:1px solid var(--line)}}
+.dots-row{{display:flex;gap:6px}}
+.whys{{display:flex;flex-wrap:wrap;gap:8px}} label.why{{cursor:pointer}} label.why input{{position:absolute;opacity:0}}
+label.why span{{display:inline-block;border:1px solid var(--line);padding:9px 14px;font-size:15px}}
+label.why input:checked+span{{background:var(--ink);color:#fff;border-color:var(--ink)}} label.why input:focus-visible+span{{outline:2px solid var(--ink)}}
+.looks{{display:flex;flex-direction:column;gap:8px}} label.look{{display:flex;gap:12px;align-items:center;border:1px solid var(--line);padding:10px;cursor:pointer}}
+label.look:has(input:checked){{border-color:var(--ink)}} label.look input{{width:20px;height:20px;accent-color:#121212;flex:none}}
+label.look img{{width:52px;height:52px;object-fit:contain}} label.look small{{display:block;color:var(--soft);font-size:13px}} .dots-row i{{width:22px;height:22px;border-radius:50%;border:1px solid var(--line)}}
 </style></head><body><main><div class="mark">Just Wear This.</div>{body}</main>{refresh_js}</body></html>""")
 
 
@@ -175,6 +181,9 @@ async def order_page(request: Request):
 <p>We're picking every outfit, {who}. It takes about a minute. Stay here and your plan will open, or close this page: the link is on its way to {E(o['email'])}.</p>""", _poll_js(oid))
 
 
+SWAP_WHYS = ["Too frilly", "Too fancy", "Too casual", "Too plain", "Not my style", "I'd rather wear pants", "I'd rather wear a dress"]
+
+
 async def swap_page(request: Request):
     oid = request.path_params["oid"]
     o = family.get_order(oid)
@@ -187,10 +196,11 @@ async def swap_page(request: Request):
     if request.method == "POST":
         form = await request.form()
         picked = form.getlist("piece")
+        whys = [w for w in form.getlist("why") if w in SWAP_WHYS]
         note = (form.get("note") or "").strip()[:500]
         if o["status"] == "building":
             err = "Your last swap is still being made. Give it a minute."
-        elif not picked and not note:
+        elif not picked and not note and not whys:
             err = "Pick the piece you'd like swapped, or tell us what you'd like different."
         elif o.get("swaps", 0) >= 25:
             err = "That's a lot of swaps! Reply to your plan email and we'll help by hand."
@@ -199,11 +209,16 @@ async def swap_page(request: Request):
             plan = o["plan"]
             who_of = {iid: p["label"] for p in plan["people"] for iid in p["items"]}
             lines = [f"{who_of.get(i, '?')}: swap the {names.get(i, i)} ({i})" for i in picked]
-            req = "She asked for a swap. " + (" ".join(lines) + ". " if lines else "") + (f"Her words: \"{note}\". " if note else "") + \
+            req = "She asked for a swap. " + (" ".join(lines) + ". " if lines else "") + \
+                  (f"What's off for her: {', '.join(w.lower() for w in whys)}. " if whys else "") + (f"Her words: \"{note}\". " if note else "") + \
+                  ("Give her something clearly different, not a near twin: a different kind of piece or shape (for example trousers and a sweater "
+                   "instead of a dress, or a simple knit instead of a ruffled floral), not the same thing in a slightly different color or print. "
+                   "The pieces she swapped away are gone from the list, so don't look for them. " if picked or whys else "") + \
                   "Change only those pieces (and anything that must change so the board still follows the rules). Keep everyone else's outfit, the color story and the copy the same unless the swap needs a small edit."
+            o["swapped_out"] = list(dict.fromkeys((o.get("swapped_out") or []) + picked))[-60:]
             o["swaps"] = o.get("swaps", 0) + 1
             o["swap_pending"] = True
-            family.log(o, f"swap requested: {lines} {note}")
+            family.log(o, f"swap requested: {lines} {whys} {note}")
             family.save_order(o)
             family.build_async(oid, req)
             return RedirectResponse(f"/o/{oid}", 303)
@@ -214,14 +229,16 @@ async def swap_page(request: Request):
         f"<div class=person><b>{E(p['label'])}</b>" + "".join(
             f"<label class=pc><input type=checkbox name=piece value='{E(i)}'{' checked' if i == pre else ''}><img src='/lib/{E(i)}.jpg' alt='' loading=lazy><span>{E(names.get(i, i))}</span></label>" for i in p["items"]) + "</div>"
         for p in o["plan"]["people"])
+    whys = "".join(f"<label class=why><input type=checkbox name=why value='{E(w)}'><span>{E(w)}</span></label>" for w in SWAP_WHYS)
     return _page("Swap a piece", f"""<h1>Swap a piece.</h1>
 <p class=soft>Tick anything you'd like changed, or tell us what you're after. Everything else stays the same, and your link doesn't change.</p>
 {f'<p class=err>{E(err)}</p>' if err else ''}
 <form method=post style="display:flex;flex-direction:column;gap:18px">{people}
+<div class=person><b>What's off?</b><span class=soft>Optional. Tick any that fit.</span><div class=whys>{whys}</div></div>
 <label style="display:flex;flex-direction:column;gap:6px;font-size:11px;letter-spacing:.2em;text-transform:uppercase">Anything else? (optional)
 <textarea name=note placeholder="Dad would rather wear jeans. Something warmer for the baby."></textarea></label>
 <button class=btn>Make my swap</button></form>
-<p class=soft>Need to change someone's details instead? <a href="/o/{E(oid)}/edit" style="color:#121212">Edit a person</a></p>
+<p class=soft>Need to change someone's details or style instead? <a href="/o/{E(oid)}/edit" style="color:#121212">Edit a person</a></p>
 <p class=soft>Want different colors for everyone? <a href="/o/{E(oid)}/colors" style="color:#121212">Change our colors</a></p>
 <p class=soft><a href="{E(o['url'])}" style="color:#121212">Back to my plan</a></p>""")
 
@@ -252,6 +269,9 @@ async def edit_page(request: Request):
                 v = form.get(f"{k}{n}")
                 if v is not None:
                     p[k] = str(v)
+            if form.get(f"styled{n}"):
+                p["looks"] = [str(v) for v in form.getlist(f"looks{n}")]
+                p["cut"] = str(form.get(f"cut{n}") or "Either")
         if o["status"] == "building":
             err = "Your last change is still being made. Give it a minute."
         elif o.get("swaps", 0) >= 25:
@@ -269,7 +289,8 @@ async def edit_page(request: Request):
                     err = "Nothing's changed yet. Edit someone's details, then tap the button."
                 else:
                     req = ("She updated her family's details. " + " ".join(changes) + " Restyle only the people whose details changed, "
-                           "so every piece fits their new details (a new age or 'shop from' means pieces made for that kind of person). "
+                           "so every piece fits their new details (a new age or 'shop from' means pieces made for that kind of person; a new style "
+                           "means pieces tagged with that style, clearly different from what they had). "
                            "Use each person's current name as their label. Keep everyone else's outfit, her own pieces, the color story "
                            "and the copy the same unless the change needs a small edit.")
                     o["answers"] = new_a
@@ -287,13 +308,28 @@ async def edit_page(request: Request):
 <label class=f>How old? (kids only)<input name=kidAge{n} value="{E(p.get('kidAge') or '')}" inputmode=numeric maxlength=2></label>
 <label class=f>Shop from{_opts(f'shop{n}', family.SHOPS, p['shop'])}</label>
 <label class=f>Dressing up?{_opts(f'dress{n}', ['Happy to', 'Basics only'], p.get('dress') or 'Happy to')}</label>
-<label class=f>Anything they won't wear?<input name=nope{n} value="{E(p.get('nope') or '')}" maxlength=160></label></div>"""
+<label class=f>Anything they won't wear?<input name=nope{n} value="{E(p.get('nope') or '')}" maxlength=160></label>{_style_fields(n, p)}</div>"""
     return _page("Edit a person", f"""<h1>Edit a person.</h1>
-<p class=soft>Fix anyone's details and we'll restyle just them. Everyone else stays the same, and your link doesn't change.</p>
+<p class=soft>Fix anyone's details or style and we'll restyle just them. Everyone else stays the same, and your link doesn't change.</p>
 {f'<p class=err>{E(err)}</p>' if err else ''}
 <form method=post style="display:flex;flex-direction:column;gap:18px">{rows}
 <button class=btn>Update my plan</button></form>
 <p class=soft><a href="{E(o['url'])}" style="color:#121212">Back to my plan</a></p>""")
+
+
+def _style_fields(n, p):
+    """Style picks for Edit a person (women's and girls' shoppers): up to two looks with example pictures, and dresses or pants."""
+    looks = family.looks_for(p)
+    if not looks:
+        return ""
+    mine = set(p.get("looks") or [])
+    cards = "".join(
+        f"<label class=look><input type=checkbox name=looks{n} value='{E(t)}'{' checked' if t in mine else ''}>"
+        + "".join(f"<img src='/lib/{E(i)}.jpg' alt='' loading=lazy>" for i in ids)
+        + f"<span>{E(label)}<small>{E(words)}</small></span></label>" for t, label, words, ids in looks)
+    return (f"<input type=hidden name=styled{n} value=1><div><p class=soft style='font-size:11px;letter-spacing:.2em;text-transform:uppercase'>"
+            f"Their style (pick one or two, or none to let us choose)</p><div class=looks>{cards}</div></div>"
+            + (f"<label class=f>Dresses or pants?{_opts(f'cut{n}', family.CUTS, p.get('cut') or 'Either')}</label>" if looks is family.WOMEN_LOOKS else ""))
 
 
 def _story_choices(cur):

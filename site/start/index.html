@@ -67,6 +67,18 @@ textarea:focus{box-shadow:inset 0 0 0 1px var(--ink)}
 .ph img{width:96px;height:96px;object-fit:cover;flex:none;border:1px solid var(--line)}
 .ph>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:12px}
 .ph .chip{padding:8px 12px;min-height:40px;font-size:14px}
+.looks{display:flex;flex-direction:column;gap:8px}
+.look{all:unset;box-sizing:border-box;cursor:pointer;display:flex;gap:12px;align-items:center;border:1px solid var(--line);padding:10px 12px;min-height:44px}
+.look:hover{border-color:var(--ink)}
+.look[aria-pressed=true]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.look:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.look .pics{display:flex;gap:4px;flex:none}
+.look img{width:54px;height:54px;object-fit:contain;background:#fff}
+.look b{display:block;font-weight:500;font-size:15px}
+.look small{display:block;color:var(--soft);font-size:13px}
+.look .tick{margin-left:auto;font-size:18px;visibility:hidden}
+.look[aria-pressed=true] .tick{visibility:visible}
+@media (max-width:380px){.look img{width:42px;height:42px}}
 </style>
 </head>
 <body>
@@ -89,13 +101,24 @@ const PRINTS = [["Love them", "Bring on the florals and plaids"], ["A little is 
 const OCCASIONS = ["Fall family photos", "Christmas card photos", "Everyday family photos", "Something else"];
 const SETTINGS = ["Park or field", "Garden", "Beach or lake", "Downtown or city", "Orchard or farm", "Tree farm", "At home", "Studio", "Somewhere else"];
 const TIMES = ["Golden hour", "Daytime", "Indoors", "Not sure"];
+// Style picks, with three example pieces each (same as WOMEN_LOOKS / GIRL_LOOKS in app/family.py)
+const WOMEN_LOOKS = [["romantic", "Soft and romantic", "Florals, ruffles, flowy dresses", ["W-DRS-024", "W-DRS-016", "W-DRS-022"]],
+  ["classic", "Classic", "Cable knits, wrap dresses, trousers", ["W-TOP-003", "W-DRS-003", "W-BTM-008"]],
+  ["modern", "Clean and simple", "Sleek knits, satin, solid colors", ["W-DRS-019", "W-BTM-009", "W-TOP-011"]],
+  ["casual", "Cozy and casual", "Jeans, soft sweaters, corduroy", ["W-BTM-001", "W-TOP-016", "W-BTM-006"]]];
+const GIRL_LOOKS = [["romantic", "Sweet and twirly", "Smocking, ruffles, tulle", ["G-DRS-003", "G-DRS-010", "G-BTM-005"]],
+  ["classic", "Classic", "Collars, tartan, velvet", ["G-DRS-002", "G-DRS-016", "G-DRS-007"]],
+  ["casual", "Cozy and casual", "Sweaters, corduroy, easy pieces", ["G-TOP-004", "G-DRS-004", "G-BTM-002"]]];
+const CUTS = ["Dresses or skirts", "Pants or jeans", "Either"];
+const looksFor = p => ["Baby", "Toddler"].includes(p.age) || !["Women's", "Girls'"].includes(p.shop) ? [] : p.age === "Kid" ? GIRL_LOOKS : WOMEN_LOOKS;
 
-const blank = () => ({name: "", age: "", kidAge: "", shop: "", dress: "", nope: ""});
+const blank = () => ({name: "", age: "", kidAge: "", shop: "", dress: "", nope: "", looks: [], cut: ""});
 let A = {who: "", family: "", email: "", people: [blank()], date: "", occasion: "", setting: "", setting_note: "", time: "", level: "", love: "", never: "", prints: "", own: "", photos: [], extra: "", code: ""};
 try { const s = JSON.parse(localStorage.getItem(KEY) || "null"); if (s && s.people) A = Object.assign(A, s); } catch (e) {}
 const params = new URLSearchParams(location.search);
 if (params.get("code")) A.code = params.get("code");
-A.photos = (A.photos || []).filter(ph => ph.id);  // an upload cut off by a reload starts over
+A.photos = (A.photos || []).filter(ph => ph.id);
+A.people.forEach(p => { if (!Array.isArray(p.looks)) p.looks = []; if (p.cut == null) p.cut = ""; });  // an upload cut off by a reload starts over
 const save = () => { try { localStorage.setItem(KEY, JSON.stringify(A)); } catch (e) {} };
 
 const esc = s => String(s ?? "").replace(/[&<>"']/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[c]));
@@ -104,6 +127,11 @@ const chips = (key, opts, val, idx) => `<div class="chips" role="group">${opts.m
 const bigChips = (key, opts, val) => `<div class="chips big" role="group">${opts.map(([o, d]) =>
   `<button type="button" class="chip" data-k="${key}" data-v="${esc(o)}" aria-pressed="${val === o}">${esc(o)}<span>${esc(d)}</span></button>`).join("")}</div>`;
 const today = () => new Date().toISOString().slice(0, 10);
+
+const styled = () => A.people.filter(p => looksFor(p).length);
+const lookCard = (t, label, words, ids, p, i) => `<button type="button" class="look" data-look="${t}" data-i="${i}" aria-pressed="${p.looks.includes(t)}">
+  <span class="pics">${ids.map(id => `<img src="/lib/${id}.jpg" alt="" loading="lazy">`).join("")}</span>
+  <span><b>${esc(label)}</b><small>${esc(words)}</small></span><span class="tick" aria-hidden="true">✓</span></button>`;
 
 const STEPS = [
   {id: "hello", render: () => `
@@ -119,7 +147,7 @@ const STEPS = [
 
   {id: "people", render: () => `
     <div class="step">
-      <span class="eyebrow">1 of 7</span>
+      <span class="eyebrow">${num("people")}</span>
       <h2>Who's in the photos?</h2>
       <p class="sub">First names are perfect (or Mom, Dad, Grandma). Up to 8 people.</p>
       ${A.people.map((p, i) => `
@@ -141,7 +169,7 @@ const STEPS = [
 
   {id: "session", render: () => `
     <div class="step">
-      <span class="eyebrow">2 of 7</span>
+      <span class="eyebrow">${num("session")}</span>
       <h2>Tell us about your photos.</h2>
       <label class="f">Photo date <small>A guess is fine. Swaps stay open until this day.</small><input type="date" data-f="date" value="${esc(A.date)}" min="${today()}"></label>
       <div><p class="q">What are they for?</p>${chips("occasion", OCCASIONS, A.occasion)}</div>
@@ -152,14 +180,31 @@ const STEPS = [
 
   {id: "level", render: () => `
     <div class="step">
-      <span class="eyebrow">3 of 7</span>
+      <span class="eyebrow">${num("level")}</span>
       <h2>How dressy would you like to be?</h2>
       ${bigChips("level", DRESS, A.level)}
     </div>`, ok: () => A.level ? "" : "Pick one (\"Not sure\" is a great answer)."},
 
+  {id: "style", skip: () => !styled().length, render: () => `
+    <div class="step">
+      <span class="eyebrow">${num("style")}</span>
+      <h2>What do you actually like to wear?</h2>
+      <p class="sub">Tap the look that feels most like you. Pick one or two for each person.</p>
+      ${A.people.map((p, i) => looksFor(p).length ? `
+        <div class="person">
+          <div class="phead"><b>${esc(p.name || "Person " + (i + 1))}</b></div>
+          <div class="looks" role="group">${looksFor(p).map(([t, l, w, ids]) => lookCard(t, l, w, ids, p, i)).join("")}</div>
+          ${chips("surprise", ["Not sure, you choose"], p.looks.includes("surprise") ? "Not sure, you choose" : "", i)}
+          ${p.age === "Kid" ? "" : `<div><p class="q">Dresses or pants?</p>${chips("cut", CUTS, p.cut, i)}</div>`}
+        </div>` : "").join("")}
+    </div>`, ok: () => {
+      const p = styled().find(p => !p.looks.length);
+      return p ? `Pick a look for ${p.name || "everyone"}, or "Not sure, you choose".` : "";
+    }},
+
   {id: "colors", render: () => `
     <div class="step">
-      <span class="eyebrow">4 of 7</span>
+      <span class="eyebrow">${num("colors")}</span>
       <h2>Any colors you love, or never want to see?</h2>
       <p class="sub">Optional. We'll keep the never colors out of prints too.</p>
       <label class="f">Colors you love<input type="text" data-f="love" value="${esc(A.love)}" placeholder="Sage, rust, cream…"></label>
@@ -168,14 +213,14 @@ const STEPS = [
 
   {id: "prints", render: () => `
     <div class="step">
-      <span class="eyebrow">5 of 7</span>
+      <span class="eyebrow">${num("prints")}</span>
       <h2>How do you feel about prints?</h2>
       ${bigChips("prints", PRINTS, A.prints)}
     </div>`, ok: () => A.prints ? "" : "Pick one."},
 
   {id: "own", render: () => `
     <div class="step">
-      <span class="eyebrow">6 of 7</span>
+      <span class="eyebrow">${num("own")}</span>
       <h2>Anything you already own and want to wear?</h2>
       <p class="sub">Optional. Shoes count! Add a photo and your piece goes right into your plan, with everyone else's outfit built around it.</p>
       ${A.photos.map((ph, i) => `
@@ -198,7 +243,7 @@ const STEPS = [
 
   {id: "extra", render: () => `
     <div class="step">
-      <span class="eyebrow">7 of 7</span>
+      <span class="eyebrow">${num("extra")}</span>
       <h2>Anything else we should know?</h2>
       <p class="sub">Optional. Comfort needs, pregnancy, sensory needs, modesty, or anything you're nervous about.</p>
       <textarea data-f="extra">${esc(A.extra)}</textarea>
@@ -220,6 +265,9 @@ const STEPS = [
     </div>`, ok: () => ""},
 ];
 
+const shown = () => STEPS.filter(s => !(s.skip && s.skip()));
+const num = id => { const q = shown().filter(s => s.id !== "hello" && s.id !== "pay"); return `${q.findIndex(s => s.id === id) + 1} of ${q.length}`; };
+const move = d => { let n = cur + d; while (n > 0 && n < STEPS.length - 1 && STEPS[n].skip && STEPS[n].skip()) n += d; return Math.min(Math.max(n, 0), STEPS.length - 1); };
 let cur = 0, err = "", busy = false;
 try { const c = Number(sessionStorage.getItem(KEY + "-step")); if (c > 0 && c < STEPS.length) cur = c; } catch (e) {}
 const main = document.getElementById("main"), bar = document.getElementById("bar");
@@ -249,11 +297,19 @@ main.addEventListener("click", ev => {
   if (c) {
     const k = c.dataset.k, v = c.dataset.v;
     if (k === "phperson") { const ph = A.photos[+c.dataset.i]; ph.person = ph.person === v ? "" : v; }
+    else if (k === "surprise") { const p = A.people[+c.dataset.i]; p.looks = p.looks.includes("surprise") ? [] : ["surprise"]; }
     else if (c.dataset.i != null) { const p = A.people[+c.dataset.i]; p[k] = p[k] === v ? "" : v; }
     else A[k] = A[k] === v ? "" : v;
     save(); err = ""; render(false);
     if (k === "age" && v === "Kid" && c.dataset.i != null) { const n = main.querySelector(`input[data-p=kidAge][data-i="${c.dataset.i}"]`); if (n) n.focus(); }
     return;
+  }
+  const lk = ev.target.closest(".look");
+  if (lk) {
+    const p = A.people[+lk.dataset.i], t = lk.dataset.look;
+    p.looks = p.looks.filter(x => x !== "surprise");
+    p.looks = p.looks.includes(t) ? p.looks.filter(x => x !== t) : [...p.looks, t].slice(-2);
+    save(); err = ""; render(false); return;
   }
   if (ev.target.id === "addp") { A.people.push(blank()); save(); render(false); const ins = main.querySelectorAll("input[data-p=name]"); ins[ins.length - 1].focus(); return; }
   if (ev.target.dataset.rm != null) { A.people.splice(+ev.target.dataset.rm, 1); save(); render(false); }
@@ -309,9 +365,9 @@ next.addEventListener("click", () => {
   err = STEPS[cur].ok();
   if (err) { render(false); return; }
   if (STEPS[cur].id === "pay") { submit(); return; }
-  cur = Math.min(cur + 1, STEPS.length - 1); render(true);
+  cur = move(1); render(true);
 });
-back.addEventListener("click", () => { err = ""; cur = Math.max(cur - 1, 0); render(true); });
+back.addEventListener("click", () => { err = ""; cur = move(-1); render(true); });
 render(false);
 </script>
 </body>

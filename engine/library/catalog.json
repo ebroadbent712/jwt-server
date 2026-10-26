@@ -343,6 +343,10 @@
    "texture": "rib knit",
    "pattern": false,
    "formality": "dressy casual",
+   "style": [
+    "modern",
+    "casual"
+   ],
    "season": [
     "fall",
     "winter"
@@ -525,6 +529,9 @@
    "pattern_scale": "ditsy floral",
    "pattern_family": "navy-ditsy-floral",
    "formality": "dressy casual",
+   "style": [
+    "romantic"
+   ],
    "season": [
     "all"
    ],
@@ -552,6 +559,9 @@
    "pattern_scale": "ditsy floral",
    "pattern_family": "navy-ditsy-floral",
    "formality": "dressy casual",
+   "style": [
+    "romantic"
+   ],
    "season": [
     "fall",
     "winter",
@@ -815,6 +825,9 @@
    "texture": "corduroy",
    "pattern": false,
    "formality": "dressy casual",
+   "style": [
+    "classic"
+   ],
    "season": [
     "fall",
     "winter"
@@ -877,6 +890,11 @@
    "texture": "denim",
    "pattern": false,
    "formality": "relaxed",
+   "style": [
+    "casual",
+    "classic",
+    "modern"
+   ],
    "season": [
     "all"
    ],
@@ -965,6 +983,10 @@
    "pattern_scale": "ditsy floral",
    "pattern_family": "navy-ditsy-floral",
    "formality": "dressy casual",
+   "style": [
+    "romantic",
+    "classic"
+   ],
    "season": [
     "fall",
     "winter",
@@ -1097,7 +1119,10 @@
     "splurge": "https://www.rachelriley.com/products/tartan-jersey-dress-2"
    },
    "pattern_family": "forest-tartan",
-   "statement": true
+   "statement": true,
+   "style": [
+    "classic"
+   ]
   },
   {
    "id": "M-OUT-002",
@@ -1183,6 +1208,10 @@
    "never_with": [
     "B-BTM-003",
     "TB-BTM-002"
+   ],
+   "style": [
+    "casual",
+    "modern"
    ]
   },
   {
@@ -1202,7 +1231,11 @@
    "shop_links": {
     "mid": "https://www.quince.com/women/women-s-tencel-jersey-midi-wrap-dress?color=wine",
     "splurge": "https://www.hillhousehome.com/products/the-davina-dress-annabel-botanica-burgundy"
-   }
+   },
+   "style": [
+    "classic",
+    "modern"
+   ]
   },
   {
    "id": "W-OUT-002",
@@ -1223,7 +1256,11 @@
    "shop_links": {
     "mid": "https://www.quince.com/women/italian-wool-classic-coat?color=caramel",
     "splurge": "https://www.vince.com/product/wool-blend-single-breasted-coat-V153391638CAMEL.html"
-   }
+   },
+   "style": [
+    "classic",
+    "modern"
+   ]
   },
   {
    "id": "B-BTM-002",
@@ -1267,7 +1304,11 @@
     "everyday": "https://www.landsend.com/products/girls-button-front-cable-cardigan/id_386554",
     "mid": "https://www.gap.com/browse/product.do?pid=791571022",
     "splurge": "https://www.littleenglish.com/products/essential-cardigan-white"
-   }
+   },
+   "style": [
+    "classic",
+    "casual"
+   ]
   },
   {
    "id": "M-BTM-002",
@@ -1412,7 +1453,11 @@
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=732603002",
     "mid": "https://www.gap.com/browse/product.do?pid=406725002",
     "splurge": "https://www.shopdoen.com/products/ondine-jean-cavalaire-dark-wash"
-   }
+   },
+   "style": [
+    "casual",
+    "modern"
+   ]
   },
   {
    "id": "TG-TOP-001",
@@ -1436,6 +1481,10 @@
    },
    "never_with": [
     "T-TOP-001"
+   ],
+   "style": [
+    "classic",
+    "casual"
    ]
   },
   {
@@ -1590,7 +1639,11 @@
     "everyday": "https://www.gapfactory.com/browse/product.do?pid=1179465021",
     "mid": "https://us.boden.com/products/women-honor-column-jersey-midi-dress-navy-d1767nav",
     "splurge": "https://www.hillhousehome.com/products/the-winsome-dress-navy-black"
-   }
+   },
+   "style": [
+    "modern",
+    "classic"
+   ]
   },
   {
    "id": "TG-OUT-001",
@@ -1610,7 +1663,11 @@
     "everyday": "https://www.gap.com/browse/product.do?pid=800546232",
     "mid": "https://us.boden.com/products/women-elsie-cashmere-crew-cardigan-deep-burgundy-k1273ree",
     "splurge": "https://us.boden.com/products/women-elsie-cashmere-crew-cardigan-deep-burgundy-k1273ree"
-   }
+   },
+   "style": [
+    "classic",
+    "casual"
+   ]
   },
   {
    "id": "W-OUT-001",
@@ -1632,7 +1689,11 @@
     "everyday": "https://www.gap.com/browse/product.do?pid=908886012",
     "mid": "https://www.quince.com/women/baby-cashmere-cable-cardigan?color=pearled-ivory",
     "splurge": "https://www.shopdoen.com/products/petra-cardigan-ivory-2"
-   }
+   },
+   "style": [
+    "casual",
+    "romantic"
+   ]
   },
   {
    "id": "W-TOP-001",
@@ -1652,7 +1713,11 @@
    "description": "Women's long-sleeved fitted ribbed knit top in soft ivory, approximately #EFE7D6. Fine rib knit, crew neckline, slim fit, long sleeves. Plain, no logos.",
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=909486022"
-   }
+   },
+   "style": [
+    "modern",
+    "classic"
+   ]
   },
   {
    "id": "B-BTM-003",
@@ -1792,6 +1857,9 @@
    "never_with": [
     "W-BTM-003",
     "TG-BTM-004"
+   ],
+   "style": [
+    "classic"
    ]
   },
   {
@@ -1821,6 +1889,9 @@
    ],
    "never_with": [
     "W-DRS-006"
+   ],
+   "style": [
+    "romantic"
    ]
   },
   {
@@ -1840,7 +1911,11 @@
    "shop_links": {
     "everyday": "https://www.gapfactory.com/browse/product.do?pid=1179725021",
     "mid": "https://www.gap.com/browse/product.do?pid=1181427012"
-   }
+   },
+   "style": [
+    "casual",
+    "classic"
+   ]
   },
   {
    "id": "G-TOP-002",
@@ -1862,7 +1937,11 @@
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=911347012",
     "mid": "https://us.boden.com/products/girls-collared-pointelle-top-ivory-g6205ivo",
     "splurge": "https://www.littleenglish.com/products/shannon-blouse-cream"
-   }
+   },
+   "style": [
+    "romantic",
+    "classic"
+   ]
   },
   {
    "id": "M-TOP-006",
@@ -2015,7 +2094,11 @@
     "everyday": "https://www.gap.com/browse/product.do?pid=839482142",
     "mid": "https://bananarepublic.gap.com/browse/product.do?pid=915606012",
     "splurge": "https://us.boden.com/products/women-lucy-chunky-cotton-cardigan-maroon-banner-k1201lpr"
-   }
+   },
+   "style": [
+    "classic",
+    "casual"
+   ]
   },
   {
    "id": "TG-TOP-002",
@@ -2037,6 +2120,10 @@
    },
    "never_with": [
     "TB-TOP-002"
+   ],
+   "style": [
+    "casual",
+    "modern"
    ]
   },
   {
@@ -2055,7 +2142,11 @@
    "description": "Teen girls' crewneck sweater in heather gray, approximately #9A9A96. Chunky cable knit, relaxed slightly cropped fit, long sleeves. No logos.",
    "shop_links": {
     "splurge": "https://www.shopdoen.com/products/fennel-sweater-gray-marl"
-   }
+   },
+   "style": [
+    "casual",
+    "classic"
+   ]
   },
   {
    "id": "W-BTM-002",
@@ -2074,7 +2165,11 @@
    "shop_links": {
     "mid": "https://us.boden.com/products/women-pleat-side-split-midi-skirt-navy-r0986nav",
     "splurge": "https://tnuck.com/products/blue-fog-pleated-midi-skirt"
-   }
+   },
+   "style": [
+    "classic",
+    "modern"
+   ]
   },
   {
    "id": "W-BTM-003",
@@ -2105,6 +2200,9 @@
    "never_with": [
     "G-BTM-003",
     "TG-BTM-004"
+   ],
+   "style": [
+    "classic"
    ]
   },
   {
@@ -2124,7 +2222,10 @@
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=908855002",
     "mid": "https://www.gap.com/browse/product.do?pid=912623012"
-   }
+   },
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-DRS-006",
@@ -2155,6 +2256,9 @@
    ],
    "never_with": [
     "G-DRS-003"
+   ],
+   "style": [
+    "romantic"
    ]
   },
   {
@@ -2174,7 +2278,11 @@
    "shop_links": {
     "everyday": "https://www.target.com/p/women-39-s-long-sleeve-knit-maxi-a-line-dress-universal-thread-8482-green-s/-/A-95147755",
     "mid": "https://us.boden.com/products/women-drape-jersey-crepe-maxi-dress-hunter-green-d1806grn"
-   }
+   },
+   "style": [
+    "modern",
+    "casual"
+   ]
   },
   {
    "id": "W-OUT-003",
@@ -2194,7 +2302,11 @@
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=900246032",
     "mid": "https://www.quince.com/women/100-organic-cotton-oversized-cardigan?color=camel",
     "splurge": "https://www.vince.com/product/cashmere-open-front-cardigan-VR11178268CAMEL.html"
-   }
+   },
+   "style": [
+    "casual",
+    "classic"
+   ]
   },
   {
    "id": "W-TOP-002",
@@ -2214,7 +2326,11 @@
     "everyday": "https://www.gap.com/browse/product.do?pid=908887082",
     "mid": "https://www.quince.com/women/cashmere/cashmere-crewneck-sweater?color=rich-burgundy",
     "splurge": "https://tnuck.com/products/natalia-burgundy-knit-sweatwe"
-   }
+   },
+   "style": [
+    "classic",
+    "casual"
+   ]
   },
   {
    "id": "W-TOP-003",
@@ -2234,7 +2350,11 @@
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=903424042",
     "mid": "https://www.gap.com/browse/product.do?pid=1184982022",
     "splurge": "https://tnuck.com/products/ivory-cashmere-turtleneck-sweater"
-   }
+   },
+   "style": [
+    "classic",
+    "casual"
+   ]
   },
   {
    "id": "G-DRS-004",
@@ -2253,7 +2373,11 @@
    "shop_links": {
     "mid": "https://us.boden.com/products/girls-willa-pinafore-dress-almond-brown-g6097brn",
     "splurge": "https://www.jcrew.com/p/girls/categories/clothing/dresses/girls-corduroy-pinafore-dress/CW799"
-   }
+   },
+   "style": [
+    "casual",
+    "classic"
+   ]
   },
   {
    "id": "G-BTM-002",
@@ -2272,7 +2396,10 @@
    "shop_links": {
     "everyday": "https://www.gapfactory.com/browse/product.do?pid=1181803001",
     "mid": "https://us.boden.com/products/girls-woven-button-through-skirt-roasted-brown-cord-g6060brn"
-   }
+   },
+   "style": [
+    "casual"
+   ]
   },
   {
    "id": "B-OUT-002",
@@ -2416,7 +2543,10 @@
     "mid": "https://us.boden.com/products/girls-applique-tulle-skirt-navy-multi-metallic-stars-g6179nav",
     "splurge": "https://www.jcrew.com/p/girls/categories/clothing/bottoms/skirts/girls-pleated-midi-skirt-in-tulle/CC164"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "G-DRS-007",
@@ -2439,6 +2569,10 @@
    "statement": true,
    "never_with": [
     "T-DRS-004"
+   ],
+   "style": [
+    "classic",
+    "romantic"
    ]
   },
   {
@@ -2459,7 +2593,10 @@
     "mid": "https://us.boden.com/products/girls-velvet-trim-wool-coat-navy-check-g6201nvy",
     "splurge": "https://www.nordstrom.com/s/blackwatch-velvet-trim-coat/8599166"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "classic"
+   ]
   },
   {
    "id": "G-SHO-002",
@@ -2830,6 +2967,9 @@
    "statement": true,
    "never_with": [
     "G-BTM-005"
+   ],
+   "style": [
+    "modern"
    ]
   },
   {
@@ -2850,7 +2990,10 @@
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=908855012",
     "mid": "https://www.gap.com/browse/product.do?pid=910037002",
     "splurge": "https://www.hillhousehome.com/products/the-coraline-dress-chocolate"
-   }
+   },
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "TG-OUT-003",
@@ -2871,7 +3014,10 @@
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=1188714002",
     "mid": "https://www.quince.com/women/italian-wool-oversized-blazer?color=textured-brown"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "modern"
+   ]
   },
   {
    "id": "TG-SHO-001",
@@ -2933,7 +3079,11 @@
    "shop_links": {
     "mid": "https://us.boden.com/products/women-kensington-wide-leg-pants-ginger-r0857brn"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "modern",
+    "classic"
+   ]
   },
   {
    "id": "W-DRS-009",
@@ -2953,7 +3103,11 @@
     "mid": "https://us.boden.com/products/women-draped-sleeve-velvet-dress-midnight-emerald-d1868dgr",
     "splurge": "https://www.shopdoen.com/products/amari-dress-emerald"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "classic",
+    "modern"
+   ]
   },
   {
    "id": "W-OUT-004",
@@ -2978,6 +3132,9 @@
    "never_with": [
     "TB-OUT-001",
     "W-OUT-009"
+   ],
+   "style": [
+    "casual"
    ]
   },
   {
@@ -3046,7 +3203,11 @@
     "mid": "https://us.boden.com/products/women-tie-neck-silk-top-ivory-t2179ivo",
     "splurge": "https://www.nordstrom.com/s/lilysilk-womens-bow-tie-silk-jasmine-blouse/7833106"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "classic",
+    "romantic"
+   ]
   },
   {
    "id": "W-DRS-010",
@@ -3068,6 +3229,9 @@
    "statement": true,
    "never_with": [
     "G-DRS-008"
+   ],
+   "style": [
+    "romantic"
    ]
   },
   {
@@ -3087,7 +3251,10 @@
    "shop_links": {
     "mid": "https://us.boden.com/products/women-mya-ruched-velvet-midi-dress-beetroot-red-d1847red"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "modern"
+   ]
   },
   {
    "id": "W-DRS-012",
@@ -3110,7 +3277,10 @@
    },
    "statement": true,
    "pattern_scale": "small spot",
-   "pattern_family": "navy-spot"
+   "pattern_family": "navy-spot",
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-DRS-013",
@@ -3131,7 +3301,11 @@
     "everyday": "https://www.gapfactory.com/browse/product.do?pid=1179468001",
     "mid": "https://us.boden.com/products/women-puff-sleeve-denim-dress-indigo-d1778ldn"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "casual",
+    "romantic"
+   ]
   },
   {
    "id": "W-DRS-014",
@@ -3151,7 +3325,11 @@
     "mid": "https://us.boden.com/products/women-lou-cord-shift-dress-forest-green-d1785khk",
     "splurge": "https://www.hillhousehome.com/products/the-oakley-dress-granite-green"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "modern",
+    "casual"
+   ]
   },
   {
    "id": "W-DRS-015",
@@ -3173,7 +3351,11 @@
    },
    "statement": true,
    "pattern_scale": "ditsy floral",
-   "pattern_family": "cocoa-leaf"
+   "pattern_family": "cocoa-leaf",
+   "style": [
+    "casual",
+    "classic"
+   ]
   },
   {
    "id": "W-DRS-016",
@@ -3196,7 +3378,10 @@
    },
    "statement": true,
    "pattern_scale": "ditsy floral",
-   "pattern_family": "brown-sprig"
+   "pattern_family": "brown-sprig",
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-DRS-017",
@@ -3215,7 +3400,10 @@
    "shop_links": {
     "mid": "https://us.boden.com/products/women-mega-ruffle-linen-dress-burnt-henna-d1777mbr"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-OUT-005",
@@ -3234,7 +3422,10 @@
    "shop_links": {
     "mid": "https://us.boden.com/products/women-elizabeth-bow-knitted-jacket-bitter-chocolate-k1331brn"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-OUT-006",
@@ -3256,7 +3447,10 @@
    },
    "statement": true,
    "pattern_scale": "fair isle",
-   "pattern_family": "brown-fair-isle"
+   "pattern_family": "brown-fair-isle",
+   "style": [
+    "casual"
+   ]
   },
   {
    "id": "W-OUT-007",
@@ -3276,7 +3470,10 @@
     "mid": "https://us.boden.com/products/women-phoebe-collared-knitted-jacket-forest-green-k1296grn",
     "splurge": "https://www.shopdoen.com/products/pemberton-jacket-conifer"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "classic"
+   ]
   },
   {
    "id": "W-OUT-008",
@@ -3295,7 +3492,10 @@
    "shop_links": {
     "mid": "https://us.boden.com/products/women-belted-wrap-knitted-cardigan-winetasting-k1320pur"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "classic"
+   ]
   },
   {
    "id": "W-OUT-009",
@@ -3318,6 +3518,10 @@
    "statement": true,
    "never_with": [
     "W-OUT-004"
+   ],
+   "style": [
+    "classic",
+    "casual"
    ]
   },
   {
@@ -3337,7 +3541,11 @@
    "shop_links": {
     "mid": "https://us.boden.com/products/women-stamford-velvet-blazer-midnight-emerald-u0541dgr"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "modern",
+    "classic"
+   ]
   },
   {
    "id": "W-BTM-005",
@@ -3360,7 +3568,10 @@
    },
    "statement": true,
    "pattern_scale": "medium tartan",
-   "pattern_family": "maroon-olive-tartan"
+   "pattern_family": "maroon-olive-tartan",
+   "style": [
+    "classic"
+   ]
   },
   {
    "id": "M-OUT-006",
@@ -3449,7 +3660,10 @@
     "mid": "https://www.quince.com/women/silk-slip-dress",
     "splurge": "https://www.jcrew.com/p/womens/categories/clothing/dresses-and-jumpsuits/gwyneth-slip-dress-in-cupro-blend/CV632"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "modern"
+   ]
   },
   {
    "id": "G-DRS-008",
@@ -3473,6 +3687,9 @@
    "pattern_scale": "micro",
    "never_with": [
     "W-DRS-010"
+   ],
+   "style": [
+    "romantic"
    ]
   },
   {
@@ -3500,6 +3717,9 @@
     "T-DRS-005",
     "BB-DRS-006",
     "B-OUT-005"
+   ],
+   "style": [
+    "classic"
    ]
   },
   {
@@ -3523,7 +3743,11 @@
    },
    "statement": true,
    "pattern_scale": "fair isle yoke",
-   "pattern_family": "camel-fair-isle"
+   "pattern_family": "camel-fair-isle",
+   "style": [
+    "classic",
+    "casual"
+   ]
   },
   {
    "id": "G-BTM-005",
@@ -3546,6 +3770,9 @@
    "pattern_scale": "micro",
    "never_with": [
     "TG-BTM-003"
+   ],
+   "style": [
+    "romantic"
    ]
   },
   {
@@ -3786,6 +4013,10 @@
    ],
    "never_with": [
     "TG-TOP-005"
+   ],
+   "style": [
+    "classic",
+    "casual"
    ]
   },
   {
@@ -3806,7 +4037,10 @@
    "shop_links": {
     "mid": "https://us.boden.com/products/women-cotswold-wool-coat-navy-u0481nav",
     "splurge": "https://tnuck.com/products/navy-wool-trinity-coat"
-   }
+   },
+   "style": [
+    "classic"
+   ]
   },
   {
    "id": "W-BTM-006",
@@ -3830,6 +4064,10 @@
    },
    "also_for": [
     "teen girls"
+   ],
+   "style": [
+    "casual",
+    "modern"
    ]
   },
   {
@@ -3853,6 +4091,9 @@
    "statement": true,
    "also_for": [
     "teen girls"
+   ],
+   "style": [
+    "casual"
    ]
   },
   {
@@ -3902,6 +4143,9 @@
    "never_with": [
     "W-BTM-003",
     "G-BTM-003"
+   ],
+   "style": [
+    "classic"
    ]
   },
   {
@@ -3921,7 +4165,10 @@
    "description": "Teen girls' A-line skirt in warm toffee brown corduroy, approximately #8A5A3C. Fine-wale cord, button front, falls just below the knee. No logos.",
    "shop_links": {
     "mid": "https://www.gap.com/browse/product.do?pid=1184720002"
-   }
+   },
+   "style": [
+    "casual"
+   ]
   },
   {
    "id": "TG-BTM-006",
@@ -3942,7 +4189,11 @@
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=1194741002",
     "mid": "https://www.gap.com/browse/product.do?pid=1180244002"
-   }
+   },
+   "style": [
+    "casual",
+    "modern"
+   ]
   },
   {
    "id": "TG-BTM-007",
@@ -3963,7 +4214,10 @@
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=905481022",
     "mid": "https://www.gap.com/browse/product.do?pid=800531012"
-   }
+   },
+   "style": [
+    "modern"
+   ]
   },
   {
    "id": "TG-TOP-004",
@@ -3982,7 +4236,11 @@
    "shop_links": {
     "mid": "https://www.gap.com/browse/product.do?pid=915375072",
     "splurge": "https://www.jcrew.com/p/BW186?color_name=navy"
-   }
+   },
+   "style": [
+    "modern",
+    "classic"
+   ]
   },
   {
    "id": "TG-TOP-005",
@@ -4003,6 +4261,9 @@
    },
    "never_with": [
     "W-TOP-005"
+   ],
+   "style": [
+    "casual"
    ]
   },
   {
@@ -4025,7 +4286,11 @@
     "everyday": "https://www.gapfactory.com/browse/product.do?pid=821576011",
     "mid": "https://www.gap.com/browse/product.do?pid=913897012",
     "splurge": "https://www.jcrew.com/p/CN474"
-   }
+   },
+   "style": [
+    "classic",
+    "modern"
+   ]
   },
   {
    "id": "TG-OUT-004",
@@ -4045,7 +4310,10 @@
    "description": "Teen girls' V-neck sweater vest in camel heather, approximately #C4A27A. Cable knit, ribbed V-neck and armholes, relaxed fit. No logos.",
    "shop_links": {
     "mid": "https://www.gap.com/browse/product.do?pid=1185079002"
-   }
+   },
+   "style": [
+    "classic"
+   ]
   },
   {
    "id": "TG-SHO-003",
@@ -4104,7 +4372,11 @@
    "shop_links": {
     "mid": "https://www.janieandjack.com/item/girls-ruffle-collar-sweater-109163001.html",
     "splurge": "https://www.rachelriley.com/products/navy-frill-cardigan"
-   }
+   },
+   "style": [
+    "romantic",
+    "classic"
+   ]
   },
   {
    "id": "G-TOP-004",
@@ -4123,7 +4395,11 @@
    "description": "Girls' cable-knit crewneck sweater in warm almond beige, approximately #CDB497. Chunky cables down the front, long sleeves, ribbed hem. No logos.",
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=903200012"
-   }
+   },
+   "style": [
+    "casual",
+    "classic"
+   ]
   },
   {
    "id": "T-OUT-002",
@@ -4201,6 +4477,10 @@
    "shop_links": {},
    "also_for": [
     "teen girls"
+   ],
+   "style": [
+    "modern",
+    "casual"
    ]
   },
   {
@@ -4223,6 +4503,10 @@
    },
    "also_for": [
     "teen girls"
+   ],
+   "style": [
+    "modern",
+    "casual"
    ]
   },
   {
@@ -4244,7 +4528,11 @@
     "mid": "https://us.boden.com/products/women-louise-cord-midi-shirt-dress-arabian-spice-flecked-bunch-d1786dbr"
    },
    "pattern_scale": "ditsy floral",
-   "pattern_family": "spice-ditsy-floral"
+   "pattern_family": "spice-ditsy-floral",
+   "style": [
+    "romantic",
+    "casual"
+   ]
   },
   {
    "id": "M-TOP-013",
@@ -4486,7 +4774,10 @@
    "description": "Girls' rollneck sweater in toasted brown, approximately #8A6248. Soft cotton knit, relaxed fit, rolled neck, long sleeves. No logos.",
    "shop_links": {
     "mid": "https://www.gap.com/browse/product.do?pid=908921032"
-   }
+   },
+   "style": [
+    "casual"
+   ]
   },
   {
    "id": "G-TOP-006",
@@ -4506,7 +4797,10 @@
    "description": "Girls' long-sleeved pointelle knit top in soft ivory, approximately #EFE7D6, with a small frill at the collar and cuffs. No logos.",
    "shop_links": {
     "mid": "https://us.boden.com/products/girls-frill-pointelle-top-ivory-g6176ivo"
-   }
+   },
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "T-TOP-002",
@@ -4695,7 +4989,10 @@
    "shop_links": {
     "mid": "https://www.quince.com/women/100-organic-cotton-gauze-smocked-square-neck-midi-dress?color=wild-cherry"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-DRS-022",
@@ -4717,7 +5014,10 @@
    "shop_links": {
     "mid": "https://www.nordstrom.com/s/agatha-maxi-dress/9065472"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-OUT-012",
@@ -4742,6 +5042,10 @@
    },
    "also_for": [
     "teen girls"
+   ],
+   "style": [
+    "classic",
+    "romantic"
    ]
   },
   {
@@ -4766,6 +5070,9 @@
    },
    "also_for": [
     "teen girls"
+   ],
+   "style": [
+    "modern"
    ]
   },
   {
@@ -4890,7 +5197,10 @@
    "link_tier": "0 links",
    "description": "Teen girl's satin slip dress in mauve, approximately #9D5A6E. V-neckline edged in delicate lace, thin straps, fluid skirt to mid-calf. Solid. No logos.",
    "shop_links": {},
-   "statement": true
+   "statement": true,
+   "style": [
+    "modern"
+   ]
   },
   {
    "id": "TG-OUT-005",
@@ -4913,7 +5223,11 @@
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=894115112",
     "mid": "https://www.quince.com/women/100-organic-cotton-button-front-cardigan?color=shell-pink"
-   }
+   },
+   "style": [
+    "romantic",
+    "casual"
+   ]
   },
   {
    "id": "TG-DRS-005",
@@ -4939,6 +5253,10 @@
    },
    "also_for": [
     "teen girls"
+   ],
+   "style": [
+    "modern",
+    "casual"
    ]
   },
   {
@@ -5011,7 +5329,10 @@
    "shop_links": {
     "mid": "https://us.boden.com/products/girls-velour-tulle-ballet-dress-rose-pink-g5577pnk"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "G-DRS-011",
@@ -5034,7 +5355,10 @@
    "description": "Girls' cotton dress on a cream ground scattered with crushed-rose and berry flowers (approximately #8B263E) and small green leaves. Round neck with ruffle trim, long sleeves, shirred bodice, full gathered skirt to just above the knee. No logos.",
    "shop_links": {},
    "pattern_scale": "small floral",
-   "pattern_family": "rose-floral-cream"
+   "pattern_family": "rose-floral-cream",
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "G-DRS-012",
@@ -5059,7 +5383,11 @@
     "splurge": "https://www.rachelriley.com/products/pink-breton-stripe-jersey-dress"
    },
    "pattern_scale": "medium stripe",
-   "pattern_family": "rose-ivory-stripe"
+   "pattern_family": "rose-ivory-stripe",
+   "style": [
+    "classic",
+    "casual"
+   ]
   },
   {
    "id": "G-OUT-004",
@@ -5080,7 +5408,11 @@
    "description": "Girls' soft fluffy-knit cardigan in dusty rose, approximately #C98E8E. Round neckline, button front, long sleeves with ribbed cuffs, ribbed hip-length hem. No logos.",
    "shop_links": {
     "mid": "https://www.gap.com/browse/product.do?pid=908927012"
-   }
+   },
+   "style": [
+    "romantic",
+    "casual"
+   ]
   },
   {
    "id": "B-BTM-005",
@@ -5345,7 +5677,10 @@
    },
    "pattern_scale": "medium floral",
    "pattern_family": "navy-tonal-floral",
-   "statement": true
+   "statement": true,
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-DRS-024",
@@ -5371,7 +5706,10 @@
    },
    "pattern_scale": "large floral",
    "pattern_family": "rust-floral-cream",
-   "statement": true
+   "statement": true,
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-DRS-025",
@@ -5396,7 +5734,10 @@
    },
    "pattern_scale": "large floral",
    "pattern_family": "forest-ivory-floral",
-   "statement": true
+   "statement": true,
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-DRS-026",
@@ -5423,7 +5764,10 @@
    },
    "pattern_scale": "large floral",
    "pattern_family": "rose-floral-cream",
-   "statement": true
+   "statement": true,
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-DRS-027",
@@ -5448,7 +5792,10 @@
    },
    "pattern_scale": "medium floral",
    "pattern_family": "olive-ivory-floral",
-   "statement": true
+   "statement": true,
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-DRS-028",
@@ -5474,7 +5821,10 @@
    },
    "pattern_scale": "large floral",
    "pattern_family": "mauve-ivory-floral",
-   "statement": true
+   "statement": true,
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "T-DRS-009",
@@ -5710,7 +6060,10 @@
    "description": "Rust and camel plaid girls' dress. ",
    "shop_links": {},
    "pattern_scale": "medium plaid",
-   "pattern_family": "rust-camel-plaid"
+   "pattern_family": "rust-camel-plaid",
+   "style": [
+    "classic"
+   ]
   },
   {
    "id": "G-DRS-015",
@@ -5736,7 +6089,10 @@
     "splurge": "https://www.rachelriley.com/products/floral-smocked-dress"
    },
    "pattern_scale": "ditsy floral",
-   "pattern_family": "sage-ditsy-floral"
+   "pattern_family": "sage-ditsy-floral",
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "B-TOP-009",
@@ -5784,7 +6140,11 @@
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=1182257012",
     "mid": "https://www.llbean.com/llb/shop/5845558?page=The-Original-Double-L-Cable-Crewneck-Sweater-Womens-Petite"
-   }
+   },
+   "style": [
+    "classic",
+    "casual"
+   ]
   },
   {
    "id": "W-TOP-008",
@@ -5807,7 +6167,11 @@
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=903424032",
     "splurge": "https://www.sezane.com/us-en/product/octobre-editions/flynn-sweater/sage-green"
-   }
+   },
+   "style": [
+    "casual",
+    "modern"
+   ]
   },
   {
    "id": "M-TOP-018",
@@ -5855,7 +6219,11 @@
    "description": "Sage cardigan. Girls' chunky-knit button-front cardigan in soft heathered sage green marl, with crew neckline, long sleeves, ribbed cuffs and hem, and hip length.",
    "shop_links": {
     "mid": "https://us.boden.com/products/girls-chunky-everyday-cardigan-soft-green-marl-g6100grn"
-   }
+   },
+   "style": [
+    "classic",
+    "casual"
+   ]
   },
   {
    "id": "B-TOP-010",
@@ -6042,7 +6410,11 @@
    ],
    "link_tier": "0 links",
    "description": "Dusty rose pleated midi skirt. Dusty rose pleated midi skirt in lightweight chiffon with fine all-over sunray-style pleats, a narrow elasticized high waistband, full lining and a flowing hem that falls to mid-calf.",
-   "shop_links": {}
+   "shop_links": {},
+   "style": [
+    "romantic",
+    "classic"
+   ]
   },
   {
    "id": "TG-TOP-007",
@@ -6069,7 +6441,10 @@
    "description": "Cream puff-sleeve blouse. Cream woven cotton-viscose blouse with short gathered puff sleeves, a ruffled collar framing a V-neck opening, a button front, and a relaxed hip-length body.",
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=1184389002"
-   }
+   },
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "T-BTM-005",
@@ -6137,7 +6512,10 @@
    ],
    "link_tier": "0 links",
    "description": "Olive corduroy skirt. ",
-   "shop_links": {}
+   "shop_links": {},
+   "style": [
+    "casual"
+   ]
   },
   {
    "id": "BB-SET-003",
@@ -7098,7 +7476,10 @@
    "description": "Navy cable-knit sweater. Classic-fit crewneck pullover in navy cotton with vertical cable-stitch panels down the front and sleeves and ribbed neckline, cuffs and hem.",
    "shop_links": {
     "mid": "https://www.quince.com/women/women-s-100-organic-cotton-cable-crewneck-sweater?color=navy"
-   }
+   },
+   "style": [
+    "classic"
+   ]
   },
   {
    "id": "W-TOP-010",
@@ -7123,7 +7504,11 @@
    "description": "Camel turtleneck sweater. Long, relaxed fine-knit turtleneck in warm camel with a ribbed rolled collar, heavily dropped shoulders, ribbed cuffs and hem, and side slits.",
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=903424022"
-   }
+   },
+   "style": [
+    "classic",
+    "modern"
+   ]
   },
   {
    "id": "W-TOP-011",
@@ -7145,7 +7530,10 @@
    "description": "Chocolate ribbed turtleneck. Fitted, hip-length long-sleeve turtleneck in a fine stretch-cotton micro-rib in deep chocolate brown, with a folded turtleneck collar.",
    "shop_links": {
     "mid": "https://www.quince.com/women/organic-cotton-rib-turtleneck"
-   }
+   },
+   "style": [
+    "modern"
+   ]
   },
   {
    "id": "W-TOP-012",
@@ -7167,7 +7555,11 @@
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=903453002",
     "mid": "https://www.quince.com/women/mongolian-cashmere-boxy-crewneck-sweater?color=heather-shaded-rose-pink"
-   }
+   },
+   "style": [
+    "casual",
+    "romantic"
+   ]
   },
   {
    "id": "W-TOP-013",
@@ -7194,7 +7586,10 @@
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=911347012"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-TOP-014",
@@ -7219,7 +7614,10 @@
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=1184380002",
     "mid": "https://www.quince.com/women/silk/silk-notch-collar-blouse?color=wine-tasting-red"
-   }
+   },
+   "style": [
+    "modern"
+   ]
   },
   {
    "id": "W-BTM-008",
@@ -7244,7 +7642,11 @@
    "description": "Camel wide-leg trousers. High-rise wide-leg pull-on pants in a soft camel matte cotton-modal double knit with an elastic waistband.",
    "shop_links": {
     "mid": "https://www.quince.com/women/organic-cotton-double-knit-wide-leg-pants?color=soft-camel"
-   }
+   },
+   "style": [
+    "classic",
+    "modern"
+   ]
   },
   {
    "id": "W-BTM-009",
@@ -7267,7 +7669,10 @@
    "shop_links": {
     "mid": "https://www.quince.com/women/silk/silk-skirt",
     "splurge": "https://www.vince.com/product/matte-satin-slip-skirt-V171831095DARKBARK.html"
-   }
+   },
+   "style": [
+    "modern"
+   ]
   },
   {
    "id": "W-BTM-010",
@@ -7290,7 +7695,11 @@
    "shop_links": {
     "mid": "https://www.quince.com/women/performance-tech-wide-leg-pants?color=deep-navy",
     "splurge": "https://www.jcrew.com/p/womens/categories/clothing/pants/wide-leg/carolina-pant-in-four-season-stretch/CP150?color_name=navy"
-   }
+   },
+   "style": [
+    "classic",
+    "modern"
+   ]
   },
   {
    "id": "W-BTM-011",
@@ -7318,7 +7727,11 @@
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=903723012",
     "mid": "https://www.quince.com/women/mongolian-cashmere-rib-midi-skirt?color=oatmeal",
     "splurge": "https://www.vince.com/product/cozy-rib-midi-skirt-V145784840HEATHERCREAMOAT.html"
-   }
+   },
+   "style": [
+    "modern",
+    "casual"
+   ]
   },
   {
    "id": "M-BTM-006",
@@ -7491,7 +7904,10 @@
    "shop_links": {
     "everyday": "https://www2.hm.com/en_us/productpage.1255070001.html",
     "mid": "https://www.nordstrom.com/s/mona-cable-stitch-long-sleeve-sweater-minidress/8036670"
-   }
+   },
+   "style": [
+    "casual"
+   ]
   },
   {
    "id": "W-DRS-031",
@@ -7513,7 +7929,10 @@
    "shop_links": {
     "mid": "https://www.nordstrom.com/s/angel-sleeve-midi-bridesmaid-dress/8997208?color=44444FWETG"
    },
-   "statement": true
+   "statement": true,
+   "style": [
+    "modern"
+   ]
   },
   {
    "id": "W-DRS-032",
@@ -7539,7 +7958,10 @@
    },
    "pattern_scale": "medium tartan",
    "pattern_family": "red-holiday-tartan",
-   "statement": true
+   "statement": true,
+   "style": [
+    "classic"
+   ]
   },
   {
    "id": "W-DRS-033",
@@ -7560,7 +7982,11 @@
    "description": "Burgundy velvet midi dress. A fitted burgundy stretch-velvet midi dress with a high bateau neckline, long slim sleeves, a deep V open back and a back kick pleat.",
    "shop_links": {
     "mid": "https://www.nordstrom.com/s/julia-jordan-long-slv-midi-dress/9276090"
-   }
+   },
+   "style": [
+    "classic",
+    "modern"
+   ]
   },
   {
    "id": "W-TOP-015",
@@ -7580,7 +8006,11 @@
    ],
    "link_tier": "0 links",
    "description": "Ivory fuzzy short-sleeve sweater. A cream fuzzy crewneck pullover with a soft, hazy brushed knit, short sleeves, and a relaxed, boxy body finished with ribbed edges.",
-   "shop_links": {}
+   "shop_links": {},
+   "style": [
+    "casual",
+    "modern"
+   ]
   },
   {
    "id": "W-OUT-013",
@@ -7601,7 +8031,11 @@
    "description": "Cream boucle coat. A short, fitted cream jacket in nubby woven boucle with a round collarless neckline, covered buttons down the front and at the cuffs, and welt pockets.",
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=904893032"
-   }
+   },
+   "style": [
+    "classic",
+    "modern"
+   ]
   },
   {
    "id": "M-TOP-020",
@@ -7695,7 +8129,11 @@
     "everyday": "https://www.gap.com/browse/product.do?pid=1185566002",
     "mid": "https://www.janieandjack.com/item/girls-the-velvet-bow-dress-108710001.html",
     "splurge": "https://us.boden.com/products/girls-velour-tulle-occasion-dress-rhythmic-red-g5728drd"
-   }
+   },
+   "style": [
+    "classic",
+    "romantic"
+   ]
   },
   {
    "id": "G-OUT-006",
@@ -7715,7 +8153,11 @@
    ],
    "link_tier": "0 links",
    "description": "Ivory fuzzy cardigan. A soft, fluffy ivory sweater-knit cardigan with long sleeves and a button front fastened with little pearl buttons.",
-   "shop_links": {}
+   "shop_links": {},
+   "style": [
+    "romantic",
+    "casual"
+   ]
   },
   {
    "id": "B-TOP-013",
@@ -7886,7 +8328,10 @@
    "description": "Ivory knit midi dress. A thick, stretchy ivory rib-knit sweater dress with a crossover surplice neckline, long dolman sleeves and a close-fitting skirt that runs to a long midi length.",
    "shop_links": {
     "mid": "https://www.nordstrom.com/s/aerin-long-sleeve-knit-dress/8648476?color=444445Q264"
-   }
+   },
+   "style": [
+    "modern"
+   ]
   },
   {
    "id": "TG-TOP-008",
@@ -7909,7 +8354,10 @@
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=894115032",
     "mid": "https://www.gap.com/browse/product.do?pid=908886012"
-   }
+   },
+   "style": [
+    "casual"
+   ]
   },
   {
    "id": "TB-TOP-016",
@@ -7997,7 +8445,10 @@
     "splurge": "https://us.boden.com/products/women-multi-panel-wool-blend-skirt-red-green-check-hotch-r0988grn"
    },
    "pattern_scale": "medium tartan",
-   "pattern_family": "red-holiday-tartan"
+   "pattern_family": "red-holiday-tartan",
+   "style": [
+    "classic"
+   ]
   },
   {
    "id": "M-TOP-021",
@@ -8052,7 +8503,10 @@
    },
    "statement": true,
    "pattern_scale": "medium tartan",
-   "pattern_family": "red-holiday-tartan"
+   "pattern_family": "red-holiday-tartan",
+   "style": [
+    "classic"
+   ]
   },
   {
    "id": "B-TOP-012",
@@ -8154,7 +8608,10 @@
     "mid": "https://us.boden.com/products/girls-pleated-mini-skirt-red-check-g6192red"
    },
    "pattern_scale": "medium tartan",
-   "pattern_family": "red-holiday-tartan"
+   "pattern_family": "red-holiday-tartan",
+   "style": [
+    "classic"
+   ]
   },
   {
    "id": "TB-TOP-015",
@@ -8252,7 +8709,10 @@
    "shop_links": {
     "everyday": "https://hopeandhenry.com/products/25fg6171a-ivory-eyelet-organic-tiered-eyelet-dress",
     "mid": "https://www.gap.com/browse/product.do?pid=1181428002"
-   }
+   },
+   "style": [
+    "romantic"
+   ]
   },
   {
    "id": "W-TOP-016",
@@ -8276,7 +8736,11 @@
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=1182260032",
     "mid": "https://www.quince.com/women/cashmere/cashmere-crewneck-sweater?color=heather-grey"
-   }
+   },
+   "style": [
+    "casual",
+    "modern"
+   ]
   },
   {
    "id": "W-BTM-013",
@@ -8300,7 +8764,11 @@
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=911169002",
     "mid": "https://www.quince.com/women/silk/silk-skirt?color=champagne"
-   }
+   },
+   "style": [
+    "modern",
+    "romantic"
+   ]
   },
   {
    "id": "W-SHO-012",
@@ -8375,7 +8843,11 @@
    "shop_links": {
     "everyday": "https://oldnavy.gap.com/browse/product.do?pid=911184002",
     "splurge": "https://tnuck.com/products/herringbone-meg-a-line-mini-skirt"
-   }
+   },
+   "style": [
+    "modern",
+    "classic"
+   ]
   },
   {
    "id": "B-OUT-009",

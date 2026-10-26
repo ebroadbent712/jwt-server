@@ -20,6 +20,30 @@ SETTINGS = ["Park or field", "Garden", "Beach or lake", "Downtown or city", "Orc
 OCCASIONS = ["Fall family photos", "Christmas card photos", "Everyday family photos", "Something else"]
 TIMES = ["Golden hour", "Daytime", "Indoors", "Not sure"]
 
+# Style picks ("this or that" on /start/ and Edit a person): tag, what she sees, a few words, three example pieces.
+WOMEN_LOOKS = [
+    ("romantic", "Soft and romantic", "Florals, ruffles, flowy dresses", ["W-DRS-024", "W-DRS-016", "W-DRS-022"]),
+    ("classic", "Classic", "Cable knits, wrap dresses, trousers", ["W-TOP-003", "W-DRS-003", "W-BTM-008"]),
+    ("modern", "Clean and simple", "Sleek knits, satin, solid colors", ["W-DRS-019", "W-BTM-009", "W-TOP-011"]),
+    ("casual", "Cozy and casual", "Jeans, soft sweaters, corduroy", ["W-BTM-001", "W-TOP-016", "W-BTM-006"]),
+]
+GIRL_LOOKS = [
+    ("romantic", "Sweet and twirly", "Smocking, ruffles, tulle", ["G-DRS-003", "G-DRS-010", "G-BTM-005"]),
+    ("classic", "Classic", "Collars, tartan, velvet", ["G-DRS-002", "G-DRS-016", "G-DRS-007"]),
+    ("casual", "Cozy and casual", "Sweaters, corduroy, easy pieces", ["G-TOP-004", "G-DRS-004", "G-BTM-002"]),
+]
+SURPRISE = "surprise"
+CUTS = ["Dresses or skirts", "Pants or jeans", "Either"]
+STYLE_WORDS = {"romantic": "soft and romantic (florals, ruffles, flowy)", "classic": "classic", "modern": "clean and simple",
+               "casual": "cozy and casual"}
+
+
+def looks_for(p):
+    """The style choices this person gets, or [] when we don't ask (babies, toddlers, men's and boys' shoppers)."""
+    if p.get("age") in ("Baby", "Toddler") or p.get("shop") not in ("Women's", "Girls'"):
+        return []
+    return GIRL_LOOKS if p.get("age") == "Kid" else WOMEN_LOOKS
+
 
 def _path(oid):
     return os.path.join(config.ORDERS, oid + ".json")
@@ -122,8 +146,15 @@ def clean_answers(a):
         if not name or not age:
             raise BadAnswers("Every person needs a name and an age.")
         kid = re.sub(r"\D", "", str(p.get("kidAge") or ""))[:2]
-        people.append({"name": name, "age": age, "kidAge": kid, "shop": p.get("shop") if p.get("shop") in SHOPS else "Either",
-                       "dress": "Basics only" if p.get("dress") == "Basics only" else "Happy to", "nope": _s(p.get("nope"), 160)})
+        q = {"name": name, "age": age, "kidAge": kid, "shop": p.get("shop") if p.get("shop") in SHOPS else "Either",
+             "dress": "Basics only" if p.get("dress") == "Basics only" else "Happy to", "nope": _s(p.get("nope"), 160)}
+        offered = [t for t, *_ in looks_for(q)]
+        if offered:
+            picked = p.get("looks") if isinstance(p.get("looks"), list) else []
+            looks = [t for t in offered if t in picked][:2]  # kept in a fixed order, so an edit only counts real changes
+            q["looks"] = looks or [SURPRISE]
+            q["cut"] = p.get("cut") if p.get("cut") in CUTS and age != "Kid" else "Either"  # no girls' pants in the library yet
+        people.append(q)
     if not people:
         raise BadAnswers("Add at least one person.")
     out["people"] = people
@@ -157,12 +188,21 @@ def clean_answers(a):
 def person_changes(old, new):
     """Plain sentences for what changed between two sets of answers' people (same people, same order)."""
     out = []
-    labels = {"name": "name", "age": "age", "kidAge": "age in years", "shop": "shops from", "dress": "dressing up", "nope": "won't wear"}
+    labels = {"name": "name", "age": "age", "kidAge": "age in years", "shop": "shops from", "dress": "dressing up", "nope": "won't wear",
+              "looks": "style", "cut": "dresses or pants"}
+    show = lambda v: style_words(v) if isinstance(v, list) else (v or "-")
+    blank = {"looks": [SURPRISE], "cut": "Either"}  # older orders have no style picks: same as "you choose"
+    val = lambda p, k: p.get(k) or blank.get(k) or ""
     for p, q in zip(old["people"], new["people"]):
-        diffs = [f"{label} was \"{p.get(k) or '-'}\", now \"{q.get(k) or '-'}\"" for k, label in labels.items() if (p.get(k) or "") != (q.get(k) or "")]
+        diffs = [f"{label} was \"{show(val(p, k))}\", now \"{show(val(q, k))}\"" for k, label in labels.items() if val(p, k) != val(q, k)]
         if diffs:
             out.append(f"{q['name']}: " + "; ".join(diffs) + ".")
     return out
+
+
+def style_words(looks):
+    looks = [l for l in looks or [] if l != SURPRISE]
+    return " + ".join(STYLE_WORDS.get(l, l) for l in looks) if looks else "no style picked (you choose)"
 
 
 def family_label(a):
@@ -175,6 +215,10 @@ def answers_text(a):
         bits = [age, f"shops {p['shop']}"]
         if p["age"] not in ("Baby", "Toddler"):
             bits.append("basics only, won't dress up" if p["dress"] == "Basics only" else "happy to dress up")
+        if p.get("looks"):
+            bits.append("style: " + style_words(p["looks"]))
+            if p.get("cut") in ("Dresses or skirts", "Pants or jeans"):
+                bits.append("wants " + p["cut"].lower())
         return f"- {p['name']}: {', '.join(bits)}" + (f". Won't wear: {p['nope']}" if p["nope"] else "")
     d = dt.date.fromisoformat(a["date"])
     return "\n".join([
@@ -245,7 +289,7 @@ def _line(i):
             f"{i['category']}/{i['layout_role']}", i["name"], i["hex"],
             ("print: " + (i.get("pattern_family") or "yes") + (f" {i['pattern_scale']}" if i.get("pattern_scale") else "")) if i.get("pattern") else "solid",
             "stories: " + ",".join(i.get("color_stories", []))]
-    for k in ("texture", "formality", "baby_for", "toddler_for"):
+    for k in ("texture", "formality", "style", "baby_for", "toddler_for"):
         if i.get(k):
             bits.append(f"{k}: {i[k] if isinstance(i[k], str) else ','.join(i[k])}")
     if i.get("season"):
@@ -299,6 +343,8 @@ Rules for this flow:
 - Headline: three short lines in plain mom language, specific to this family's colors, setting and pieces. Don't open with "One ___ anchor" and don't use styling jargon like "anchor", "palette" or "tonal".
 - Talk about the clothes, never bodies: no "bump", "figure", "flattering", "slimming" or "hides". Say what the piece is ("a roomy wrap dress", "soft and stretchy"), not what it does for a body.
 - "Won't wear" is a hard rule. No short sleeves means long sleeves on the piece itself (a cardigan over a short-sleeve dress doesn't count). No heels means flat shoes or boots with a flat or block heel under 1 inch.
+- Style picks: some people come with the style they actually wear (soft and romantic, classic, clean and simple, cozy and casual) and sometimes "wants dresses or skirts" or "wants pants or jeans". These outrank the general guidance in the styling rules about what women and girls usually wear ("midi and maxi dresses with movement", "smocked or tiered dresses"). Every dress, top, bottom and layer you give that person must carry one of their picked styles in its "style" tag, and "wants pants or jeans" means pants or jeans with a top, never a dress or skirt. Pick the color story that has pieces in her style. Mom can still be the standout through a rich color or one special piece in her own style; it doesn't have to be a flowing dress.
+- When a person has no style picked, lean classic. Keep ruffles, smocking, tiers and prairie-style florals to one person on the board at most, unless she picked soft and romantic.
 - Reply with only the plan JSON: start your reply with {{ and end it with }}. No other text, no code fences, no questions."""
 
 
@@ -396,6 +442,36 @@ def parse_plan(text):
         raise StylistError(f"The plan wasn't valid JSON ({e}); it began: {text.strip()[:120]!r}")
 
 
+PANTS = re.compile(r"\b(pants|trousers|jeans|leggings|chinos)\b", re.I)
+
+
+def style_probs(plan, a, items):
+    """Pieces that don't match a person's style picks (soft: on the last try the plan is built anyway)."""
+    byid = {i["id"]: i for i in items}
+    probs = []
+    for idx, pp in enumerate(plan.get("people") or []):
+        src = a["people"][idx] if idx < len(a["people"]) else None
+        if not src:
+            continue
+        looks = {l for l in src.get("looks") or [] if l != SURPRISE}
+        its = [byid[i] for i in pp.get("items") or [] if i in byid]
+        if looks:
+            for i in its:
+                if i["category"] in ("dress", "top", "bottom", "outerwear") and i.get("style") and not looks & set(i["style"]):
+                    probs.append(f"{pp.get('label')}'s style is {style_words(list(looks))}, but {i['id']} ({i['name']}) is {', '.join(i['style'])}. "
+                                 "Pick a piece tagged with her style.")
+        cut = src.get("cut")
+        if cut == "Pants or jeans":
+            for i in its:
+                if i["category"] == "dress" or (i["category"] == "bottom" and not PANTS.search(i["name"])):
+                    probs.append(f"{pp.get('label')} wants pants or jeans, but {i['id']} ({i['name']}) isn't. Use pants or jeans with a top.")
+        elif cut == "Dresses or skirts":
+            for i in its:
+                if i["category"] == "bottom" and PANTS.search(i["name"]):
+                    probs.append(f"{pp.get('label')} wants a dress or skirt, but {i['id']} ({i['name']}) is pants.")
+    return probs
+
+
 def check_plan(plan, a, items):
     """Problems the stylist must fix before the page is built (the engine adds its own CHECK lines)."""
     byid = {i["id"]: i for i in items}
@@ -432,6 +508,7 @@ def check_plan(plan, a, items):
                     if hit:
                         probs.append(f"{pp.get('label')} won't wear {hit}, but {iid} ({byid[iid]['name']}) is one. Pick another piece.")
     probs += photo_probs(plan, a)
+    probs += style_probs(plan, a, items)
     copy = json.dumps([plan.get(k) for k in ("headline", "story", "why_it_works", "piece_notes")]).lower()
     for w in COPY_BANNED:
         if re.search(rf"\b{w}\b", copy):
@@ -541,9 +618,10 @@ def fake_plan(a, items):
 FAMILY_BUSINESS = {"studio_name": "Just Wear This", "website": "justwearthis.co"}
 
 
-def stylist(a, fix_note=None, base_plan=None, extra=None):
-    """Returns (plan, html, title, notes). Asks Claude, checks the plan, builds the page; one or two rounds of fixes."""
-    items = candidates(a)
+def stylist(a, fix_note=None, base_plan=None, extra=None, exclude=()):
+    """Returns (plan, html, title, notes). Asks Claude, checks the plan, builds the page; one or two rounds of fixes.
+    exclude: pieces she already swapped away, so a swap never brings them back."""
+    items = [i for i in candidates(a) if i["id"] not in set(exclude)]
     system = system_prompt()
     if config.ANTHROPIC_API_KEY == "fake":
         plan = fake_plan(a, items)
@@ -562,9 +640,9 @@ def stylist(a, fix_note=None, base_plan=None, extra=None):
         try:
             plan = parse_plan(text)
             probs = check_plan(plan, a, items)
-            soft = set(photo_probs(plan, a))
+            soft = set(photo_probs(plan, a)) | set(style_probs(plan, a, items))
             if attempt == 2 and probs and all(p in soft for p in probs):
-                print(f"[photos] building without a clean photo match: {probs}")
+                print(f"[photos/style] building without a clean match: {probs}")
                 plan["owned"] = [o for o in plan.get("owned") or [] if not isinstance(o, dict) or not o.get("photo")
                                  or o["photo"] in {ph["id"] for ph in a.get("photos") or []}]
                 probs = []
@@ -621,7 +699,7 @@ def build(oid, request_note=None):
     save_order(o)
     try:
         plan, html, title, notes = stylist(o["answers"], request_note, o.get("plan") if request_note else None,
-                                           extra={"swap_url": f"{config.PUBLIC_BASE}/o/{oid}/swap"})
+                                           extra={"swap_url": f"{config.PUBLIC_BASE}/o/{oid}/swap"}, exclude=o.get("swapped_out") or ())
         pid = store.save_page("family", _with_bar(html, oid, o["answers"]), title, "plan", o.get("page_id"))
         o.update(status="ready", page_id=pid, plan=plan, url=f"{config.PUBLIC_BASE}/p/{pid}", swap_pending=False, error="")
         log(o, "ready " + "; ".join(n for n in notes if not n.startswith("usage"))[:300])
