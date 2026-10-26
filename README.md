@@ -12,9 +12,9 @@ One Render web service for justwearthis.co:
 | `/admin` | Admin page (asks for the admin password): make a connector link for a buyer, see all links, open the link report |
 | `/admin/keys?token=…` | Same list as JSON; `POST name=…&email=…` makes a new one |
 | `/admin/links?token=…` | Shop link health report; `POST` runs a check now |
-| `/start/` | The family version: questions, then pay $19 (or a beta code), then the plan |
+| `/start/` | The family version: questions (including a "this or that" style pick with example pieces for women's and girls' shoppers), then pay $19 (or a beta code), then the plan. Pieces carry `style` tags in `engine/library/catalog.json` (romantic, classic, modern, casual) that the stylist must match |
 | `/o/<order>` | A family's order: "styling your family" while it builds, then straight to her plan |
-| `/o/<order>/swap` | Swap a piece, as often as she likes until photo day (same plan link) |
+| `/o/<order>/swap` | Swap a piece, as often as she likes until photo day (same plan link). "What's off?" chips; a swap asks for a clearly different piece and never brings back one she swapped away |
 | `/o/<order>/edit` | Edit a person (name, age, where they shop, won't-wear) after the plan is made; only the people who changed are restyled |
 | `/o/<order>/colors` | Change our colors: pick another color story or new love/never colors; the whole family is restyled in the new colors (her own pieces stay). Counts as a swap, same link |
 | `/api/family/photo` | A photo of a piece she owns, from `/start/`. Saved upright at most 1600px with the location details dropped, in `uploads/` on the disk; her plan shows her real piece |
