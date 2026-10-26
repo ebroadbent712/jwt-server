@@ -329,7 +329,7 @@ def _style_fields(n, p):
         + f"<span>{E(label)}<small>{E(words)}</small></span></label>" for t, label, words, ids in looks)
     return (f"<input type=hidden name=styled{n} value=1><div><p class=soft style='font-size:11px;letter-spacing:.2em;text-transform:uppercase'>"
             f"Their style (pick one or two, or none to let us choose)</p><div class=looks>{cards}</div></div>"
-            + (f"<label class=f>Dresses or pants?{_opts(f'cut{n}', family.CUTS, p.get('cut') or 'Either')}</label>" if looks is family.WOMEN_LOOKS else ""))
+            f"<label class=f>Dresses or pants?{_opts(f'cut{n}', family.CUTS, p.get('cut') or 'Either')}</label>")
 
 
 def _story_choices(cur):

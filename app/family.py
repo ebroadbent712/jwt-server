@@ -153,7 +153,7 @@ def clean_answers(a):
             picked = p.get("looks") if isinstance(p.get("looks"), list) else []
             looks = [t for t in offered if t in picked][:2]  # kept in a fixed order, so an edit only counts real changes
             q["looks"] = looks or [SURPRISE]
-            q["cut"] = p.get("cut") if p.get("cut") in CUTS and age != "Kid" else "Either"  # no girls' pants in the library yet
+            q["cut"] = p.get("cut") if p.get("cut") in CUTS else "Either"
         people.append(q)
     if not people:
         raise BadAnswers("Add at least one person.")

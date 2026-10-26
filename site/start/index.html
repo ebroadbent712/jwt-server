@@ -195,7 +195,7 @@ const STEPS = [
           <div class="phead"><b>${esc(p.name || "Person " + (i + 1))}</b></div>
           <div class="looks" role="group">${looksFor(p).map(([t, l, w, ids]) => lookCard(t, l, w, ids, p, i)).join("")}</div>
           ${chips("surprise", ["Not sure, you choose"], p.looks.includes("surprise") ? "Not sure, you choose" : "", i)}
-          ${p.age === "Kid" ? "" : `<div><p class="q">Dresses or pants?</p>${chips("cut", CUTS, p.cut, i)}</div>`}
+          <div><p class="q">Dresses or pants?</p>${chips("cut", CUTS, p.cut, i)}</div>
         </div>` : "").join("")}
     </div>`, ok: () => {
       const p = styled().find(p => !p.looks.length);
