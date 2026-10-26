@@ -8898,6 +8898,388 @@
     "mid": "https://www.quince.com/unisex/kid-100-organic-cotton-jersey-short-sleeve-tee?color=white",
     "splurge": "https://us.boden.com/products/boys-everyday-short-sleeve-t-shirt-white-b2967wht"
    }
+  },
+  {
+   "id": "G-BTM-007",
+   "file": "g_btm_007.jpg",
+   "name": "Dark wash girls' jeans",
+   "person": "girls",
+   "category": "bottom",
+   "layout_role": "bottom",
+   "colors": [
+    "dark wash denim"
+   ],
+   "hex": "#34496E",
+   "texture": "denim",
+   "pattern": false,
+   "formality": "relaxed",
+   "style": [
+    "casual",
+    "classic"
+   ],
+   "season": [
+    "fall",
+    "winter"
+   ],
+   "color_stories": [
+    "cabernet-navy",
+    "harvest",
+    "evergreen",
+    "holiday-plaid"
+   ],
+   "description": "Girls' dark wash blue denim jeans in low-stretch cotton denim with a relaxed straight leg, button closure at an adjustable waist with a zip fly, belt loops, classic five-pocket styling, full length, even wash with soft natural fading through the thighs and no rips. Main color approximately #34496E. No logos.",
+   "link_tier": "1 link",
+   "shop_links": {
+    "everyday": "https://www.gap.com/browse/product.do?pid=912239002"
+   }
+  },
+  {
+   "id": "G-BTM-008",
+   "file": "g_btm_008.jpg",
+   "name": "Chocolate corduroy girls' pants",
+   "person": "girls",
+   "category": "bottom",
+   "layout_role": "bottom",
+   "colors": [
+    "chocolate brown"
+   ],
+   "hex": "#4A2C20",
+   "texture": "corduroy",
+   "pattern": false,
+   "formality": "relaxed",
+   "style": [
+    "casual"
+   ],
+   "season": [
+    "fall",
+    "winter"
+   ],
+   "color_stories": [
+    "harvest",
+    "evergreen"
+   ],
+   "description": "Girls' dark chocolate brown soft stretch cotton corduroy pants in a fine wale, loose fit with a wide straight leg, button at center with a zip fly, belt loops, classic five-pocket styling, full length. Main color approximately #4A2C20. No logos.",
+   "link_tier": "1 link",
+   "shop_links": {
+    "mid": "https://www.gap.com/browse/product.do?pid=1181452002"
+   }
+  },
+  {
+   "id": "G-BTM-009",
+   "file": "g_btm_009.jpg",
+   "name": "Oat wide-leg knit girls' pants",
+   "person": "girls",
+   "category": "bottom",
+   "layout_role": "bottom",
+   "colors": [
+    "oatmeal heather"
+   ],
+   "hex": "#CEC7B9",
+   "texture": "soft knit",
+   "pattern": false,
+   "formality": "relaxed",
+   "style": [
+    "casual"
+   ],
+   "season": [
+    "fall",
+    "winter"
+   ],
+   "color_stories": [
+    "winter-white",
+    "rose-olive"
+   ],
+   "description": "Girls' soft oatmeal heather knit pull-on sweater pants in a plush brushed cotton-blend knit, elasticized waist, relaxed fit with a wide leg, full length, smooth matte finish with fine heathering. Main color approximately #CEC7B9. No logos.",
+   "link_tier": "1 link",
+   "shop_links": {
+    "everyday": "https://www.gap.com/browse/product.do?pid=908931022"
+   }
+  },
+  {
+   "id": "G-BTM-011",
+   "file": "g_btm_011.jpg",
+   "name": "Cabernet corduroy girls' pants",
+   "person": "girls",
+   "category": "bottom",
+   "layout_role": "bottom",
+   "colors": [
+    "cabernet"
+   ],
+   "hex": "#4A2430",
+   "texture": "corduroy",
+   "pattern": false,
+   "formality": "relaxed",
+   "style": [
+    "casual"
+   ],
+   "season": [
+    "fall",
+    "winter"
+   ],
+   "color_stories": [
+    "cabernet-navy"
+   ],
+   "description": "Girls' deep cabernet wine-red jumbo wide-wale cotton corduroy pull-on trousers with a drawstring waist, deep front pockets, relaxed wide leg, full length. Main color approximately #4A2430. No logos.",
+   "link_tier": "1 link",
+   "shop_links": {
+    "mid": "https://us.boden.com/products/girls-draw-cord-trousers-deep-wisteria-g6207pur"
+   }
+  },
+  {
+   "id": "G-TOP-008",
+   "file": "g_top_008.jpg",
+   "name": "Cream crewneck girls' sweater",
+   "person": "girls",
+   "category": "top",
+   "layout_role": "hero",
+   "colors": [
+    "ivory"
+   ],
+   "hex": "#E7E2D8",
+   "texture": "soft knit",
+   "pattern": false,
+   "formality": "relaxed",
+   "style": [
+    "casual",
+    "classic"
+   ],
+   "season": [
+    "fall",
+    "winter"
+   ],
+   "color_stories": [
+    "winter-white",
+    "evergreen",
+    "holiday-plaid"
+   ],
+   "description": "Girls' light ivory heathered crewneck sweater in a plush brushed cotton-blend knit, plain smooth knit, ribbed crew neckline, cuffs and hem, long sleeves with drop shoulders, oversized relaxed fit, hip length. Main color approximately #E7E2D8. No logos.",
+   "link_tier": "1 link",
+   "shop_links": {
+    "everyday": "https://www.gap.com/browse/product.do?pid=908930012"
+   }
+  },
+  {
+   "id": "G-TOP-009",
+   "file": "g_top_009.jpg",
+   "name": "Red cable girls' sweater",
+   "person": "girls",
+   "category": "top",
+   "layout_role": "hero",
+   "colors": [
+    "holiday red"
+   ],
+   "hex": "#C1272D",
+   "texture": "cable knit",
+   "pattern": false,
+   "formality": "relaxed",
+   "style": [
+    "casual",
+    "classic"
+   ],
+   "season": [
+    "fall",
+    "winter"
+   ],
+   "color_stories": [
+    "holiday-plaid"
+   ],
+   "description": "Girls' bright holiday red 100% cotton cable-knit crewneck sweater with chunky vertical cable panels down the front and sleeves, ribbed crew neckline, cuffs and hem, long sleeves with drop shoulders, oversized fit, tunic length. Main color approximately #C1272D. No logos.",
+   "link_tier": "1 link",
+   "shop_links": {
+    "mid": "https://www.gap.com/browse/product.do?pid=1184837022"
+   }
+  },
+  {
+   "id": "G-TOP-010",
+   "file": "g_top_010.jpg",
+   "name": "Navy cable girls' sweater",
+   "person": "girls",
+   "category": "top",
+   "layout_role": "hero",
+   "colors": [
+    "navy"
+   ],
+   "hex": "#232C4A",
+   "texture": "cable knit",
+   "pattern": false,
+   "formality": "relaxed",
+   "style": [
+    "classic",
+    "casual"
+   ],
+   "season": [
+    "fall",
+    "winter"
+   ],
+   "color_stories": [
+    "cabernet-navy",
+    "holiday-plaid"
+   ],
+   "description": "Girls' deep navy 100% cotton cable-knit crewneck sweater with vertical cable panels down the front and sleeves, ribbed crew neckline, cuffs and hem, long sleeves, relaxed fit, hip length. Main color approximately #232C4A. No logos.",
+   "link_tier": "1 link",
+   "shop_links": {
+    "mid": "https://www.gap.com/browse/product.do?pid=1184264012"
+   }
+  },
+  {
+   "id": "W-BTM-014",
+   "file": "w_btm_014.jpg",
+   "name": "Olive wide-leg trousers",
+   "person": "women",
+   "category": "bottom",
+   "layout_role": "bottom",
+   "colors": [
+    "olive"
+   ],
+   "hex": "#8A8B6C",
+   "texture": "cotton twill",
+   "pattern": false,
+   "formality": "dressy casual",
+   "style": [
+    "classic",
+    "modern"
+   ],
+   "season": [
+    "fall",
+    "winter"
+   ],
+   "color_stories": [
+    "rose-olive",
+    "evergreen"
+   ],
+   "description": "Women's soft olive green high-rise wide-leg pants in a matte organic stretch cotton chino twill, flat front with a single button at the waistband, two front patch pockets, two back pockets, cropped ankle length. Main color approximately #8A8B6C. No logos.",
+   "link_tier": "1 link",
+   "shop_links": {
+    "everyday": "https://www.quince.com/women/organic-stretch-cotton-chino-wide-leg-pants?color=olive"
+   }
+  },
+  {
+   "id": "W-BTM-015",
+   "file": "w_btm_015.jpg",
+   "name": "Ecru straight jeans",
+   "person": "women",
+   "category": "bottom",
+   "layout_role": "bottom",
+   "colors": [
+    "ecru"
+   ],
+   "hex": "#E6DFCF",
+   "texture": "denim",
+   "pattern": false,
+   "formality": "relaxed",
+   "style": [
+    "casual",
+    "classic",
+    "modern"
+   ],
+   "season": [
+    "fall",
+    "winter"
+   ],
+   "color_stories": [
+    "rose-olive",
+    "winter-white"
+   ],
+   "description": "Women's ecru (warm off-white) high-rise straight-leg jeans in low-stretch cotton denim, zip fly with a button, classic five-pocket styling, slim through the hip and thigh, full length, clean finish with no rips. Main color approximately #E6DFCF. No logos.",
+   "link_tier": "1 link",
+   "shop_links": {
+    "splurge": "https://www.gap.com/browse/product.do?pid=821866002"
+   }
+  },
+  {
+   "id": "W-BTM-016",
+   "file": "w_btm_016.jpg",
+   "name": "Ivory wide-leg trousers",
+   "person": "women",
+   "category": "bottom",
+   "layout_role": "bottom",
+   "colors": [
+    "cream"
+   ],
+   "hex": "#EDE4D3",
+   "texture": "matte woven",
+   "pattern": false,
+   "formality": "dressy casual",
+   "style": [
+    "classic",
+    "modern"
+   ],
+   "season": [
+    "fall",
+    "winter"
+   ],
+   "color_stories": [
+    "winter-white"
+   ],
+   "description": "Women's cream high-waisted wide-leg trousers in a fluid matte stretch woven, crisp inverted front pleats, thin self-tie at the waist, hidden back zip, flowy full-length wide legs. Main color approximately #EDE4D3. No logos.",
+   "link_tier": "1 link",
+   "shop_links": {
+    "splurge": "https://www.nordstrom.com/s/endless-rose-high-waisted-pleated-wide-leg/9212544"
+   }
+  },
+  {
+   "id": "W-TOP-017",
+   "file": "w_top_017.jpg",
+   "name": "Oat cable crewneck sweater",
+   "person": "women",
+   "category": "top",
+   "layout_role": "hero",
+   "colors": [
+    "oatmeal"
+   ],
+   "hex": "#D8CBB4",
+   "texture": "cable knit",
+   "pattern": false,
+   "formality": "relaxed",
+   "style": [
+    "classic",
+    "casual"
+   ],
+   "season": [
+    "fall",
+    "winter"
+   ],
+   "color_stories": [
+    "rose-olive",
+    "winter-white",
+    "harvest"
+   ],
+   "description": "Women's speckled oatmeal 100% organic cotton cable-knit crewneck pullover with vertical cable panels down the front and sleeves, ribbed crew neckline, cuffs and hem, classic fit, hip length, long sleeves. Main color approximately #D8CBB4. No logos.",
+   "link_tier": "1 link",
+   "shop_links": {
+    "everyday": "https://www.quince.com/women/women-s-100-organic-cotton-cable-crewneck-sweater?color=speckled-beige"
+   }
+  },
+  {
+   "id": "W-TOP-018",
+   "file": "w_top_018.jpg",
+   "name": "Red crewneck sweater",
+   "person": "women",
+   "category": "top",
+   "layout_role": "hero",
+   "colors": [
+    "holiday red"
+   ],
+   "hex": "#A3242B",
+   "texture": "cashmere knit",
+   "pattern": false,
+   "formality": "relaxed",
+   "style": [
+    "casual",
+    "classic"
+   ],
+   "season": [
+    "fall",
+    "winter"
+   ],
+   "color_stories": [
+    "holiday-plaid"
+   ],
+   "description": "Women's rich holiday red fine-gauge 100% cashmere crewneck pullover, smooth knit, ribbed crew neckline, cuffs and hem, classic relaxed fit, hip length, long sleeves. Main color approximately #A3242B. No logos.",
+   "link_tier": "1 link",
+   "shop_links": {
+    "everyday": "https://www.quince.com/women/cashmere/cashmere-crewneck-sweater?color=varsity-red"
+   }
   }
  ]
 }
