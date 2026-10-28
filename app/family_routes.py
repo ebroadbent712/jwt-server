@@ -240,6 +240,7 @@ async def swap_page(request: Request):
 <button class=btn>Make my swap</button></form>
 <p class=soft>Need to change someone's details or style instead? <a href="/o/{E(oid)}/edit" style="color:#121212">Edit a person</a></p>
 <p class=soft>Want different colors for everyone? <a href="/o/{E(oid)}/colors" style="color:#121212">Change our colors</a></p>
+<p class=soft>Have a piece you already own? <a href="/o/{E(oid)}/own" style="color:#121212">Add something I own</a></p>
 <p class=soft><a href="{E(o['url'])}" style="color:#121212">Back to my plan</a></p>""")
 
 
@@ -401,6 +402,99 @@ async def colors_page(request: Request):
 <p class=soft><a href="{E(o['url'])}" style="color:#121212">Back to my plan</a></p>""")
 
 
+async def own_page(request: Request):
+    """Add a piece she already owns after the plan is made: a photo (uploaded by /api/family/photo) and/or a few words.
+    Only that person is restyled around it. Counts as a swap; same link."""
+    oid = request.path_params["oid"]
+    o = family.get_order(oid)
+    if not o or not o.get("plan"):
+        return _page("Not found", "<h1>We couldn't find that plan.</h1>")
+    if not family.can_swap(o):
+        return _page("Photo day has passed", f"""<h1>Photo day has passed.</h1>
+<p class=soft>Changes are open until your photo date. Your plan is still here:</p><a class=btn href="{E(o['url'])}">Open my plan</a>""")
+    a = o["answers"]
+    names = [p["name"] for p in a["people"]]
+    photos = a.get("photos") or []
+    room = len(photos) < family.MAX_PHOTOS
+    err = ""
+    if request.method == "POST":
+        form = await request.form()
+        who = next((n for n in names if n.lower() == family._s(form.get("person"), 40).lower()), "")
+        pid = str(form.get("photo") or "")
+        what = family._s(form.get("what"), 120)
+        if o["status"] == "building":
+            err = "Your last change is still being made. Give it a minute."
+        elif o.get("swaps", 0) >= 25:
+            err = "That's a lot of changes! Reply to your plan email and we'll help by hand."
+        elif not who:
+            err = "Pick who's wearing it."
+        elif pid and not family.photo_ok(pid):
+            err = "That photo didn't come through. Please add it again."
+        elif pid and not room:
+            err = f"Your plan already has {family.MAX_PHOTOS} photos. Tell us about this one in words instead."
+        elif not pid and not what:
+            err = "Add a photo of your piece, or tell us what it is."
+        else:
+            new_a = dict(a)
+            if pid:
+                new_a["photos"] = photos + [{"id": pid, "person": who, "what": what}]
+                said = f"{who}'s own {what or 'piece'} (photo id {pid}, the newest photo)"
+            else:
+                new_a["own"] = family._s(((a.get("own") or "") + f"; {who}: {what}").strip("; "), 500)
+                said = f"{who}'s own {what} (no photo, just her words)"
+            req = (f"She added a piece she already owns: {said}. Put it in {who}'s outfit"
+                   + (" with an owned entry for the photo" if pid else ", using the closest library piece of the same kind and color as its stand-in,")
+                   + f" and restyle {who} around it so everything they wear goes with it. If it replaces a piece {who} had, take that piece out. "
+                   "Keep everyone else's outfit, her other own pieces, the color story and the copy the same, unless the new piece truly "
+                   "needs a small change so the family still looks good together.")
+            o["answers"] = new_a
+            o["swaps"] = o.get("swaps", 0) + 1
+            o["swap_pending"] = True
+            family.log(o, f"swap requested: added her own piece: {said}")
+            family.save_order(o)
+            family.build_async(oid, req)
+            return RedirectResponse(f"/o/{oid}", 303)
+    who_opts = "".join(f"<option>{E(n)}</option>" for n in names)
+    photo_part = f"""<div class=person><b>Your piece</b>
+<input type=hidden name=photo id=photo>
+<img id=thumb alt="" style="display:none;width:160px;height:160px;object-fit:contain;border:1px solid var(--line)">
+<input type=file id=file accept="image/*" style="display:none">
+<button type=button class=btn id=pick style="background:#fff;color:var(--ink)">+ Add a photo</button>
+<span class=soft id=phmsg>Lay it flat or hang it up, in good light. Shoes count!</span></div>""" if room else         f"<p class=soft>Your plan already has {family.MAX_PHOTOS} photos, so tell us about this piece in words.</p>"
+    return _page("Add something I own", f"""<h1>Add something you own.</h1>
+<p class=soft>Have a piece you already love? Add it and we'll restyle just that person around it. Everyone else stays the same, and your link doesn't change.</p>
+{f'<p class=err>{E(err)}</p>' if err else ''}
+<form method=post id=f style="display:flex;flex-direction:column;gap:18px">{photo_part}
+<label class=f>Who's wearing it?<select name=person required><option value="">Pick one</option>{who_opts}</select></label>
+<label class=f>What is it? <span style="text-transform:none;letter-spacing:0" class=soft>{'Optional with a photo.' if room else ''}</span><input name=what maxlength=120 placeholder="Brown leather boots"></label>
+<button class=btn id=go>Add it to my plan</button></form>
+<p class=soft><a href="{E(o['url'])}" style="color:#121212">Back to my plan</a></p>
+<script>
+const file = document.getElementById("file"), pick = document.getElementById("pick"), msg = document.getElementById("phmsg"),
+  thumb = document.getElementById("thumb"), photo = document.getElementById("photo"), go = document.getElementById("go");
+if (pick) {{
+  pick.onclick = () => file.click();
+  file.onchange = async () => {{
+    const f = file.files[0]; if (!f) return;
+    const img = new Image(), url = URL.createObjectURL(f);
+    try {{ img.src = url; await img.decode(); }} catch (e) {{ msg.textContent = "That file didn't open as a photo. Try a JPG or PNG."; return; }}
+    const k = Math.min(1, 1600 / Math.max(img.naturalWidth, img.naturalHeight)), c = document.createElement("canvas");
+    c.width = Math.round(img.naturalWidth * k); c.height = Math.round(img.naturalHeight * k);
+    c.getContext("2d").drawImage(img, 0, 0, c.width, c.height);
+    thumb.src = url; thumb.style.display = "block"; photo.value = ""; go.disabled = true; msg.textContent = "Uploading…";
+    try {{
+      const blob = await new Promise(res => c.toBlob(res, "image/jpeg", 0.88));
+      const r = await fetch("/api/family/photo", {{method: "POST", headers: {{"content-type": "image/jpeg"}}, body: blob}});
+      const d = await r.json().catch(() => ({{}}));
+      if (!r.ok || !d.id) throw new Error(d.error || "");
+      photo.value = d.id; pick.textContent = "Use a different photo"; msg.textContent = "Got it.";
+    }} catch (e) {{ thumb.style.display = "none"; msg.textContent = e.message || "That photo didn't upload. Check your connection and try again."; }}
+    go.disabled = false;
+  }};
+}}
+</script>""")
+
+
 async def piece_thumb(request: Request):
     """Small square picture of a library piece (for the swap page), made once and kept on the disk."""
     iid = request.path_params["iid"].upper()
@@ -431,4 +525,5 @@ ROUTES = [
     Route("/o/{oid}/swap", swap_page, methods=["GET", "POST"]),
     Route("/o/{oid}/edit", edit_page, methods=["GET", "POST"]),
     Route("/o/{oid}/colors", colors_page, methods=["GET", "POST"]),
+    Route("/o/{oid}/own", own_page, methods=["GET", "POST"]),
 ]

@@ -17,6 +17,7 @@ One Render web service for justwearthis.co:
 | `/o/<order>/swap` | Swap a piece, as often as she likes until photo day (same plan link). "What's off?" chips; a swap asks for a clearly different piece and never brings back one she swapped away |
 | `/o/<order>/edit` | Edit a person (name, age, where they shop, won't-wear) after the plan is made; only the people who changed are restyled |
 | `/o/<order>/colors` | Change our colors: pick another color story or new love/never colors; the whole family is restyled in the new colors (her own pieces stay). Counts as a swap, same link |
+| `/o/<order>/own` | Add something I own: after the plan is made, a photo (up to 4 per plan) or a few words about a piece she already has; only that person is restyled around it. Counts as a swap, same link |
 | `/api/family/photo` | A photo of a piece she owns, from `/start/`. Saved upright at most 1600px with the location details dropped, in `uploads/` on the disk; her plan shows her real piece |
 | `/api/stripe/webhook` | Stripe tells the server a payment went through |
 | `/healthz` | Health check for Render |
