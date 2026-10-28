@@ -209,11 +209,18 @@ details p{margin-top:10px;color:var(--soft);max-width:38em}
 .pros-band p.sub{color:var(--soft-on-ink);max-width:40em;font-size:19px}
 .faq h3{font-size:22px;margin:0 0 6px}
 .faq .group+.group{margin-top:36px}
+.said .head{margin-bottom:36px}
+.quotes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:28px}
+.quotes blockquote{margin:0;border-top:1px solid var(--ink);padding-top:18px;display:flex;flex-direction:column;gap:14px}
+.quotes p{font-size:19px}
+.quotes cite{font-style:normal;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--soft)}
+.signup .sub a{color:var(--paper)}
+@media (max-width:860px){.quotes{grid-template-columns:minmax(0,1fr)}}
 </style></head>
 <body>
 <header class="top"><div class="wrap">
   <a class="mark" href="/">Just Wear This.</a>
-  <nav><a class="hide-sm" href="#how">How it works</a><a class="hide-sm" href="/sample/">See a sample</a><a href="#family">First access →</a></nav>
+  <nav><a class="hide-sm" href="#how">How it works</a><a class="hide-sm" href="/sample/">See a sample</a><a href="/start/">Start my plan →</a></nav>
 </div></header>
 
 <main>
@@ -224,10 +231,10 @@ details p{margin-top:10px;color:var(--soft);max-width:38em}
     <p class="voice">Family photos are enough work. I'll handle the outfits.</p>
     <p class="lede soft">Tell me who's in the pictures, where you're taking them and what you already own. You get one plan for the whole family: every person's outfit, the colors that tie it together, and close matches to shop from your phone.</p>
     <div class="ctas">
-      <a class="btn" href="/sample/">See a sample</a>
-      <a class="btn line" href="#family">Get first access →</a>
+      <a class="btn" href="/start/">Start my plan →</a>
+      <a class="btn line" href="/sample/">See a sample</a>
     </div>
-    <p class="soft" style="font-size:14px">$19 per family. Opening soon.</p>
+    <p class="soft" style="font-size:14px">$19 per family, one time. Free swaps until photo day.</p>
   </div>
   <div class="collage" aria-hidden="true">
     <div class="board photo"><img src="/img/session-hero.jpg" alt="" width="1050" height="1400"></div>
@@ -260,8 +267,8 @@ details p{margin-top:10px;color:var(--soft);max-width:38em}
   </ol>
   <div class="price">
     <div><p class="label">One family plan</p><p class="big">$19</p></div>
-    <ul><li>Up to eight people in one plan</li><li>Close matches at up to three prices for every piece</li><li>Unlimited swaps until photo day</li></ul>
-    <a class="btn" href="/sample/">See a sample</a>
+    <ul><li>Up to eight people in one plan</li><li>Close matches at up to three prices for every piece</li><li>Unlimited swaps until photo day</li><li>No account, no subscription</li></ul>
+    <a class="btn" href="/start/">Start my plan →</a>
   </div>
 </div></section>
 
@@ -292,18 +299,27 @@ details p{margin-top:10px;color:var(--soft);max-width:38em}
       <li><b>Close matches at three prices</b><span>The picture shows the look. Each link is a real piece from a real store that matches it: everyday, mid or splurge.</span></li>
       <li><b>Have it, Shop it, Swap it</b><span>Mark what you own, shop what you need, swap what you don't love. A counter shows how many pieces are ready.</span></li>
       <li><b>Your colors, explained</b><span>The palette and why it works.</span></li>
-      <li><b>Built around what you own</b><span>Tell me about the dress or boots you're keeping, and the plan works around them.</span></li>
+      <li><b>Built around what you own</b><span>Snap a photo of the dress or boots you're keeping, and the plan works around them. Add more later if you find something in the closet.</span></li>
       <li><b>A week-before checklist</b><span>Try-ons, steaming, shoes little ones can walk in.</span></li>
     </ul>
   </div>
 </div></section>
 
+<section class="said pad"><div class="wrap">
+  <div class="head"><p class="label">From the beta</p><h2>What moms said.</h2></div>
+  <div class="quotes">
+    <blockquote><p>"I think $19 is a fair price for all the swaps and changes I can make up till picture day. I like that I can link directly to a store and buy it."</p><cite>Liberty, beta mom</cite></blockquote>
+    <blockquote><p>"It's an awesome tool and I think it will do great!!"</p><cite>Liberty, beta mom</cite></blockquote>
+  </div>
+</div></section>
+
 <section class="signup on-ink pad" id="family"><div class="wrap">
-  <p class="label">Opening soon</p>
-  <h2>Get first access.</h2>
-  <p class="voice">One email when it opens. No spam.</p>
-  <p class="sub">I'm finishing a small beta with real families first. Join the list and I'll email you when family plans open. You don't need to sign up to see the sample.</p>
-  <div class="ctas"><a class="btn" href="https://justwearthis.myflodesk.com/dfk1n9lz1l" data-family-form>Get first access →</a><a class="btn line" href="/sample/">See a sample</a></div>
+  <p class="label">Now open</p>
+  <h2>Get your family's plan.</h2>
+  <p class="voice">$19. A few minutes. Outfits handled.</p>
+  <p class="sub">Answer a few questions about your crew and your plan shows up about a minute later, with a copy in your inbox. Swap anything you don't love, right up to photo day.</p>
+  <div class="ctas"><a class="btn" href="/start/">Start my plan →</a><a class="btn line" href="/sample/">See a sample</a></div>
+  <p class="sub" style="font-size:15px">Photos not booked yet? <a href="https://justwearthis.myflodesk.com/dfk1n9lz1l" data-family-form>Get my tips by email</a> and come back when you are.</p>
 </div></section>
 
 <section class="story pad"><div class="wrap">
@@ -328,12 +344,14 @@ details p{margin-top:10px;color:var(--soft);max-width:38em}
   <div>
     <div class="group">
       <details><summary>How much is it?</summary><p>$19 for one family plan, with unlimited swaps until photo day.</p></details>
-      <details><summary>Can I buy it now?</summary><p>Not yet. I'm finishing a small beta with real families first. Join the first-access list and I'll email you when it opens.</p></details>
+      <details><summary>Do I need an account?</summary><p>No. Answer the questions, pay with your card, and your plan opens right there. The link comes to your email too, so you can always find it.</p></details>
       <details><summary>How fast do I get my plan?</summary><p>Usually about a minute after you finish the questions. You get a link you can open on any phone, and a copy by email.</p></details>
       <details><summary>Do I have to buy everything?</summary><p>No. Mark what you already own and shop only the gaps. Each piece has up to three price points.</p></details>
       <details><summary>Are the links the exact pieces in the pictures?</summary><p>The pictures show the look. Each link goes to a real piece from a real store that closely matches it, at up to three prices, so you can pick what suits your budget and sizes. Plain store links, no affiliate tracking.</p></details>
       <details><summary>What if something sells out or doesn't fit?</summary><p>Swap it, and the rest of the plan still works together. Your link updates.</p></details>
       <details><summary>Who can it plan for?</summary><p>Up to eight people in one plan, from babies to grandparents.</p></details>
+      <details><summary>Can it work with clothes we already have?</summary><p>Yes. Add photos of the pieces you're keeping when you start, or later from your plan, and everyone else gets styled around them.</p></details>
+      <details><summary>What if I don't love my plan?</summary><p>Swap any piece, change your colors or update someone's details, as many times as you like until photo day. All sales are final, which is why the changes are free.</p></details>
     </div>
   </div>
 </div></section>
