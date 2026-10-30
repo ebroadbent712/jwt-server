@@ -414,36 +414,71 @@ def _same_name(a, b):
     return a == b or (" " not in a and b.endswith(" " + a)) or (" " not in b and a.endswith(" " + b))
 
 
+def _worn_colors(plan, items_by_id):
+    """(hex, name, weight) for each piece people wear. A piece she owns counts with its real color when the
+    owned entry gives one ("hex", "color"), not the color of the library piece standing in for it."""
+    real = {o["id"]: o for o in plan.get("owned", []) if isinstance(o, dict) and o.get("hex")}
+    weight = {"hero": 3, "layer": 2, "bottom": 1.5}
+    worn = []
+    for n, p in enumerate(plan["people"]):
+        for i in p["items"]:
+            it = items_by_id.get(i)
+            if not it or it["category"] in ("shoes", "accessory"):
+                continue
+            o = real.get(i)
+            hexv = o["hex"] if o else it.get("hex")
+            if not hexv:
+                continue
+            name = (o.get("color") if o else None) or (it.get("colors") or [it["name"].split()[0]])[0]
+            w = weight.get(it.get("layout_role"), 1) + (2 if it["category"] == "dress" else 0)
+            if n == 0 and (it["category"] == "dress" or it.get("layout_role") == "hero"):
+                w += 10  # the anchor's color always earns a swatch
+            if o:
+                w += 10  # so does a piece she owns: it usually sets the family's colors
+            worn.append((hexv, name, w))
+    return worn
+
+
 def board_palette(plan, items_by_id, catalog, limit=12):
     """The swatches at the bottom must be colors people are actually wearing.
     This story's swatches come first (only the ones someone wears), then worn colors from the other
-    stocked stories; near-duplicates are skipped. 3 to 5 swatches."""
+    stocked stories; near-duplicates are skipped. A strongly worn color that no stocked swatch is close to
+    (her own berry skirt, a dusty rose sweater outside the story) still gets a swatch. 3 to 5 swatches."""
     stories = catalog["color_stories"]
     story = stories.get(plan.get("color_story"), {})
     own = list(story.get("palette", [])) + list(story.get("accents", []))
     others = [sw for k, st in stories.items() if st is not story and st.get("stocked", True) for sw in st.get("palette", [])]
     others += [{"name": "Stone", "hex": "#BFB09A"}, {"name": "Charcoal", "hex": "#3E4044"}, {"name": "Oatmeal", "hex": "#D9CDB8"},
                {"name": "Denim", "hex": "#2B3A5C"}, {"name": "Olive", "hex": "#5B5A3A"}, {"name": "Mustard", "hex": "#C9962E"}]
-    weight = {"hero": 3, "layer": 2, "bottom": 1.5}
-    worn = []
-    for n, p in enumerate(plan["people"]):
-        for i in p["items"]:
-            it = items_by_id.get(i)
-            if it and it.get("hex") and it["category"] not in ("shoes", "accessory"):
-                w = weight.get(it.get("layout_role"), 1) + (2 if it["category"] == "dress" else 0)
-                if n == 0 and (it["category"] == "dress" or it.get("layout_role") == "hero"):
-                    w += 10  # the anchor's color always earns a swatch
-                worn.append((_lab(it["hex"]), w))
+    worn_raw = _worn_colors(plan, items_by_id)
+    worn = [(_lab(h), w) for h, _, w in worn_raw]
     dist = lambda x, y: sum((a - b) ** 2 for a, b in zip(x, y)) ** 0.5
     score = lambda sw: sum(w for l, w in worn if dist(_lab(sw["hex"]), l) < limit)
+    near = lambda sw, q: dist(_lab(sw["hex"]), _lab(q["hex"])) < 14 or _same_name(sw["name"], q["name"])
     pal = []
     for group in (own, others):
         for sc, sw in sorted(((score(sw), sw) for sw in group), key=lambda x: -x[0]):
             if sc <= 0 or len(pal) >= 5:
                 continue
-            if any(dist(_lab(sw["hex"]), _lab(q["hex"])) < 14 or _same_name(sw["name"], q["name"]) for q in pal):
+            if any(near(sw, q) for q in pal):
                 continue
             pal.append(sw)
+    # every strongly worn color shows up: the closest stocked swatch, or its own color when none is close
+    added = []
+    for h, name, w in sorted(worn_raw, key=lambda x: -x[2]):
+        if w < 3 or any(dist(_lab(h), _lab(q["hex"])) < 15 for q in pal):
+            continue
+        best = min(own + others, key=lambda q: dist(_lab(h), _lab(q["hex"])))
+        sw = best if dist(_lab(h), _lab(best["hex"])) < 15 else {"name": name.strip().capitalize(), "hex": h}
+        if any(near(sw, q) for q in pal):
+            continue
+        if len(pal) >= 5:
+            weakest = min((q for q in pal if q not in added), key=score, default=None)
+            if weakest is None or score(weakest) >= w:
+                continue
+            pal.remove(weakest)
+        added.append(sw)
+        pal.append(sw)
     for sw in own:  # never fewer than three
         if len(pal) >= 3:
             break
