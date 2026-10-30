@@ -646,6 +646,11 @@
    "note": "Add to cart on listing page",
    "checked": "2026-10-16"
   },
+  "https://www.amazon.com/dp/B0F66T4XHP": {
+   "status": "ok",
+   "note": "PRETTYGARDEN ribbed maxi, Dark Green, In Stock",
+   "checked": "2026-10-30"
+  },
   "https://www.amazon.com/dp/B0FPMB1KHN": {
    "status": "ok",
    "note": "Add to Cart",
@@ -1203,8 +1208,8 @@
   },
   "https://www.lulus.com/products/coziest-poise-ivory-cable-knit-long-sleeve-sweater-mini-dress/2467791.html": {
    "status": "ok",
-   "note": "Add to Bag (some sizes sold out)",
-   "checked": "2026-10-16"
+   "note": "Ivory, Add to Bag; only L and XL left",
+   "checked": "2026-10-30"
   },
   "https://www.lulus.com/products/cozy-sweetness-ivory-eyelash-knit-cropped-cardigan/2483311.html": {
    "status": "ok",
