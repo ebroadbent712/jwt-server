@@ -7,9 +7,9 @@
 <meta name="description" content="Answer a few quick questions and get one page with every outfit picked for your family photos, ready to shop.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bodoni+Moda:ital,opsz,wght@0,6..96,500;1,6..96,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-/* Brand D, quiet (client-facing): white page, black for words only, Bodoni Moda headings, Jost labels and body. One question per screen, phone first. */
+/* Brand D, quiet (client-facing): white page, black for words only, Bodoni Moda headings, Inter labels and body (Nov 10: bigger sentence-case labels, rounded cards, selected = outline + tint + check). One question per screen, phone first. */
 :root{--paper:#ffffff;--ink:#121212;--soft:#6b6b6b;--line:#e2e2e2;
   --sans:"Jost",system-ui,-apple-system,"Segoe UI",sans-serif;--serif:"Bodoni Moda",Didot,Georgia,serif;--mark:"Anton",Impact,sans-serif}
 *{box-sizing:border-box}[hidden]{display:none!important}
@@ -79,6 +79,39 @@ textarea:focus{box-shadow:inset 0 0 0 1px var(--ink)}
 .look .tick{margin-left:auto;font-size:18px;visibility:hidden}
 .look[aria-pressed=true] .tick{visibility:visible}
 @media (max-width:380px){.look img{width:42px;height:42px}}
+/* Intake refresh (Nov 10): easier-to-read type, card-style choices, warm linen colors. */
+:root{--paper:#faf8f4;--ink:#121212;--soft:#555;--line:#e3dcd2;--tint:#efe9e1;
+  --sans:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif}
+body{font:16px/1.55 var(--sans)}
+.by{font-size:12px;letter-spacing:.08em;font-weight:500}
+.eyebrow{font-size:13px;letter-spacing:.06em;font-weight:500;color:var(--soft)}
+h1,h2{font-weight:600;letter-spacing:-.01em}
+.hand{font-size:20px}
+label.f{font-size:15px;letter-spacing:0;text-transform:none;font-weight:600;gap:8px}
+label.f small{font-size:14px;font-weight:400}
+input[type=text],input[type=email],input[type=number],input[type=date]{border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:16px}
+input[type=text]:focus,input[type=email]:focus,input[type=number]:focus,input[type=date]:focus{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+textarea{border:1px solid var(--line);border-radius:10px}
+.q{font-size:15px;letter-spacing:0;text-transform:none;font-weight:600}
+.chip{font:500 15px var(--sans);border-radius:10px;border:1px solid var(--line);padding:11px 16px}
+.chip[aria-pressed=true]{background:var(--tint);color:var(--ink);border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.chip[aria-pressed=true]::after{content:" ✓";font-weight:600}
+.chips.big{display:grid;grid-template-columns:1fr;gap:10px}
+@media (min-width:520px){.chips.big{grid-template-columns:1fr 1fr}}
+.chips.big .chip{padding:18px 18px;font-weight:600;font-size:16px;position:relative;min-height:84px}
+.chips.big .chip[aria-pressed=true]::after{position:absolute;top:16px;right:16px;content:"✓"}
+.chip span{font-size:14px;color:var(--soft);margin-top:4px}
+.chip[aria-pressed=true] span{color:var(--soft)}
+.person{border:1px solid var(--line);border-radius:14px;padding:18px;background:#fff}
+.phead b{font-family:var(--sans);font-weight:600;font-size:19px}
+.link{font-size:14px;letter-spacing:0;text-transform:none;font-weight:500}
+.add{border:1px solid var(--line);border-radius:10px;font-size:15px;letter-spacing:0;text-transform:none;font-weight:600;padding:14px}
+.btn{font:600 15px var(--sans);letter-spacing:.01em;text-transform:none;border-radius:10px;padding:16px 18px}
+.look{border-radius:10px}
+.look[aria-pressed=true]{background:var(--tint)}
+.sum div b{font-size:13px;letter-spacing:.04em;font-weight:600;color:var(--soft)}
+.person,.chip,.look,.btn.ghost,input[type=text],input[type=email],input[type=number],input[type=date],textarea{background:#fff}
+.chip[aria-pressed=true],.look[aria-pressed=true]{background:var(--tint)}
 </style>
 </head>
 <body>
