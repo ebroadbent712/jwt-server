@@ -1161,6 +1161,11 @@
    "note": "Out of stock (OutOfStock, pickup and shipping not available)",
    "checked": "2026-10-16"
   },
+  "https://www.kohls.com/product/prd-6719567/gioberti-boys-flat-front-dress-pants.jsp?skuId=51654835": {
+   "status": "ok",
+   "note": "Add to Cart; Gray in stock, sizes 2-18",
+   "checked": "2026-11-20"
+  },
   "https://www.kohls.com/product/prd-6987177/apt-9-faux-suede-trucker-jacket.jsp": {
    "status": "dead",
    "note": "Out of stock",
@@ -1440,6 +1445,11 @@
    "status": "ok",
    "note": "Shipping available (Arrives by Oct 20); Add to cart after size pick",
    "checked": "2026-10-16"
+  },
+  "https://www.target.com/p/men-s-five-cord-pants-goodfellow-co/-/A-1011831165?preselect=1011280266": {
+   "status": "ok",
+   "note": "Add to cart; Green in stock waists 30-38",
+   "checked": "2026-11-20"
   },
   "https://www.target.com/p/men-s-quilted-shirt-jacket-olive-medium/-/A-1007840821": {
    "status": "ok",
